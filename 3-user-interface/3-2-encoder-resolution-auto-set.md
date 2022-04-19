@@ -4,11 +4,11 @@
 
 엔코더 분해능을 자동으로 계산하기 위해서는 **\[설정 > 응용 파라미터 > 센서 동기]** 화면에서 **\[분해능계산]**을 누릅니다.
 
-![](../.gitbook/assets/image27.png)
+![](../_assets/image27.png)
 
 1\. <mark style="color:blue;"></mark> 아래의 그림과 같이 작업물이 리밋스위치를 치고 들어간 후 센서를 지정합니다.
 
-![](../.gitbook/assets/image28.png)
+![](../_assets/image28.png)
 
 2\. 위치를 **<1st>**로 선택합니다.
 
@@ -18,7 +18,7 @@
 
 5\. 아래의 그림과 같이 센서를 구동하여 작업물을 이동합니다. (1 m 이상)
 
-![](../.gitbook/assets/image29.png)
+![](../_assets/image29.png)
 
 6\. 위치를 **<2nd>**로 선택합니다.
 

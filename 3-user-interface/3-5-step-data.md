@@ -4,8 +4,8 @@
 
 로봇은 컨베이어 동기 재생 시 기록된 위치 데이터를 참조하여 이동합니다.
 
-![](../.gitbook/assets/image34.png)
+![](../_assets/image34.png)
 
 현재 스텝 위치에서 sync ? 에서 해당 스텝에 기록된 작업물의 위치를 확인하고 수정할 수도 있습니다.
 
-![](../.gitbook/assets/image35.png)
+![](../_assets/image35.png)

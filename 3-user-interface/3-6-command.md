@@ -21,7 +21,7 @@ cv.sync <동기여부>
 
     다음의 그림과 같이 작업물이 리밋스위치로부터 지정된 위치에 도달할 때까지 로봇을 대기할 때 사용합니다.
 
-![<대기거리>](../.gitbook/assets/image.png)
+![<대기거리>](../_assets/image.png)
 
 ```
 cv.wait posi=<대기거리>,sync=<동기여부>

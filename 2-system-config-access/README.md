@@ -2,4 +2,4 @@
 
 컨베이어 동기를 사용하기 위한 시스템 구성은 하기와 같습니다.
 
-![](../.gitbook/assets/image15.png)
+![](../_assets/image15.png)

@@ -2,13 +2,13 @@
 
 컨베이어(프레스) 동기 기능을 적용하여 로봇을 재생시키기 위해서는 로봇 제어기가 동기해야 할 컨베이어(프레스)에 대한 각종 정보를 알고 있어야 하는데, 이 정보는 작업 프로그램을 작성하기 전에 반드시 설정되어야 합니다.
 
-![](../.gitbook/assets/image30.png)
+![](../_assets/image30.png)
 
 *   <mark style="color:green;">**컨베이어 형태**</mark>
 
     아래의 그림을 참고하여 형태를 선택합니다.
 
-![](../.gitbook/assets/image31.png)
+![](../_assets/image31.png)
 
 *   <mark style="color:green;">**엔코더 분해능**</mark>
 
@@ -61,7 +61,7 @@
 
     외부 입력 신호에 의해 엔코더 펄스 카운터를 수신할 수 있습니다. 펄스 카운터는 제어기 내부적으로 16 bit 데이터로 관리되기 때문에 1 word (2 byte)의 입력 신호가 사용됩니다. 최하위 비트의 신호 번호를 입력하면 자동으로 16 개의 신호가 지정되어 사용하게 됩니다.
 
-![](../.gitbook/assets/image32.png)
+![](../_assets/image32.png)
 
 *   <mark style="color:green;">**컨베이어 동기 ON**</mark>
 

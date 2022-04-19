@@ -2,7 +2,7 @@
 
 **\[모니터링 > 센서 동기]**를 선택하면 센서 동기 관련 데이러를 확인할 수 있습니다.
 
-![](../.gitbook/assets/image33.png)
+![](../_assets/image33.png)
 
 *   <mark style="color:green;">**펄스 데이터**</mark>
 

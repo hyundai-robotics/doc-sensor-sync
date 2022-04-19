@@ -14,12 +14,12 @@
 
 2\. 컨베이어 상의 작업물에 대한 특정 위치로 로봇의 툴 끝을 이동한 후 S1을 기록합니다.
 
-!['](../../.gitbook/assets/image22.png)
+!['](../../_assets/image22.png)
 
 3\. 컨베이어를 구동하여 작업물을 이동한 후 (2)의 특정위치로 로봇의 툴 끝을 이동한 후 S2를 기록합니다.
 
-![](../../.gitbook/assets/image23.png)
+![](../../_assets/image23.png)
 
 4\. 다음의 프로그램이 작성됩니다.
 
-![](../../.gitbook/assets/image24.png)
+![](../../_assets/image24.png)

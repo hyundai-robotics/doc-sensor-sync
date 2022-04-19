@@ -6,17 +6,17 @@
 <mark style="color:red;">엔코더에서 입력되는 펄스 값을 기준으로 로봇이 이동하기 때문에 펄스 값을 읽는 주기가 일정해야 로봇의 추종 성능이 좋습니다. 따라서 PLC 로직은 5 ms  의 cyclic task 에서 수행하고 I/O configuration 을 구성할 때도 지정된 5 ms 의 task 로직에서 수행되도록 하십시오.</mark>
 {% endhint %}
 
-![](../../.gitbook/assets/image16.png)
+![](../../_assets/image16.png)
 
 * <mark style="color:green;">**I/O configuration**</mark>
 
-![](../../.gitbook/assets/image17.png)
+![](../../_assets/image17.png)
 
-![](../../.gitbook/assets/image18.png)
+![](../../_assets/image18.png)
 
 * <mark style="color:green;">**변수 정의**</mark>
 
-![](../../.gitbook/assets/image19.png)
+![](../../_assets/image19.png)
 
 *   <mark style="color:green;">**로직 작성**</mark>
 

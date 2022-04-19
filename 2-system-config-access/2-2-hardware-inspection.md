@@ -2,7 +2,7 @@
 
 **\[모니터링 > 센서 동기]**를 선택하면 선세 동기 관련 데이터를 확인할 수 있습니다.
 
-![](../.gitbook/assets/image21.png)
+![](../_assets/image21.png)
 
 *   <mark style="color:green;">**리밋스위치**</mark>
 

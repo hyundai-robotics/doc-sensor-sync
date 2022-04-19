@@ -2,7 +2,7 @@
 
 컨베이어 동기 시스템의 일반적인 구성 형태는 아래의 그림과 같습니다.
 
-![](../.gitbook/assets/image9.png)
+![](../_assets/image9.png)
 
 *   <mark style="color:green;">**리밋스위치**</mark>
 
