@@ -1,4 +1,4 @@
-# 3.6 명령어
+﻿# 3.6 명령어
 
 *   <mark style="color:green;">**cv.sync (동기 재생)**</mark>
 

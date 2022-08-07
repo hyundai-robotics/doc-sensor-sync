@@ -1,4 +1,4 @@
-# 3.7 함수
+﻿# 3.7 함수
 
 *   <mark style="color:green;">**cv.position(<작업물 인덱스>)**</mark> <mark style="color:blue;">\*작업물의 위치를 얻음</mark>
 

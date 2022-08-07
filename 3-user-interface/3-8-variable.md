@@ -1,4 +1,4 @@
-# 3.8 변수
+﻿# 3.8 변수
 
 *   <mark style="color:green;">**cv.speed (컨베이어 속도)**</mark>
 
