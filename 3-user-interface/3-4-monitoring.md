@@ -33,7 +33,7 @@
     리밋스위치가 동작중인지 상태를 표시합니다.
 
     &#x20;
-*   &#x20;<mark style="color:green;"></mark> <mark style="color:green;"></mark><mark style="color:green;">**raw 펄스**</mark>
+*   <mark style="color:green;">**raw 펄스**</mark>
 
     입력되는 엔코더 펄스의 값을 hex 데이터로 표시합니다. 정상인 경우 0 \~ ffff까지 반복합니다.
 

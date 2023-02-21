@@ -10,7 +10,6 @@
 * [2. 시스템 구성 및 접속](2-system-config-access/README.md)
   * [2.1 컨베이어 I/F 보드](2-system-config-access/2-1-conveyor-if-board/README.md)
     * [2.1.1 지원 모듈](2-system-config-access/2-1-conveyor-if-board/1-support-module.md)
-    * [2.1.2 PLC 프로그램](2-system-config-access/2-1-conveyor-if-board/2-plc-program.md)
   * [2.2 하드웨어 점검](2-system-config-access/2-2-hardware-inspection.md)
 * [3. 사용자 인터페이스](3-user-interface/README.md)
   * [3.1 컨베이어 각도 자동설정](3-user-interface/3-1-conveyor-angle-auto-set/README.md)
