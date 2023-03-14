@@ -4,23 +4,25 @@
 
 다음은 프레스 동기를 사용하는 프로그램의 예입니다.
 
-```
-       global press
-       press=sync.Sensor(1)
-스텝 1
-       press.sync start                     // 프레스 동기 시작
-       press.wait posi=500,sync=0           // 프레스 인터록 대기
-스텝 2 move P,spd=60%                       // 센서 1의 위치 등록
-스텝 3 move P,spd=60%                       // 센서 1의 위치 등록
-스텝 4 move P,spd=60%                       // 센서 1의 위치 등록
-       press.sync end                       // 프레스 동기 종료
-스텝 5
+```python
+        global press
+        press=sync.Sensor(1)
+    S1
+        press.sync start              # 프레스 동기 시작
+        press.wait posi=500,sync=0    # 프레스 인터록 대기
+    S2  move P,spd=60%                # 센서 1의 위치 등록
+    S3  move P,spd=60%                # 센서 1의 위치 등록
+    S4  move P,spd=60%                # 센서 1의 위치 등록
+        press.sync end                # 프레스 동기 종료
+    S5
        end
 ```
 
 상기 프로그램에서 스텝 2, 3, 4 에서 센서의 위치 반드시 증가하도록 교시되어야 하며 그렇지 못할 경우에는 다음과 같은 에러가 발생합니다.
 
-#### <mark style="color:green;">E0239 스텝의 센서 위치가 순차적으로 증가하지 않습니다.</mark>
+#### <mark style="color:green;">E0239 스텝의 센서 위치가 순차적으로 증가하지 않습니다.</mark> 
+
+<br>
 
 또한 스텝 2, 3, 4 에 기록된 속도는 무시되며 기본적으로 사용자가 지정한 프레스의 허용속도를 기반으로 속도를 계획합니다. 만일 최고속으로 계획하여도 로봇의 성능을 초과하도록 센서와 로봇의 위치를 기록하면 동작중에 다음과 같은 에러가 발생합니다.
 
