@@ -24,7 +24,7 @@
     S2
     S3                             # 인터록 대기 스텝
         cv.sync start              # 컨베이어 동기 시작
-        v.wait posi=500,sync=0     # 컨베이어 인터록 대기
+        cv.wait posi=500,sync=0    # 컨베이어 인터록 대기
     S4                             # 동기구간 투입 스텝
         do1=1                      # 도료 분사 ON 신호
     S5                             # 동기 작업 첫 번째 스텝
