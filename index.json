@@ -7,131 +7,121 @@
 	{
 		"link": "1-intro/README.md",
 		"char_ofs": 272,
-		"byte_ofs": 527
+		"byte_ofs": 530
 	},
 	{
 		"link": "1-intro/1-1-system-config.md",
-		"char_ofs": 475,
-		"byte_ofs": 1033
+		"char_ofs": 485,
+		"byte_ofs": 1025
 	},
 	{
 		"link": "1-intro/1-2-conveyor-sync-principle.md",
-		"char_ofs": 866,
-		"byte_ofs": 1816
+		"char_ofs": 876,
+		"byte_ofs": 1811
 	},
 	{
 		"link": "1-intro/1-3-press-sync-principle.md",
-		"char_ofs": 1126,
-		"byte_ofs": 2393
+		"char_ofs": 1304,
+		"byte_ofs": 2613
 	},
 	{
 		"link": "1-intro/1-4-major-spec.md",
-		"char_ofs": 1404,
-		"byte_ofs": 3038
+		"char_ofs": 1582,
+		"byte_ofs": 3261
 	},
 	{
 		"link": "1-intro/1-5-operation-sequence.md",
-		"char_ofs": 2017,
-		"byte_ofs": 3983
+		"char_ofs": 2195,
+		"byte_ofs": 4209
 	},
 	{
 		"link": "2-system-config-access/README.md",
-		"char_ofs": 2058,
-		"byte_ofs": 4035
+		"char_ofs": 2236,
+		"byte_ofs": 4264
 	},
 	{
-		"link": "2-system-config-access/2-1-conveyor-if-board/README.md",
-		"char_ofs": 2140,
-		"byte_ofs": 4190
-	},
-	{
-		"link": "2-system-config-access/2-1-conveyor-if-board/1-support-module.md",
-		"char_ofs": 2159,
-		"byte_ofs": 4223
-	},
-	{
-		"link": "2-system-config-access/2-1-conveyor-if-board/2-plc-program.md",
-		"char_ofs": 2395,
-		"byte_ofs": 4626
+		"link": "2-system-config-access/2-1-conveyor-if-board.md",
+		"char_ofs": 2318,
+		"byte_ofs": 4422
 	},
 	{
 		"link": "2-system-config-access/2-2-hardware-inspection.md",
-		"char_ofs": 3488,
-		"byte_ofs": 6368
+		"char_ofs": 2608,
+		"byte_ofs": 4870
 	},
 	{
 		"link": "3-user-interface/README.md",
-		"char_ofs": 3885,
-		"byte_ofs": 7127
+		"char_ofs": 3009,
+		"byte_ofs": 5636
 	},
 	{
 		"link": "3-user-interface/3-1-conveyor-angle-auto-set/README.md",
-		"char_ofs": 3901,
-		"byte_ofs": 7161
+		"char_ofs": 3025,
+		"byte_ofs": 5673
 	},
 	{
 		"link": "3-user-interface/3-1-conveyor-angle-auto-set/1-program-teaching.md",
-		"char_ofs": 4110,
-		"byte_ofs": 7675
+		"char_ofs": 3251,
+		"byte_ofs": 6226
 	},
 	{
 		"link": "3-user-interface/3-1-conveyor-angle-auto-set/2-auto-calculation.md",
-		"char_ofs": 4622,
-		"byte_ofs": 8696
+		"char_ofs": 3799,
+		"byte_ofs": 7272
 	},
 	{
 		"link": "3-user-interface/3-2-encoder-resolution-auto-set.md",
-		"char_ofs": 5045,
-		"byte_ofs": 9514
+		"char_ofs": 4218,
+		"byte_ofs": 8089
 	},
 	{
 		"link": "3-user-interface/3-3-sensor-sync-parameter.md",
-		"char_ofs": 5890,
-		"byte_ofs": 11224
+		"char_ofs": 5057,
+		"byte_ofs": 9806
 	},
 	{
 		"link": "3-user-interface/3-4-monitoring.md",
-		"char_ofs": 8412,
-		"byte_ofs": 16154
+		"char_ofs": 7579,
+		"byte_ofs": 14739
 	},
 	{
 		"link": "3-user-interface/3-5-step-data.md",
-		"char_ofs": 9589,
-		"byte_ofs": 18080
+		"char_ofs": 8717,
+		"byte_ofs": 16679
 	},
 	{
 		"link": "3-user-interface/3-6-command.md",
-		"char_ofs": 9857,
-		"byte_ofs": 18623
+		"char_ofs": 8985,
+		"byte_ofs": 17231
 	},
 	{
 		"link": "3-user-interface/3-7-function.md",
-		"char_ofs": 11107,
-		"byte_ofs": 20444
+		"char_ofs": 11397,
+		"byte_ofs": 20267
 	},
 	{
 		"link": "3-user-interface/3-8-variable.md",
-		"char_ofs": 11659,
-		"byte_ofs": 21407
+		"char_ofs": 12406,
+		"byte_ofs": 21765
 	},
 	{
 		"link": "4-teaching/README.md",
-		"char_ofs": 12744,
-		"byte_ofs": 23159
+		"char_ofs": 13742,
+		"byte_ofs": 23822
 	},
 	{
 		"link": "4-teaching/4-1-sync-oper-program-config.md",
-		"char_ofs": 13006,
-		"byte_ofs": 23652
+		"char_ofs": 14004,
+		"byte_ofs": 24318
 	},
 	{
 		"link": "4-teaching/4-2-press-sync-teaching.md",
-		"char_ofs": 14438,
-		"byte_ofs": 25985
+		"char_ofs": 15392,
+		"byte_ofs": 26579
 	},
 	{
 		"link": "5-faq.md",
-		"char_ofs": 15413,
-		"byte_ofs": 27743
+		"char_ofs": 16422,
+		"byte_ofs": 28415
 	}
 ]
