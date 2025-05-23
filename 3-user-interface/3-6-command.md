@@ -26,9 +26,9 @@
         <td style="text-align:left">동기동작</td>
         <td style="text-align:left">
             - reset: 동기 리셋(동기 Off + 컨베이어 데이터 클리어)<br>
-            - start: 동기 시작(동기 On)<br>
-            - hold: 동기 일시 중지(동기 Off)<br>
-            - end: 동기 종료(동기 Off + 다음 작업물 데이터 로딩)<br>
+            - on: 동기 시작(동기 On)<br>
+            - off: 동기 일시 중지(동기 Off)<br>
+            - next: 다음 작업물 동기 시작(동기 Off + 다음 작업물 데이터 로딩)<br>
         </td>
         <td style="text-align:left">문자열</td>
         </tr>
@@ -95,8 +95,8 @@
     S2  move P,spd=30%,accu=5,tool=1  
         delay 0.5
         cv.input
-        cv.sync start
         cv.wait posi=200,sync=off
+        cv.sync on
     S3  move L,spd=30%,accu=1,tool=1  
         delay 1
     S4  move L,spd=30%,accu=1,tool=1  
@@ -105,8 +105,7 @@
         delay 1
     S6  move L,spd=30%,accu=1,tool=1  
         delay 3
-        cv.sync hold
+        cv.sync off
     S7  move P,spd=100%,accu=1,tool=1  
-        cv.sync end
         end
       ```

@@ -96,32 +96,32 @@
 	},
 	{
 		"link": "3-user-interface/3-7-function.md",
-		"char_ofs": 11397,
-		"byte_ofs": 20267
+		"char_ofs": 11377,
+		"byte_ofs": 20256
 	},
 	{
 		"link": "3-user-interface/3-8-variable.md",
-		"char_ofs": 12406,
-		"byte_ofs": 21765
+		"char_ofs": 12386,
+		"byte_ofs": 21754
 	},
 	{
 		"link": "4-teaching/README.md",
-		"char_ofs": 13742,
-		"byte_ofs": 23822
+		"char_ofs": 13722,
+		"byte_ofs": 23811
 	},
 	{
 		"link": "4-teaching/4-1-sync-oper-program-config.md",
-		"char_ofs": 14004,
-		"byte_ofs": 24318
+		"char_ofs": 13984,
+		"byte_ofs": 24307
 	},
 	{
 		"link": "4-teaching/4-2-press-sync-teaching.md",
-		"char_ofs": 15392,
-		"byte_ofs": 26579
+		"char_ofs": 15421,
+		"byte_ofs": 26634
 	},
 	{
 		"link": "5-faq.md",
-		"char_ofs": 16422,
-		"byte_ofs": 28415
+		"char_ofs": 16501,
+		"byte_ofs": 28535
 	}
 ]
