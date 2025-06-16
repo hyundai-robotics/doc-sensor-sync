@@ -81,47 +81,47 @@
 	},
 	{
 		"link": "3-user-interface/3-4-monitoring.md",
-		"char_ofs": 7579,
-		"byte_ofs": 14739
+		"char_ofs": 8154,
+		"byte_ofs": 15886
 	},
 	{
 		"link": "3-user-interface/3-5-step-data.md",
-		"char_ofs": 8717,
-		"byte_ofs": 16679
+		"char_ofs": 9292,
+		"byte_ofs": 17826
 	},
 	{
 		"link": "3-user-interface/3-6-command.md",
-		"char_ofs": 8985,
-		"byte_ofs": 17231
+		"char_ofs": 9560,
+		"byte_ofs": 18378
 	},
 	{
 		"link": "3-user-interface/3-7-function.md",
-		"char_ofs": 11377,
-		"byte_ofs": 20256
+		"char_ofs": 11952,
+		"byte_ofs": 21403
 	},
 	{
 		"link": "3-user-interface/3-8-variable.md",
-		"char_ofs": 12386,
-		"byte_ofs": 21754
+		"char_ofs": 12961,
+		"byte_ofs": 22901
 	},
 	{
 		"link": "4-teaching/README.md",
-		"char_ofs": 13722,
-		"byte_ofs": 23811
+		"char_ofs": 14297,
+		"byte_ofs": 24958
 	},
 	{
 		"link": "4-teaching/4-1-sync-oper-program-config.md",
-		"char_ofs": 13984,
-		"byte_ofs": 24307
+		"char_ofs": 14559,
+		"byte_ofs": 25454
 	},
 	{
 		"link": "4-teaching/4-2-press-sync-teaching.md",
-		"char_ofs": 15421,
-		"byte_ofs": 26634
+		"char_ofs": 15996,
+		"byte_ofs": 27781
 	},
 	{
 		"link": "5-faq.md",
-		"char_ofs": 16501,
-		"byte_ofs": 28535
+		"char_ofs": 17076,
+		"byte_ofs": 29682
 	}
 ]
