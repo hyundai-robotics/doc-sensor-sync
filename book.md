@@ -364,9 +364,9 @@
         <td style="text-align:left">동기동작</td>
         <td style="text-align:left">
             - reset: 동기 리셋(동기 Off + 컨베이어 데이터 클리어)<br>
-            - start: 동기 시작(동기 Start)<br>
-            - hold: 동기 일시 중지(동기 Off)<br>
-            - end: 현재 작업물 동기 종료 및 다음 작업물 동기 시작(동기 Off + 다음 작업물 데이터 로딩)<br>
+            - on: 동기 시작(동기 On)<br>
+            - off: 동기 일시 중지(동기 Off)<br>
+            - next: 다음 작업물 동기 시작(동기 Off + 다음 작업물 데이터 로딩)<br>
         </td>
         <td style="text-align:left">문자열</td>
         </tr>
@@ -434,7 +434,7 @@
         delay 0.5
         cv.input
         cv.wait posi=200,sync=off
-        cv.sync start
+        cv.sync on
     S3  move L,spd=30%,accu=1,tool=1  
         delay 1
     S4  move L,spd=30%,accu=1,tool=1  
@@ -443,7 +443,7 @@
         delay 1
     S6  move L,spd=30%,accu=1,tool=1  
         delay 3
-        cv.sync end
+        cv.sync off
     S7  move P,spd=100%,accu=1,tool=1  
         end
       ```# 3.7 함수
@@ -573,7 +573,7 @@
     S1                              # 로봇 원위치
     S2
     S3                             # 인터록 대기 스텝
-        cv.sync start                 # 컨베이어 동기 시작
+        cv.sync on                 # 컨베이어 동기 시작
         cv.wait posi=500,sync=0    # 컨베이어 인터록 대기
     S4                             # 동기구간 투입 스텝
         do1=1                      # 도료 분사 ON 신호
@@ -581,7 +581,7 @@
      : 
     S9                             # 동기 작업 마지막 스텝
         do1=0                      # 도료 분사 OFF 신호
-        cv.sync end                # 컨베이어 동기 종료
+        cv.sync off                # 컨베이어 동기 종료
                                    # 현재 작업에 대한 작업 완료
    S10
      : 
@@ -609,12 +609,12 @@
         press=sync.Sensor(1)
         press.sync reset              # 프레스 동기 리셋
     S1
-        press.sync start              # 프레스 동기 시작
+        press.sync on                 # 프레스 동기 시작
         press.wait posi=500,sync=0    # 프레스 인터록 대기
     S2  move P,spd=60%                # 센서 1의 위치 등록
     S3  move P,spd=60%                # 센서 1의 위치 등록
     S4  move P,spd=60%                # 센서 1의 위치 등록
-        press.sync end                # 프레스 동기 종료
+        press.sync off                # 프레스 동기 종료
     S5
         end
 ```
