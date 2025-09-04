@@ -9,12 +9,12 @@
         press=sync.Sensor(1)
         press.sync reset              # 프레스 동기 리셋
     S1
-        press.sync on                 # 프레스 동기 시작
+        press.sync start              # 프레스 동기 시작
         press.wait posi=500,sync=0    # 프레스 인터록 대기
     S2  move P,spd=60%                # 센서 1의 위치 등록
     S3  move P,spd=60%                # 센서 1의 위치 등록
     S4  move P,spd=60%                # 센서 1의 위치 등록
-        press.sync off                # 프레스 동기 종료
+        press.sync end                # 프레스 동기 종료
     S5
         end
 ```
