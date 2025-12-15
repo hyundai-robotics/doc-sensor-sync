@@ -1,13 +1,13 @@
-﻿# 2.2 하드웨어 점검
+﻿# 2.2 Hardware Inspection
 
-**\[모니터링 > 센서 동기]**를 선택하면 선세 동기 관련 데이터를 확인할 수 있습니다.
+Select **[Monitoring > Sensor Sync]** to check sensor sync related data.
 
 ![](../_assets/image21.png)
 
-*   <mark style="color:green;">**리밋스위치**</mark>
+- **Limit switch**
 
-    “**리밋스위치 입력**” 항목은 리밋스위치가 동작중이면 1, 동작하지 않으면 0 으로 표시되면 정상입니다. 정상 동작하지 않으면 하드웨어를 점검하십시오.
-*   <mark style="color:green;">**엔코더**</mark>
+    The "Limit switch input" field shows 1 when the limit switch is active and 0 when it is not. If it does not operate normally, inspect the hardware.
 
-    “**raw 펄스”** 항목은 엔코더 펄스가 정상적으로 입력되면 컨베이어 동작 시 0 \~ ffff 범위에서 값이 계속 증가하거나 계속 감소합니다. 정상 동작하지 않으면 하드웨어를 점검하십시오.
-    
+- **Encoder**
+
+    The "raw pulse" field shows encoder pulses; during conveyor movement the value should continuously increase or decrease within the range 0~ffff. If not operating normally, inspect the hardware.

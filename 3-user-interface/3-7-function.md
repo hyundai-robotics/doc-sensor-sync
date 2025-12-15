@@ -1,43 +1,41 @@
-﻿# 3.7 함수
+﻿# 3.7 Functions
 
-*   <mark style="color:green;">**cv.position(<작업물 인덱스>)**</mark> <mark style="color:blue;"></mark>
+- **cv.position(<workpiece_index>)**
 
-    cv.position 함수를 사용하면 작업물의 현재 위치를 얻을 수 있습니다.
+    Use `cv.position` to obtain the current position of a workpiece.
 
-    ### 설명
-    복수의 작업물이 리밋스위치를 순차적으로 통과한 경우, 각각의 작업물에 대해서 리밋스위치를 기준으로 이동한 거리(mm)를 얻고자 할 때 사용합니다. 작업물 인덱스로 0 이 가장 먼저 진입한 작업물이며, 이는 cv.position 과 동일합니다. 이를 기준으로 작업물 인덱스 번호는 진입한 순서에 따라 증가하여 매칭됩니다.
+    ### Description
+    When multiple workpieces sequentially pass the limit switch, use this to get the distance moved (mm) from the limit switch for each workpiece. Index 0 corresponds to the first-entered workpiece. Index numbers increase in order of entry.
 
-    ### 문법
-
+    ### Syntax
     ```python
-    result=cv.position(<작업물 인덱스>)
+    result = cv.position(<workpiece_index>)
     ```
-    
-    ### 파라미터
+
+    ### Parameters
     <table>
     <thead>
         <tr>
-        <th style="text-align:left">항목</th>
-        <th style="text-align:left">의미</th>
-        <th style="text-align:left">기타</th>
+        <th style="text-align:left">Item</th>
+        <th style="text-align:left">Description</th>
+        <th style="text-align:left">Remarks</th>
         </tr>
     </thead>
     <tbody>
         <tr>
-        <td style="text-align:left">작업물 인덱스</td>
+        <td style="text-align:left">Workpiece Index</td>
         <td style="text-align:left">
-            진입한 작업물 순서에 따라 0 부터 순차적으로 증가하여 매칭
+            Matched sequentially starting from 0 according to the order in which workpieces enter
         </td>
-        <td style="text-align:left">변수</td>
+        <td style="text-align:left">Variable</td>
         </tr>
     </tbody>
     </table>
 
 
-    ### 사용 예
-
+    ### Example
     ```python
-    if cv.position(0)>1000 then
-        print "작업물이 허용 작업 영역을 벗어났습니다."
+    if cv.position(0) > 1000 then
+        print "Workpiece has left the allowable work area."
     endif
     ```

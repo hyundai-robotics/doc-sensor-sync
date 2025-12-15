@@ -1,28 +1,26 @@
-﻿# 3.1.1 프로그램 티칭
+﻿# 3.1.1 Program Teaching
 
-컨베이어 각도 자동계산을 위해서 먼저 다음과 같은 방법으로 프로그램을 작성합니다.
+To perform conveyor angle auto-calculation, first write a program as follows.
 
-{% hint style="info" %}
-각도를 정확하게 설정하기 위해서는 각각의 위치를 가능한 멀게 하십시오. (직선 1 m 이상)
+{% hint style="info" %}  
+To set the angle accurately, make each recorded position as far apart as possible (recommended at least 1 m for straight conveyors).
 {% endhint %}
 
-1\. 컨베이어 각도 자동계산을 위한 새로운 프로그램을 선택합니다.
 
-2\. 컨베이어 상의 작업물에 대한 특정 위치로 로봇의 툴 끝을 이동한 후 S1을 기록합니다.
+1. Select a new program for conveyor angle auto-calculation.
+2. Move the robot tool tip to a specific position on the conveyor workpiece and record S1.
 
-!['](../../_assets/image22.png)
+![](../../_assets/image22.png)
 
-3\. 컨베이어를 구동하여 작업물을 이동한 후 (2)의 특정위치로 로봇의 툴 끝을 이동한 후 S2를 기록합니다.
+3. Move the conveyor to shift the workpiece, move the robot tool tip to the same specific position and record S2.
 
 ![](../../_assets/image23.png)
 
-4\. 다음의 프로그램이 작성됩니다.
+4. A program similar to the following will be created.
 
 ![](../../_assets/image24.png)
 
 
-{% hint style="info" %}
-컨베이어 형태가 <**원형**>인 경우, 각도를 계산하기 위해서는 3 점의 위치가 필요합니다.
-
-위에서 3 의 과정을 한 번 더 해주십시오.
+{% hint style="info" %}    
+For circular conveyors, three positions are required to calculate the angle. Repeat step 3 once more.  
 {% endhint %}

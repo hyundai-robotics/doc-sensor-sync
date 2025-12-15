@@ -1,3 +1,3 @@
-﻿# 4. 티칭
+﻿# 4. Teaching
 
-센서 동기용 프로그램을 작성하는 것 또한 일반적인 티칭과 동일합니다. 그러나 센서 동기 재생을 실행하기 위해서는 “[**cv.sync (센서 동기재생)**](../3-user-interface/3-6-command.md)”과 “[**cv.wait (센서 인터록 대기)**](../3-user-interface/3-6-command.md)” 명령어를 사용해야 하는데, 이 명령어들은 티칭이 완료된 프로그램에 대한 재생을 수행하기 전에 기록되어야 합니다.
+Writing programs for sensor synchronization follows the same general teaching workflow. However, to execute sensor sync playback you must use the commands **cv.sync (sync playback)** and **cv.wait (sensor interlock wait)**; these commands must be recorded in the taught program before playback.

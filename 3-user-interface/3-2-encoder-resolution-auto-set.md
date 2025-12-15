@@ -1,35 +1,28 @@
-﻿# 3.2 엔코더 분해능 자동설정
+﻿# 3.2 Encoder Resolution Auto-Set
 
-엔코더 분해능이란 컨베이어(프레스)의 형태가 직선인 경우는 컨베이어(프레스)가 1 m 이동한 경우, 원형인 경우는 컨베이어(프레스)가 1 deg 회전한 경우 발생하는 펄스 수를 의미합니다.
+Encoder resolution means the number of pulses generated when a linear conveyor (or press) moves 1 m, or when a circular conveyor (or press) rotates 1 degree.
 
-엔코더 분해능을 자동으로 계산하기 위해서는 [**설정 > 응용 파라미터 > 센서 동기**] 화면에서 [**분해능계산**]을 누릅니다.
+To automatically calculate encoder resolution, go to [Settings > Application Parameters > Sensor Sync] and press [Resolution Calculation].
 
 ![](../_assets/image27.png)
 
-1\. <mark style="color:blue;"></mark> 아래의 그림과 같이 작업물이 리밋스위치를 치고 들어간 후 센서를 지정합니다.
+1. After the workpiece triggers the limit switch, designate the sensor as shown below.
 
 ![](../_assets/image28.png)
 
-2\. 위치를 <**1번**>으로 선택합니다.
-
-3\. 작업물 위의 특정위치로 로봇의 툴 끝을 이동합니다.
-
-4\. [**자세지정**]을 누르면 현재 로봇의 위치와 함께 엔코더 펄스 값이 기록됩니다.
-
-5\. 아래의 그림과 같이 센서를 구동하여 작업물을 이동합니다. (1 m 이상)
+2. Select position <1>.
+3. Move the robot tool tip to a specific position on the workpiece.
+4. Press [Record Pose] to record the current robot pose and the encoder pulse value.
+5. Move the workpiece (at least 1 m) by operating the sensor as shown.
 
 ![](../_assets/image29.png)
 
-6\. 위치를 <**2번**>으로 선택합니다.
+6. Select position <2>.
+7. Move the robot tool tip back to the specific position recorded in step 3.
+8. Press [Record Pose] to record the pose and encoder pulse value.
+9. Press [Calculate Resolution] to compute the encoder resolution and record it in the encoder resolution field.
 
-7\. 3 에서 지정한 특정위치로 로봇의 툴 끝을 이동합니다.
+Repeat steps 1~9 to calculate up to four encoder resolutions.
 
-8\. [**자세지정**]을 누르면 현재 로봇의 위치와 함께 엔코더 펄스 값이 기록됩니다.
-
-9\. [**해상도계산**]을 누르면 엔코더 분해능을 계산하고 엔코더 분해능 항목에 기록합니다.
-
-　1 \~ 9의 과정을 반복하면 총 4개의 엔코더 분해능을 계산할 수 있습니다.
-
-10\. [**평균값계산**]을 누르면 기록된 엔코더 분해능들의 평균 값이 계산됩니다.
-
-11\. [**완료**]를 누르면 평균 값이 엔코더 분해능으로 설정됩니다.
+10. Press [Calculate Average] to compute the average of the recorded encoder resolutions.
+11. Press [OK] to set the average as the encoder resolution.

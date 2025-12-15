@@ -1,51 +1,46 @@
-﻿# 4.1 동기작업 프로그램 구성
+﻿# 4.1 Sync Operation Program Structure
 
-*   <mark style="color:green;">**원위치 대기**</mark>
+- **Home position wait**
 
-    로봇은 기동명령이 입력되기전까지 원위치에서 대기합니다.
+    The robot waits at its home position until a start command is input.
 
+- **Interlock wait**
 
-*   <mark style="color:green;">**인터록 대기**</mark>
+    The robot moves near the synchronization section and waits until the workpiece reaches the distance recorded by `cv.wait`.
 
-    로봇은 동기 작업 구간 근처까지 미리 이동한 후, cv.wait 명령어에 기록된 거리에 작업물이 도달하기까지 대기합니다.
+The following figure shows a painting program for workpieces flowing on a conveyor. The robot starts conveyor sync when advancing to step S4 and begins spraying paint in sync from step S5. The interlock wait step (S3) is recorded near the sync section entry step (S4).
 
+![](../_assets/image_1.png)
 
-
-    다음 그림은 컨베이어 상에 흘러오는 작업물에 대한 도장작업 프로그램입니다. 로봇은 스텝 4 로 진행할 때 컨베이어 동기를 시작하고 스텝 5 로 이동할 때부터 동기 상태에서 작업물에 도료를 분사합니다. 여기서 인터록 대기 스텝(스텝 3)은 동기작업 구간 진입 스텝(스텝 4) 근처에 기록합니다.
-
-       ![](<../_assets/image_1.png>)
-
-       위 작업을 프로그램으로 작성하면 다음과 같습니다.
+Example program:
 
 ```python
-        global cv
-        cv=sync.Sensor(1)
-        cv.sync reset               # 컨베이어 동기 리셋
-    S1                              # 로봇 원위치
-    S2
-    S3                             # 인터록 대기 스텝
-        cv.sync on                 # 컨베이어 동기 시작
-        cv.wait posi=500,sync=0    # 컨베이어 인터록 대기
-    S4                             # 동기구간 투입 스텝
-        do1=1                      # 도료 분사 ON 신호
-    S5                             # 동기 작업 첫 번째 스텝
-     : 
-    S9                             # 동기 작업 마지막 스텝
-        do1=0                      # 도료 분사 OFF 신호
-        cv.sync off                # 컨베이어 동기 종료
-                                   # 현재 작업에 대한 작업 완료
-   S10
-     : 
-   S13                             # 로봇 원위치
-        end
+    global cv
+    cv = sync.Sensor(1)
+    cv.sync reset               # Conveyor sync reset
+S1                              # Robot home
+S2
+S3                             # Interlock wait step
+    cv.sync on                 # Start conveyor sync
+    cv.wait posi=500,sync=0    # Conveyor interlock wait
+S4                             # Sync section entry step
+    do1 = 1                    # Paint spray ON signal
+S5                             # First sync operation step
+ :
+S9                             # Last sync operation step
+    do1 = 0                    # Paint spray OFF signal
+    cv.sync off                # End conveyor sync
+                                # Complete current work
+S10
+ :
+S13                            # Robot home
+    end
 ```
 
+- **Sync playback**
 
-*   <mark style="color:green;">**동기 재생**</mark>
+    In the figure, the conveyor sync playback section refers to steps S4 through S9; all commands in this section are executed synchronized to the moving conveyor.
 
-    그림에서 컨베이어 동기재생 구간은 스텝 4 번부터 스텝 9 번까지를 의미하는데, 이 구간내의 모든 명령은 진행하는 컨베이어에 동기하며 실행합니다.
+- **Return to home position**
 
-
-*   <mark style="color:green;">**원위치 복귀**</mark>
-
-    작업을 끝낸 로봇은 다음 기동명령을 위해 다시 원위치로 복귀합니다.
+    After finishing the operation, the robot returns to its home position for the next start command.

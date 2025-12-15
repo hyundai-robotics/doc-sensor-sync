@@ -1,56 +1,65 @@
-﻿# 3.8 변수
+﻿# 3.8 Variables
 
-*   <mark style="color:green;">**cv.speed (컨베이어 속도)**</mark>
+- **cv.speed (conveyor speed)**
 
-    ### 설명
-    컨베이어나 프레스의 이동 속도를 읽을 때 사용되며 모니터링 상의 이동속도에 해당하는 값입니다.
+    ### Description
+    Use to read the movement speed of a conveyor or press; corresponds to the monitoring velocity.
 
-    ### 사용 예
+    ### Example
     ```python
-    if cv.speed>300 then
-        print "컨베이어 속도가 너무 큽니다."
+    if cv.speed > 300 then
+        print "Conveyor speed is too high."
     endif
     ```
 
-*   <mark style="color:green;">**cv.pulse (작업물 펄스)**</mark>
-    ### 설명
-    동기 작업을 위해 작업물이 리밋스위치로부터 이동한 펄스(pulse)를 인식하고자 할 때 사용되며 모니터링 상의 펄스 데이터에 해당하는 값입니다.
-    ### 사용 예
+- **cv.pulse (workpiece pulses)**
+
+    ### Description
+    Use to read the pulses (distance) the workpiece has moved from the limit switch; corresponds to monitoring pulse data.
+
+    ### Example
     ```python
-    if cv,pulse>10000 then
-        print "작업물이 허용 작업 영역을 벗어났습니다."
+    if cv.pulse > 10000 then
+        print "Workpiece has left the allowable work area."
     endif
     ```
 
-* <mark style="color:green;">**cv.position (작업물 위치)**</mark>
+- **cv.position (workpiece position)**
+    ### Example
     ```python
-    if cv.position>1000 then
-        print "작업물이 허용 작업 영역을 벗어났습니다."
+    if cv.position > 1000 then
+        print "Workpiece has left the allowable work area."
     endif
     ```
 
-*   <mark style="color:green;">**cv.work\_no (진입한 작업물 개수)**</mark>
-    ### 설명
-    리밋스위치를 통과하여 컨베이어상에 진입한 작업물의 개수를 읽을 때 사용되며 모니터링 상의 진입 작업물 개수에 해당하는 값입니다.
-    ### 사용 예
+- **cv.work_no (number of entered workpieces)**
+
+    ### Description
+    Use to read the number of workpieces that have entered the conveyor after passing the limit switch; corresponds to the monitoring entered workpiece count.
+
+    ### Example
     ```python
-    if cv.work_no>30 then
-        print "진입 작업물 개수를 초과하습니다."
+    if cv.work_no > 30 then
+        print "Exceeded allowed number of entered workpieces."
     endif
     ```
 
-*   <mark style="color:green;">**cv.raw\_pulse (엔코더 raw pulse)**</mark>
-    ### 설명
-    엔코더로부터 입력된 현재의 pulse 카운터를 읽을 때 사용되며 모니터링 상의 raw pulse 에 해당하는 값입니다.
-    ### 사용 예
+- **cv.raw_pulse (encoder raw pulse)**
+
+    ### Description
+    Use to read the current pulse counter input from the encoder; corresponds to monitoring raw pulse.
+
+    ### Example
     ```python
-    var raw_pulse=cv.raw_pulse
+    var raw_pulse = cv.raw_pulse
     ```
 
-*   <mark style="color:green;">**cv.resolution (엔코더 분해능)**</mark>
-    ### 설명
-    사용자가 설정한 엔코더 분해능을 읽을 때 사용합니다.
-    ### 사용 예
+- **cv.resolution (encoder resolution)**
+
+    ### Description
+    Use to read the encoder resolution set by the user.
+
+    ### Example
     ```python
-    var resolution=cv.resolution
+    var resolution = cv.resolution
     ```

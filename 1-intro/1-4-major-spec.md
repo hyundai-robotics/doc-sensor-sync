@@ -1,14 +1,14 @@
-﻿# 1.4 주요 사양
+﻿# 1.4 Major Specifications
 
-|         **항목**        |         **사양**        |
-| :-------------------: | :-------------------: |
-| 동기 가능한 센서(컨베이어,프레스) 수 |           2대          |
-|      컨베이어(프레스) 형태     |         직선, 원형        |
-|       컨베이어 각도 설정      |      자동 설정 방식 지원      |
-|        펄스 입력 방식       |     오픈컬렉터, 라인드라이브     |
-|       펄스 카운팅 방식       |        Up/Down        |
-|       엔코더 분해능 설정      |      자동 설정 방식 지원      |
-|   컨베이어 복수 작업물 허용 개수   |      100개(컨베이어당)      |
-|    동기 가능한 센서 이동 거리    |          21m          |
-|   컨베이어 동기 구간내 보간 방법   |      직선(L), 원호(C)     |
-|    프레스 동기 구간내 보간 방법   | 축 보간(P), 직선(L), 원호(C) |
+| **Item** | **Specification** |
+| :------: | :---------------: |
+| Number of synchronizable sensors (conveyor, press) | 2 |
+| Conveyor (press) form | Linear, circular |
+| Conveyor angle setting | Supports automatic setting |
+| Pulse input type | Open collector, line drive |
+| Pulse counting method | Up/Down |
+| Encoder resolution setting | Supports automatic setting |
+| Max number of workpieces allowed per conveyor | 100 |
+| Synchronizable sensor travel distance | 21 m |
+| Interpolation method in conveyor sync section | Linear (L), Circular (C) |
+| Interpolation method in press sync section | Axis interpolation (P), Linear (L), Circular (C) |

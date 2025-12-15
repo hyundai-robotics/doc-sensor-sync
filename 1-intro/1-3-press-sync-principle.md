@@ -1,5 +1,5 @@
-﻿# 1.3 프레스 동기 원리
+﻿# 1.3 Press Synchronization Principle
 
-프레스는 정점에서부터 하강하여 최저점까지 이동하면서 프레스 작업을 수행합니다. 그 이후에 다시 상승하여 정점으로 이동함으로써 하나의 사이클을 이룹니다. 프레스 동기는 프레스의 위치와 로봇의 위치를 스텝 데이터에 기록함으로써 프레스의 이동 속도에 따라 로봇의 위치를 동기화 시키는 것입니다. 단 동기 성능은 로봇의 가감속, 최고속의 성능에 제한되며 프레스의 예상속도 대비 변동이 큰 경우 오차가 발생할 수 있습니다.
+The press moves from the top dead center down to the bottom dead center to perform the press operation, then rises back to the top, forming one cycle. Press synchronization records the press position and robot positions in step data to synchronize the robot position according to the press movement speed. Synchronization performance is limited by the robot's acceleration/deceleration and maximum speed; large variations from the expected press speed may cause errors.
 
 ![](../_assets/image11.png)

@@ -1,14 +1,14 @@
-﻿# 1.2 컨베이어 동기 원리
+﻿# 1.2 Conveyor Synchronization Principle
 
-*   <mark style="color:green;">**티칭**</mark>
+- **Teaching**
 
-    아래의 그림과 같이 컨베이어가 정지한 상태에서 P1\~P7을 티칭한 경우를 예로 들어 살펴봅니다.
+    For example, consider teaching points P1~P7 while the conveyor is stopped as shown below.
 
 ![](../_assets/image10-1.png)
 
-*   <mark style="color:green;">**재생**</mark>
+- **Playback**
 
-    P2\~P6를 컨베이어 동기 구간으로 설정한 후 티칭한 궤적을 재생하는 경우, 동기 동작을 위해서 변동하는 컨베이어 속도에 로봇이 동기해야 하며 작업물과 툴 간의 상대적인 위치 및 자세를 유지해야 합니다.<br>
-    아래 그림과 같이 동기 구간에서는 작업물이 리밋스위치를 지나 이동한 거리만큼을 기준(티칭) 위치에서 시프트하여 이동합니다. 
+    If P2~P6 are set as the conveyor synchronization section and the taught trajectory is replayed, the robot must synchronize with the varying conveyor speed and maintain the relative position and orientation between the workpiece and the tool.
+    Within the sync section, the workpiece shifts from the taught reference position by the distance the workpiece moved after passing the limit switch, as shown below.
 
 ![](../_assets/image10-2.png)

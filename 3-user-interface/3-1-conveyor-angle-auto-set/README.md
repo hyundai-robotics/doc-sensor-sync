@@ -1,4 +1,4 @@
-﻿# 3.1 컨베이어 각도 자동설정
+﻿# 3.1 Conveyor Angle Auto-Set
 
-컨베이어의 방향이 임의로 놓여있는 경우, 3 차원 공간상에서 컨베이어가 진행하는 위치를 정확하게 측정하기 위해서는 상당한 시간이 소요됩니다. 따라서, 진행하는 컨베이어에 대해 로봇이 동기하기 위해서는 컨베이어가 로봇 좌표계 내에서 어떠한 방향으로 이동하는지 로봇 제어기가 미리 알고 있어야 합니다.<br>
-이를 위해 제어기에 내장된 각도 자동 계산 기능을 사용합니다.
+If the conveyor direction is placed arbitrarily, measuring the conveyor movement accurately in 3D space can take considerable time. Therefore, the robot controller must know in advance the direction of conveyor motion in the robot coordinate frame for robot synchronization.  
+Use the controller's built-in auto-angle calculation feature for this.

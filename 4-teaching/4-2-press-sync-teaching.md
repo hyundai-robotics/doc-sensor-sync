@@ -1,33 +1,32 @@
-﻿# 4.2 프레스 동기의 티칭
+﻿# 4.2 Press Sync Teaching
 
-프레스 동기는 프레스의 속도에 로봇이 동기를 수행합니다. 프레스의 속도는 항상 일정하다고 가정하며 프레스의 속도가 가변될 경우 동기의 성능이 저하됩니다. 현재 운전하고 있는 프레스의 속도는 센서 동기 파라미터 설정에서 “**허용 속도**” 항목에 설정합니다.
+Press synchronization makes the robot follow the press speed. The press speed is assumed to be constant; if the press speed varies, synchronization performance degrades. Set the current press allowable speed in the sensor sync parameter settings under **"Allowed Speed"**.
 
-다음은 프레스 동기를 사용하는 프로그램의 예입니다.
+Example program using press sync:
 
 ```python
-        global press
-        press=sync.Sensor(1)
-        press.sync reset              # 프레스 동기 리셋
-    S1
-        press.sync on                 # 프레스 동기 시작
-        press.wait posi=500,sync=0    # 프레스 인터록 대기
-    S2  move P,spd=60%                # 센서 1의 위치 등록
-    S3  move P,spd=60%                # 센서 1의 위치 등록
-    S4  move P,spd=60%                # 센서 1의 위치 등록
-        press.sync off                # 프레스 동기 종료
-    S5
-        end
+    global press
+    press = sync.Sensor(1)
+    press.sync reset              # Press sync reset
+S1
+    press.sync on                 # Start press sync
+    press.wait posi=500,sync=0    # Press interlock wait
+S2  move P,spd=60%                # Record position for sensor 1
+S3  move P,spd=60%                # Record position for sensor 1
+S4  move P,spd=60%                # Record position for sensor 1
+    press.sync off                # End press sync
+S5
+    end
 ```
 
-상기 프로그램에서 스텝 2, 3, 4 에서 센서의 위치 반드시 증가하도록 교시되어야 하며 그렇지 못할 경우에는 다음과 같은 에러가 발생합니다.
+In the above program, the sensor-recorded positions at steps 2, 3, and 4 must strictly increase; otherwise the following error occurs:
 
-| **에러 코드** | **에러 메시지** |
-| :------: | ------------------------ |
-| E0239    | 스텝의 센서 위치가 순차적으로 증가하지 않습니다. |
-<br>
+| **Error Code** | **Error Message** |
+| :------------: | ----------------- |
+| E0239          | Step sensor positions are not strictly increasing. |
 
-또한 스텝 2, 3, 4 에 기록된 속도는 무시되며 기본적으로 사용자가 지정한 프레스의 허용속도를 기반으로 속도를 계획합니다. 만일 최고속으로 계획하여도 로봇의 성능을 초과하도록 센서와 로봇의 위치를 기록하면 동작중에 다음과 같은 에러가 발생합니다.
+Additionally, the speeds recorded at steps 2, 3, and 4 are ignored; the motion is planned based on the user's configured allowable press speed. If the recorded sensor and robot positions require motion exceeding robot capability even when planned at maximum speed, the following error occurs during operation:
 
-| **에러 코드** | **에러 메시지** |
-| :------: | ------------------------ |
-| E0238    | 센서 속도를 추종할 수 없습니다. |
+| **Error Code** | **Error Message** |
+| :------------: | ----------------- |
+| E0238          | Cannot follow the sensor speed. |

@@ -1,14 +1,13 @@
-﻿# 1.1 시스템 구성
+﻿# 1.1 System Configuration
 
-컨베이어 동기 시스템의 일반적인 구성 형태는 아래의 그림과 같습니다.
+A typical configuration of the conveyor synchronization system is shown below.
 
 ![](../_assets/image9.png)
 
-*   <mark style="color:green;">**리밋스위치**</mark>
+- **Limit switch**
 
-    작업물의 컨베이어상의 특정 위치 진입 여부와 프레스가 특정 위치를 지나가고 있음을 제어기에게 알려주는 장치입니다. 리밋스위치가 있는 위치가 위치 판단의 기준점이 됩니다.
+    A device that notifies the controller whether a workpiece has entered a specific position on the conveyor and whether the press has passed a specific position. The position of the limit switch serves as the reference point for position judgment.
 
-    &#x20;
-*   <mark style="color:green;">**엔코더**</mark>
+- **Encoder**
 
-    모터 구동부에는 모터의 회전량에 해당되는 펄스를 발생시키는 엔코더가 장착되어 있습니다. 엔코더는 로봇 제어기와 접속되고, 엔코더에서 출력되는 펄스가 로봇 제어기에 입력됩니다.
+    An encoder that generates pulses corresponding to motor rotation is attached to the motor drive. The encoder connects to the robot controller, and the pulses output from the encoder are input to the robot controller.

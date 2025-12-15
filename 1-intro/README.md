@@ -1,15 +1,11 @@
-﻿# 1. 개요
+﻿# 1. Overview
 
-센서 동기는 외부의 센서 신호를 받아서 동기를 수행하는 기능입니다. 외부 센서는 엔코더를 지원하며 컨베이어와 프레스 작업으로 분류됩니다.
+Sensor synchronization is a function that performs synchronization based on external sensor signals. External sensors support encoders and are categorized for conveyor and press operations.
 
-<br>
+- Conveyor synchronization
 
-* 컨베이어 동기 기능
+    The robot tracks the conveyor and operates on workpieces moving along it.
 
-    컨베이어에 탑재되어 이동하는 작업물에 대해서 로봇이 컨베이어를 추종하며 작업
+- Press synchronization
 
-<br>
-
-* 프레스 동기 기능
-    
-    프레스의 이동 거리에 대해 로봇의 위치를 연동하여 작업
+    The operation is performed by synchronizing the press’s travel distance with the robot’s position.
