@@ -1,652 +1,590 @@
-﻿# Hi6 로봇제어기 기능설명서 - 센서 동기(컨베이어, 프레스)
+﻿# Hi6 Robot Controller Function Manual - Sensor Synchronization (Conveyor, Press)
 
 {% hint style="warning" %}
-본 제품 설명서에서 제공되는 정보는 현대로보틱스의 자산입니다.
 
-현대로보틱스의 서면에 의한 동의 없이 전부 또는 일부를 무단 전재 및 재배포할 수 없으며, 제3자에게 제공되거나 다른 목적에 사용할 수 없습니다.
+The information provided in this product manual is the property of HD Hyundai Robotics.
+All or part of this manual may not be reproduced, redistributed, or provided to any third party or used for other purposes without prior written consent from HD Hyundai Robotics.
 
-
-
-본 설명서는 사전 예고 없이 변경될 수 있습니다.
-
-
+This manual is subject to change without prior notice.
 
 **Copyright ⓒ 2020 by Hyundai Robotics**
 {% endhint %}
-# 1. 개요
+# 1. Overview
 
-센서 동기는 외부의 센서 신호를 받아서 동기를 수행하는 기능입니다. 외부 센서는 엔코더를 지원하며 컨베이어와 프레스 작업으로 분류됩니다.
+Sensor synchronization is a function that performs synchronization based on external sensor signals. External sensors support encoders and are categorized for conveyor and press operations.
 
-<br>
+- Conveyor synchronization
 
-* 컨베이어 동기 기능
+    The robot tracks the conveyor and operates on workpieces moving along it.
 
-    컨베이어에 탑재되어 이동하는 작업물에 대해서 로봇이 컨베이어를 추종하며 작업
+- Press synchronization
 
-<br>
+    The operation is performed by synchronizing the press’s travel distance with the robot’s position.
+# 1.1 System Configuration
 
-* 프레스 동기 기능
-    
-    프레스의 이동 거리에 대해 로봇의 위치를 연동하여 작업
-# 1.1 시스템 구성
-
-컨베이어 동기 시스템의 일반적인 구성 형태는 아래의 그림과 같습니다.
+A typical configuration of the conveyor synchronization system is shown below.
 
 ![](../_assets/image9.png)
 
-*   <mark style="color:green;">**리밋스위치**</mark>
+- **Limit switch**
 
-    작업물의 컨베이어상의 특정 위치 진입 여부와 프레스가 특정 위치를 지나가고 있음을 제어기에게 알려주는 장치입니다. 리밋스위치가 있는 위치가 위치 판단의 기준점이 됩니다.
+    A device that notifies the controller whether a workpiece has entered a specific position on the conveyor and whether the press has passed a specific position. The position of the limit switch serves as the reference point for position judgment.
 
-    &#x20;
-*   <mark style="color:green;">**엔코더**</mark>
+- **Encoder**
 
-    모터 구동부에는 모터의 회전량에 해당되는 펄스를 발생시키는 엔코더가 장착되어 있습니다. 엔코더는 로봇 제어기와 접속되고, 엔코더에서 출력되는 펄스가 로봇 제어기에 입력됩니다.
-# 1.2 컨베이어 동기 원리
+    An encoder that generates pulses corresponding to motor rotation is attached to the motor drive. The encoder connects to the robot controller, and the pulses output from the encoder are input to the robot controller.
+# 1.2 Conveyor Synchronization Principle
 
-*   <mark style="color:green;">**티칭**</mark>
+- **Teaching**
 
-    아래의 그림과 같이 컨베이어가 정지한 상태에서 P1\~P7을 티칭한 경우를 예로 들어 살펴봅니다.
+    For example, consider teaching points P1~P7 while the conveyor is stopped as shown below.
 
 ![](../_assets/image10-1.png)
 
-*   <mark style="color:green;">**재생**</mark>
+- **Playback**
 
-    P2\~P6를 컨베이어 동기 구간으로 설정한 후 티칭한 궤적을 재생하는 경우, 동기 동작을 위해서 변동하는 컨베이어 속도에 로봇이 동기해야 하며 작업물과 툴 간의 상대적인 위치 및 자세를 유지해야 합니다.<br>
-    아래 그림과 같이 동기 구간에서는 작업물이 리밋스위치를 지나 이동한 거리만큼을 기준(티칭) 위치에서 시프트하여 이동합니다. 
+    If P2~P6 are set as the conveyor synchronization section and the taught trajectory is replayed, the robot must synchronize with the varying conveyor speed and maintain the relative position and orientation between the workpiece and the tool.
+    Within the sync section, the workpiece shifts from the taught reference position by the distance the workpiece moved after passing the limit switch, as shown below.
 
-![](../_assets/image10-2.png)# 1.3 프레스 동기 원리
+![](../_assets/image10-2.png)
+# 1.3 Press Synchronization Principle
 
-프레스는 정점에서부터 하강하여 최저점까지 이동하면서 프레스 작업을 수행합니다. 그 이후에 다시 상승하여 정점으로 이동함으로써 하나의 사이클을 이룹니다. 프레스 동기는 프레스의 위치와 로봇의 위치를 스텝 데이터에 기록함으로써 프레스의 이동 속도에 따라 로봇의 위치를 동기화 시키는 것입니다. 단 동기 성능은 로봇의 가감속, 최고속의 성능에 제한되며 프레스의 예상속도 대비 변동이 큰 경우 오차가 발생할 수 있습니다.
+The press moves from the top dead center down to the bottom dead center to perform the press operation, then rises back to the top, forming one cycle. Press synchronization records the press position and robot positions in step data to synchronize the robot position according to the press movement speed. Synchronization performance is limited by the robot's acceleration/deceleration and maximum speed; large variations from the expected press speed may cause errors.
 
 ![](../_assets/image11.png)
-# 1.4 주요 사양
+# 1.4 Major Specifications
 
-|         **항목**        |         **사양**        |
-| :-------------------: | :-------------------: |
-| 동기 가능한 센서(컨베이어,프레스) 수 |           2대          |
-|      컨베이어(프레스) 형태     |         직선, 원형        |
-|       컨베이어 각도 설정      |      자동 설정 방식 지원      |
-|        펄스 입력 방식       |     오픈컬렉터, 라인드라이브     |
-|       펄스 카운팅 방식       |        Up/Down        |
-|       엔코더 분해능 설정      |      자동 설정 방식 지원      |
-|   컨베이어 복수 작업물 허용 개수   |      100개(컨베이어당)      |
-|    동기 가능한 센서 이동 거리    |          21m          |
-|   컨베이어 동기 구간내 보간 방법   |      직선(L), 원호(C)     |
-|    프레스 동기 구간내 보간 방법   | 축 보간(P), 직선(L), 원호(C) |
-# 1.5 조작 순서
+| **Item** | **Specification** |
+| :------: | :---------------: |
+| Number of synchronizable sensors (conveyor, press) | 2 |
+| Conveyor (press) form | Linear, circular |
+| Conveyor angle setting | Supports automatic setting |
+| Pulse input type | Open collector, line drive |
+| Pulse counting method | Up/Down |
+| Encoder resolution setting | Supports automatic setting |
+| Max number of workpieces allowed per conveyor | 100 |
+| Synchronizable sensor travel distance | 21 m |
+| Interpolation method in conveyor sync section | Linear (L), Circular (C) |
+| Interpolation method in press sync section | Axis interpolation (P), Linear (L), Circular (C) |
+# 1.5 Operation Sequence
 
 ![](../_assets/image12.png)
-# 2. 시스템 구성 및 접속
+# 2. System Configuration and Connections
 
-컨베이어 동기를 사용하기 위한 시스템 구성은 하기와 같습니다.
+The system configuration required to use conveyor synchronization is as follows.
 
 ![](../_assets/image15.png)
-# 2.1 컨베이어 I/F 보드
+# 2.1 Conveyor I/F Board
 
-당사에서 지원하는 컨베이어 I/F 보드는 하기와 같으며, 별도의 설명서를 참고하시기 바랍니다.
+The conveyor I/F boards supported by our company are as follows. Please refer to separate documentation for details.
 
-*   <mark style="color:green;">**M5112**</mark>
+- **M5112**
 
-    크레비스사에서 제공하는 FnIO 모듈로 Network Adapter와 Power Module과 결합하여 사용하십시오. 
-    
-    * 설명서    
-        https://www.crevis.ru/files/spec/g/[Spec]%20M5112%20(Rev%201.03).pdf
+    Use the Crevis FnIO module combined with a Network Adapter and Power Module.
 
-# 2.2 하드웨어 점검
+    * Manual:
+      https://www.crevis.ru/files/spec/g/[Spec]%20M5112%20(Rev%201.03).pdf
+# 2.2 Hardware Inspection
 
-**\[모니터링 > 센서 동기]**를 선택하면 선세 동기 관련 데이터를 확인할 수 있습니다.
+Select **[Monitoring > Sensor Sync]** to check sensor sync related data.
 
 ![](../_assets/image21.png)
 
-*   <mark style="color:green;">**리밋스위치**</mark>
+- **Limit switch**
 
-    “**리밋스위치 입력**” 항목은 리밋스위치가 동작중이면 1, 동작하지 않으면 0 으로 표시되면 정상입니다. 정상 동작하지 않으면 하드웨어를 점검하십시오.
-*   <mark style="color:green;">**엔코더**</mark>
+    The "Limit switch input" field shows 1 when the limit switch is active and 0 when it is not. If it does not operate normally, inspect the hardware.
 
-    “**raw 펄스”** 항목은 엔코더 펄스가 정상적으로 입력되면 컨베이어 동작 시 0 \~ ffff 범위에서 값이 계속 증가하거나 계속 감소합니다. 정상 동작하지 않으면 하드웨어를 점검하십시오.
-    # 3. 사용자 인터페이스
+- **Encoder**
 
-# 3.1 컨베이어 각도 자동설정
+    The "raw pulse" field shows encoder pulses; during conveyor movement the value should continuously increase or decrease within the range 0~ffff. If not operating normally, inspect the hardware.
+# 3. User Interface
+# 3.1 Conveyor Angle Auto-Set
 
-컨베이어의 방향이 임의로 놓여있는 경우, 3 차원 공간상에서 컨베이어가 진행하는 위치를 정확하게 측정하기 위해서는 상당한 시간이 소요됩니다. 따라서, 진행하는 컨베이어에 대해 로봇이 동기하기 위해서는 컨베이어가 로봇 좌표계 내에서 어떠한 방향으로 이동하는지 로봇 제어기가 미리 알고 있어야 합니다.<br>
-이를 위해 제어기에 내장된 각도 자동 계산 기능을 사용합니다.
-# 3.1.1 프로그램 티칭
+If the conveyor direction is placed arbitrarily, measuring the conveyor movement accurately in 3D space can take considerable time. Therefore, the robot controller must know in advance the direction of conveyor motion in the robot coordinate frame for robot synchronization.  
+Use the controller's built-in auto-angle calculation feature for this.
+# 3.1.1 Program Teaching
 
-컨베이어 각도 자동계산을 위해서 먼저 다음과 같은 방법으로 프로그램을 작성합니다.
+To perform conveyor angle auto-calculation, first write a program as follows.
 
-{% hint style="info" %}
-각도를 정확하게 설정하기 위해서는 각각의 위치를 가능한 멀게 하십시오. (직선 1 m 이상)
+{% hint style="info" %}  
+To set the angle accurately, make each recorded position as far apart as possible (recommended at least 1 m for straight conveyors).
 {% endhint %}
 
-1\. 컨베이어 각도 자동계산을 위한 새로운 프로그램을 선택합니다.
 
-2\. 컨베이어 상의 작업물에 대한 특정 위치로 로봇의 툴 끝을 이동한 후 S1을 기록합니다.
+1. Select a new program for conveyor angle auto-calculation.
+2. Move the robot tool tip to a specific position on the conveyor workpiece and record S1.
 
-!['](../../_assets/image22.png)
+![](../../_assets/image22.png)
 
-3\. 컨베이어를 구동하여 작업물을 이동한 후 (2)의 특정위치로 로봇의 툴 끝을 이동한 후 S2를 기록합니다.
+3. Move the conveyor to shift the workpiece, move the robot tool tip to the same specific position and record S2.
 
 ![](../../_assets/image23.png)
 
-4\. 다음의 프로그램이 작성됩니다.
+4. A program similar to the following will be created.
 
 ![](../../_assets/image24.png)
 
 
-{% hint style="info" %}
-컨베이어 형태가 <**원형**>인 경우, 각도를 계산하기 위해서는 3 점의 위치가 필요합니다.
+{% hint style="info" %}    
+For circular conveyors, three positions are required to calculate the angle. Repeat step 3 once more.  
+{% endhint %}# 3.1.2 Run Auto-Calculation
 
-위에서 3 의 과정을 한 번 더 해주십시오.
-{% endhint %}# 3.1.2 자동계산 실행
+In the [Settings > Application Parameters > Sensor Sync] screen, press [Angle Setting] to display the angle screen.
 
-[**설정 > 응용 파라미터 > 센서 동기**] 화면에서 [**각도 설정**]을 누르면 다음의 화면이 표시됩니다.
-
-{% hint style="info" %}
-컨베이어 형태가 <**원형**>으로 설정된 경우는 원형 컨베이어의 각도 및 중심 설정을 위해 아래의 내용이 변경됩니다.
+{% hint style="info" %}  
+If the conveyor type is set to circular, the settings below are modified to define the angle and center of the circular conveyor.
 {% endhint %}
 
 ![](../../_assets/image25.png)
 
-1\. 현재 설정된 컨베이어 각도를 확인 및 수동으로 설정할 수 있습니다.
-
-2\. 컨베이어 각도 자동계산을 위해서는 [**자동계산**]을 누르면 다음의 화면이 표시됩니다. 여기서 티칭된 프로그램 번호를 입력하면 계산 결과가 표시됩니다.
+1. Check or manually set the currently configured conveyor angle.
+2. For auto-calculation, press [Auto Calculate], enter the taught program number and the calculation result will be shown.
 
 ![](../../_assets/image26.png)
 
-3\. [**OK**]키를 눌러서 설정된 값을 저장합니다.
-# 3.2 엔코더 분해능 자동설정
+3. Press [OK] to save the configured values.
+# 3.2 Encoder Resolution Auto-Set
 
-엔코더 분해능이란 컨베이어(프레스)의 형태가 직선인 경우는 컨베이어(프레스)가 1 m 이동한 경우, 원형인 경우는 컨베이어(프레스)가 1 deg 회전한 경우 발생하는 펄스 수를 의미합니다.
+Encoder resolution means the number of pulses generated when a linear conveyor (or press) moves 1 m, or when a circular conveyor (or press) rotates 1 degree.
 
-엔코더 분해능을 자동으로 계산하기 위해서는 [**설정 > 응용 파라미터 > 센서 동기**] 화면에서 [**분해능계산**]을 누릅니다.
+To automatically calculate encoder resolution, go to [Settings > Application Parameters > Sensor Sync] and press [Resolution Calculation].
 
 ![](../_assets/image27.png)
 
-1\. <mark style="color:blue;"></mark> 아래의 그림과 같이 작업물이 리밋스위치를 치고 들어간 후 센서를 지정합니다.
+1. After the workpiece triggers the limit switch, designate the sensor as shown below.
 
 ![](../_assets/image28.png)
 
-2\. 위치를 <**1번**>으로 선택합니다.
-
-3\. 작업물 위의 특정위치로 로봇의 툴 끝을 이동합니다.
-
-4\. [**자세지정**]을 누르면 현재 로봇의 위치와 함께 엔코더 펄스 값이 기록됩니다.
-
-5\. 아래의 그림과 같이 센서를 구동하여 작업물을 이동합니다. (1 m 이상)
+2. Select position <1>.
+3. Move the robot tool tip to a specific position on the workpiece.
+4. Press [Record Pose] to record the current robot pose and the encoder pulse value.
+5. Move the workpiece (at least 1 m) by operating the sensor as shown.
 
 ![](../_assets/image29.png)
 
-6\. 위치를 <**2번**>으로 선택합니다.
+6. Select position <2>.
+7. Move the robot tool tip back to the specific position recorded in step 3.
+8. Press [Record Pose] to record the pose and encoder pulse value.
+9. Press [Calculate Resolution] to compute the encoder resolution and record it in the encoder resolution field.
 
-7\. 3 에서 지정한 특정위치로 로봇의 툴 끝을 이동합니다.
+Repeat steps 1~9 to calculate up to four encoder resolutions.
 
-8\. [**자세지정**]을 누르면 현재 로봇의 위치와 함께 엔코더 펄스 값이 기록됩니다.
+10. Press [Calculate Average] to compute the average of the recorded encoder resolutions.
+11. Press [OK] to set the average as the encoder resolution.
+# 3.3 Sensor Sync Parameters
 
-9\. [**해상도계산**]을 누르면 엔코더 분해능을 계산하고 엔코더 분해능 항목에 기록합니다.
-
-　1 \~ 9의 과정을 반복하면 총 4개의 엔코더 분해능을 계산할 수 있습니다.
-
-10\. [**평균값계산**]을 누르면 기록된 엔코더 분해능들의 평균 값이 계산됩니다.
-
-11\. [**완료**]를 누르면 평균 값이 엔코더 분해능으로 설정됩니다.
-# 3.3 센서 동기 파라미터
-
-컨베이어(프레스) 동기 기능을 적용하여 로봇을 재생시키기 위해서는 로봇 제어기가 동기해야 할 컨베이어(프레스)에 대한 각종 정보를 알고 있어야 하는데, 이 정보는 작업 프로그램을 작성하기 전에 반드시 설정되어야 합니다.
+To apply conveyor (press) synchronization and execute robot motion, the robot controller must know various information about the conveyor (press) it must synchronize with. These parameters must be set before writing the operation program.
 
 ![](../_assets/image30.png)
 
-*   <mark style="color:green;">**컨베이어 형태**</mark>
+- **Conveyor form**
 
-    아래의 그림을 참고하여 형태를 선택합니다.
+    Select the form according to the figure below.
 
 ![](../_assets/image31.png)
 
-*   <mark style="color:green;">**엔코더 분해능**</mark>
+- **Encoder resolution**
 
-    엔코더 분해능이란 컨베이어 형태가 직선인 경우는 컨베이어가 1 m 이동한 경우, 원형인 경우는 컨베이어가 1 deg 회전한 경우 발생하는 펄스 수 로 정의됩니다.
-
-{% hint style="info" %}
-엔코더 분해능을 자동으로 계산하기 위해서는 “[**3.2 엔코더 분해능 자동설정**](3-2-encoder-resolution-auto-set.md)” 부분을 참고하십시오.
-{% endhint %}
-
-*   <mark style="color:green;">**컨베이어 허용 속도**</mark>
-
-    비정상적으로 속도가 높을 경우 이를 에러로 처리하기 위한 항목입니다. 사용할 속도를 고려하여 설정하면 제어기는 컨베이어의 속도를 내부적으로 계산하여 그 속도가 설정된 허용속도보다 높은 경우 에를 출력합니다.
+    Encoder resolution is defined as the number of pulses generated when a linear conveyor moves 1 m or when a circular conveyor rotates 1 degree.
 
 {% hint style="info" %}
-일반적으로 엔코더 펄스는 평균 값을 중심으로 ripple이 있기 때문에 속도도 평균 값을 기준으로 약간 ripple 이 있습니다. 따라서 이를 고려하여 약간 높은 값을 설정하십시오.
+See section [3.2 Encoder Resolution Auto-Set](3-2-encoder-resolution-auto-set.md) for automatic encoder resolution calculation.
 {% endhint %}
 
-*   <mark style="color:green;">**펄스 이상 검출 허용 횟수**</mark>
+- **Conveyor allowable speed**
 
-    펄스가 비정상적으로 입력되는 경우 로봇 제어기는 "**E0019 컨베이어 펄스 허용주파수 초과**" 에러를 출력합니다. 이때 동기 작업중인 작업물의 보호를 위해 펄스 에러가 발생하더라도 로봇이 작업을 계속하도록 하는 경우 설정합니다.
+    This parameter is used to treat abnormally high speeds as errors. Configure it considering the expected operating speed; the controller internally calculates conveyor speed and reports an error if the speed exceeds the configured allowable speed.
 
-{% hint style="info" %}
-예를 들어, 펄스 이상 검출 허용 횟수가 3 으로 설정되면 로봇제어기는 동기 작업중 하나의 작업물에 대해 펄스이상을 3 회까지 검출하더라도 에러를 발생시키지 않고 내부적으로 적당한 펄스 값을 만들어줍니다. 이후 4 번째 펄스 이상이 검출되면 에러를 발생시킵니다. 발생한 펄스 이상 횟수에 대한 정보는 해당 작업물에 대한 재생이 완료될  때 초기화 됩니다.
+{% hint style="info" %}  
+Encoder pulses typically have ripple around their average, so speed also shows slight ripple. Set the allowable speed slightly higher to accommodate this.
 {% endhint %}
 
-*   <mark style="color:green;">**최대 작업물 허용 개수**</mark>
+- **Allowed count for pulse anomaly detection**
 
-    로봇이 컨베이어 상의 하나의 작업물에 대해 동기 작업 중 다른 작업물이 리밋스위치를 치고 작업공간 내에 진입했을 때 이에 대한 작업 여부를 설정합니다. 작업물 진입 최대 허용 개수는 100 개까지 가능합니다.
+    If pulses are abnormally input, the robot controller outputs the error "E0019 Conveyor pulse allowed frequency exceeded". Configure this to allow the robot to continue working (protecting the workpiece) by tolerating a certain number of pulse anomalies during sync operation.
 
+{% hint style="info" %}  
+For example, if the allowable number of pulse anomaly detections is set to 3, the robot controller does not generate an error even if pulse anomalies are detected up to three times for a single workpiece during synchronized operation, and instead internally generates appropriate pulse values. When a fourth pulse anomaly is detected, an error is generated. Information on the number of detected pulse anomalies is reset when playback for the corresponding workpiece is completed.
+{% endhint %}  
 
-*   <mark style="color:green;">**동기관련 시스템 에러 검출**</mark>
+- **Maximum allowed number of workpieces**
 
-    시스템 설치 미완료 또는 보드 파손등의 원인으로 컨베이어 동기와 관련된 시스템 에러가 발생하여 로봇을 운전준비 ON 시킬 수 없는 경우, 동기작업과 관계없는 동작을 하기위해 컨베이어 동기와 관련된 시스템 에러를 발생시키지 않도록 설정합니다.
+    Configure whether the robot should continue working when another workpiece triggers the limit switch and enters the workspace while the robot is synchronizing a workpiece. The maximum allowed is 100.
 
-| **에러번호** | 　　　　　　　**동기 시스템 에러의 종류** |
-| :------: | ------------------------ |
-|   E0021  | 컨베이어 허용 속도 초과            |
+- **Detect sync-related system errors**
 
+    If system installation is incomplete or a board is damaged causing sync-related system errors that prevent switching to RUN READY, configure to ignore sync-related system errors so unrelated operations can continue.
 
-*   <mark style="color:green;">**동기 리셋 입력**</mark>
+| **Error No.** | **Sync system error type** |
+| :-----------: | ------------------------- |
+| E0021 | Conveyor allowable speed exceeded |
 
-    외부 입력 신호에 의해 컨베이어(프레스) 데이터를 클리어 할 수 있습니다. 로봇이 정지상태 일 때 이 신호가 입력되면 센서 관련 각종 데이터(펄스 데이터, 작업물 위치, 이동 속도, 작업물 진입 개수, 동기 재생 상태 등)를 클리어 합니다. 즉, 수동 리셋을 수행한 것과 동일하게 처리됩니다.
+- **Sync reset input**
 
+    External input can clear conveyor (press) data. When this signal is input while the robot is stopped, sensor-related data (pulse data, workpiece positions, speed, number of workpieces, sync playback state, etc.) are cleared, equivalent to a manual reset.
 
-*   <mark style="color:green;">**리밋스위치 입력**</mark>
+- **Limit switch input**
 
-    외부 입력 신호에 의해 리밋스위치 상태를 받을 수 있습니다.
+    Accept limit switch state via external input.
 
+- **Pulse counter input**
 
-*   <mark style="color:green;">**펄스 카운터 입력**</mark>
-
-    외부 입력 신호에 의해 엔코더 펄스 카운터를 수신할 수 있습니다. 펄스 카운터는 제어기 내부적으로 16 bit 데이터로 관리되기 때문에 1 word (2 byte)의 입력 신호가 사용됩니다. 최하위 비트의 신호 번호를 입력하면 자동으로 16 개의 신호가 지정되어 사용하게 됩니다.
+    Accept encoder pulse counter via external input. The controller manages the pulse counter internally as 16-bit data, so a 1-word (2-byte) input signal is used. Specifying the lowest bit signal number automatically assigns 16 consecutive signals.
 
 ![](../_assets/image32.png)
 
-*   <mark style="color:green;">**펄스 라인 에러**</mark>
+- **Pulse line error**
 
-    펄스 통신 방식을 <라인드라이브>로 사용하는 경우에는 펄스 라인의 단선 여부를 검출할 수 있습니다. 이 펄스 라인 에러를 로봇제어기로 전송할 때 사용합니다.
+    When using line drive pulse communication, you can detect open circuits on the pulse line. Use this to report pulse line errors to the robot controller.
 
-*   <mark style="color:green;">**컨베이어 동기 ON**</mark>
+- **Conveyor sync ON**
 
-    출력 신호에 의해 컨베이어 동기 상태를 외부로 전달할 수 있습니다. “**cv.sync start**” 명령문이 실행되어 동기 on 상태가 되면 “**1**”을 출력합니다.
+    Conveyor sync state can be output externally. When the command **"cv.sync start"** runs and sync is ON, it outputs **"1"**.
 
-*   <mark style="color:green;">**펄스 카운터 타입**</mark>
+- **Pulse counter type**
 
-    컨베이어가 정방향으로 이동할때는 펄스값이 증가합니다. 역방향으로 이동할 때 펄스값이 증가한다면 "Up" 방식이며 감소한다면 "Up/Down" 방식입니다. 이를 고려해서 출력을 결정하면 되는데 일반적으로 "Up/Down" 방식으로 사용합니다. 당사 보드에서는 "Up" 방식은 off, "Up/Down" 방식은 on으로 출력하여 사용합니다.
+    When the conveyor moves forward, pulse values increase. If pulses increase when moving backward, that is the "Up" type; if they decrease, use the "Up/Down" type. Typically use "Up/Down". On our board, "Up" is output as off, and "Up/Down" as on.
 
-*   <mark style="color:green;">**펄스 통신 방식**</mark>
+- **Pulse communication type**
 
-    일반적인 펄스 통신 방식으로 오픈콜렉터와 라인드라이브를 사용합니다. 이에 대한 상세한 내용은 별도로 학습하시기 바랍니다. 당사 보드에서는 "라인드라이브" 방식은 off, "오픈콜렉터" 방식은 on으로 출력하여 사용합니다.
+    Typical pulse communication uses open collector and line drive. Refer to separate learning materials for details. On our board, "line drive" is off and "open collector" is on.
+# 3.4 Monitoring
 
-# 3.4 모니터링
+Select **[Monitoring > Sensor Sync]** to view sensor sync related data. Use **[sensor sync. operate]** buttons to perform various actions.
 
-**\[모니터링 > 센서 동기]** 를 선택하면 센서 동기 관련 데이터를 확인할 수 있습니다.
-센서 동기 작동 버튼을 누르면 각종 동작을 수행할 수 있습니다.
 ![](../_assets/image33.png)
 
-*   <mark style="color:green;">**펄스 데이터**</mark>
+- **Pulse data**
 
-    작업물이 리밋스위치로부터 카운트 된 펄스 수입니다.
+    The number of pulses counted for the workpiece since the limit switch.
 
+- **Workpiece position**
 
-*   <mark style="color:green;">**작업물 위치**</mark>
+    The distance the workpiece has moved from the limit switch. For <linear> form it is in mm; for <circular> form it is in degrees.
 
-    작업물이 리밋스위치로부터 이동한 거리입니다.&#x20;
+- **Velocity**
 
-    형태가 <**직선**>인 경우 mm이며 <**원형**>인 경우는 deg의 값입니다.
+    The movement speed of the conveyor (or press). For <linear> form it is mm/s; for <circular> form it is deg/s.
 
+- **Number of entered workpieces**
 
-*   <mark style="color:green;">**이동 속도**</mark>
+    The number of workpieces that have triggered the limit switch and entered.
 
-    컨베이어(프레스)가 진행하는 속도입니다.
+- **Limit switch input**
 
-    형태가 <**직선**>인 경우 mm/s이며 <**원형**>인 경우는 deg/s의 값입니다.
+    Shows whether the limit switch is active.
 
-    &#x20;
-*   <mark style="color:green;">**진입 작업물 개수**</mark>
+- **raw pulse**
 
-    작업물이 리밋스위치를 치고 진입된 개수입니다.
+    Displays the encoder pulse counter value as hex data (0~ffff) during normal operation.
 
-    &#x20;
-*   <mark style="color:green;">**리밋스위치 입력**</mark>
+- **Manual reset**
 
-    리밋스위치가 동작중인지 상태를 표시합니다.
+    Manually clears sensor-related data (pulse data, workpiece positions, speed, number of workpieces, sync playback state, etc.).
 
-    &#x20;
-*   <mark style="color:green;">**raw 펄스**</mark>
+- **Enter workpiece position**
 
-    입력되는 엔코더 펄스의 값을 hex 데이터로 표시합니다. 정상인 경우 0 \~ ffff까지 반복합니다.
+    Manually input sensor position values (mm for linear, deg for circular).
 
-    ****
-*   <mark style="color:green;">**수동 리셋**</mark>
+- **Limit switch operation**
 
-    센서 관련 각종 데이터(펄스 데이터, 작업물 위치, 이동 속도, 작업물 진입 개수, 동기재생 상태 등)을 수동으로 클리어 합니다.
+    Use when you need to manually toggle the limit switch.
+# 3.5 Step Data
 
-    &#x20;
-*   <mark style="color:green;">**작업물위치 입력**</mark>
+When sensor sync is set to <enabled> and you press [Record], the current robot axis positions along with the current workpiece position are recorded as shown below.
 
-    센서 위치값(직선 mm, 원형 deg)을 수동으로 입력합니다.
-
-    &#x20;
-*   <mark style="color:green;">**리밋스위치 동작**</mark>
-
-    리밋 스위치를 수동으로 입력할 필요가 있는 경우 사용합니다.
-# 3.5 스텝 데이터
-
-센서 동기가 <**유효**>로 설정된 상태에서 [**기록**] 버튼에 의해 현재 위치를 기록하면 하기와 같이 로봇의 축 위치와 함께 현재 작업물의 위치가 기록됩니다.
-
-로봇은 컨베이어 동기 재생 시 기록된 위치 데이터를 참조하여 이동합니다.
+The robot uses the recorded position data during conveyor sync playback.
 
 ![](../_assets/image34.png)
 
-현재 스텝 위치 속성의 ss# 항목에서 해당 스텝에 기록된 작업물의 위치를 확인하고 수정할 수도 있습니다.
+You can view and edit the recorded workpiece position in the ss# field of the current step position properties.
 
 ![](../_assets/image35.png)
-# 3.6 명령어
+# 3.6 Commands
 
-*   <mark style="color:green;">**cv.sync (동기 재생)**</mark>
+- **cv.sync (sync playback)**
 
-    ### 설명
+    ### Description:
 
-    프로그램 재생 시에 센서 동기를 실행할 구간을 지정합니다.
+    Specifies the section to execute sensor sync during program playback.
 
-    ### 문법
+    ### Syntax:
 
     ```python
-    cv.sync <동기동작>
+    cv.sync <sync_action>
     ```
 
-    ### 파라미터
+    ### Parameters
     <table>
     <thead>
         <tr>
-        <th style="text-align:left">항목</th>
-        <th style="text-align:left">의미</th>
-        <th style="text-align:left">기타</th>
+            <th style="text-align:left">Item</th>
+            <th style="text-align:left">Description</th>
+            <th style="text-align:left">Remarks</th>
         </tr>
     </thead>
     <tbody>
         <tr>
-        <td style="text-align:left">동기동작</td>
-        <td style="text-align:left">
-            - reset: 동기 리셋(동기 Off + 컨베이어 데이터 클리어)<br>
-            - on: 동기 시작(동기 On)<br>
-            - off: 동기 일시 중지(동기 Off)<br>
-            - next: 다음 작업물 동기 시작(동기 Off + 다음 작업물 데이터 로딩)<br>
-        </td>
-        <td style="text-align:left">문자열</td>
+            <td style="text-align:left">Synchronization Operation</td>
+            <td style="text-align:left">
+                - reset: Reset sync. (Sync OFF + clear conveyor data)<br>
+                - on: Start sync. (Sync ON)<br>
+                - off: Pause sync. (Sync OFF)<br>
+                - next: Start sync. for the next workpiece (Sync OFF + load next workpiece data)<br>
+            </td>
+            <td style="text-align:left">String</td>
         </tr>
     </tbody>
     </table>
 
 
-*   <mark style="color:green;">**cv.wait (인터록 대기)**</mark>
+- **cv.wait (interlock wait)**
 
-    ### 설명
+    ### Description:
 
-    다음의 그림과 같이 작업물이 리밋스위치로부터 지정된 위치에 도달할 때까지 로봇을 대기할 때 사용합니다.
+    Use to pause the robot until the workpiece reaches a specified position from the limit switch.
 
-    ![<대기거리>](../_assets/image.png)
-
+    ### Syntax:
     ```python
-    cv.wait posi=<대기거리>,sync=<동기여부>
+    cv.wait posi=<wait_distance>,sync=<sync_flag>
     ```
 
-    <table>
-    <thead>
-        <tr>
-        <th style="text-align:left">항목</th>
-        <th style="text-align:left">의미</th>
-        <th style="text-align:left">기타</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-        <td style="text-align:left">대기거리</td>
-        <td style="text-align:left">
-            리밋스위치로부터 작업물 도달 거리
-        </td>
-        <td style="text-align:left">변수</td>
-        </tr>
-        <tr>
-        <td style="text-align:left">동기여부</td>
-        <td style="text-align:left">
-            - 0: 비동기<br>
-            - 1: 동기(프레스인 경우 미지원)<br>
-        </td>
-        <td style="text-align:left">변수</td>
-        </tr>
-    </tbody>
-    </table>
+    ### Parameters:
+    - wait_distance: Distance from the limit switch to wait for the workpiece (variable)
+    - sync_flag: 0 = asynchronous, 1 = synchronous (not supported for press)
 
-*   <mark style="color:green;">**cv.input (작업물 진입)**</mark>
+- **cv.input (workpiece entry)**
 
-    ### 설명
+    ### Description:
 
-    리밋스위치가 동작하여 작업물이 1 개 진입된 것으로 인식하고자 할 때 사용합니다.
+    Use when the limit switch triggers to register that one workpiece has entered.
 
+    ### Syntax:
     ```
     cv.input
     ```
 
-    ### 사용 예
+### Example
+```python
+    global cv
+    cv=sync.Sensor(1)
+    cv.sync reset
+S1  move P,spd=100%,accu=1,tool=1 
+S2  move P,spd=30%,accu=5,tool=1  
+    delay 0.5
+    cv.input
+    cv.wait posi=200,sync=off
+    cv.sync on
+S3  move L,spd=30%,accu=1,tool=1  
+    delay 1
+S4  move L,spd=30%,accu=1,tool=1  
+    delay 1
+S5  move L,spd=30%,accu=1,tool=1  
+    delay 1
+S6  move L,spd=30%,accu=1,tool=1  
+    delay 3
+    cv.sync off
+S7  move P,spd=100%,accu=1,tool=1  
+    end
+    ```# 3.7 Functions
 
+- **cv.position(<workpiece_index>)**
+
+    Use `cv.position` to obtain the current position of a workpiece.
+
+    ### Description
+    When multiple workpieces sequentially pass the limit switch, use this to get the distance moved (mm) from the limit switch for each workpiece. Index 0 corresponds to the first-entered workpiece. Index numbers increase in order of entry.
+
+    ### Syntax
     ```python
-        global cv
-        cv=sync.Sensor(1)
-        cv.sync reset
-    S1  move P,spd=100%,accu=1,tool=1 
-    S2  move P,spd=30%,accu=5,tool=1  
-        delay 0.5
-        cv.input
-        cv.wait posi=200,sync=off
-        cv.sync on
-    S3  move L,spd=30%,accu=1,tool=1  
-        delay 1
-    S4  move L,spd=30%,accu=1,tool=1  
-        delay 1
-    S5  move L,spd=30%,accu=1,tool=1  
-        delay 1
-    S6  move L,spd=30%,accu=1,tool=1  
-        delay 3
-        cv.sync off
-    S7  move P,spd=100%,accu=1,tool=1  
-        end
-      ```# 3.7 함수
-
-*   <mark style="color:green;">**cv.position(<작업물 인덱스>)**</mark> <mark style="color:blue;"></mark>
-
-    cv.position 함수를 사용하면 작업물의 현재 위치를 얻을 수 있습니다.
-
-    ### 설명
-    복수의 작업물이 리밋스위치를 순차적으로 통과한 경우, 각각의 작업물에 대해서 리밋스위치를 기준으로 이동한 거리(mm)를 얻고자 할 때 사용합니다. 작업물 인덱스로 0 이 가장 먼저 진입한 작업물이며, 이는 cv.position 과 동일합니다. 이를 기준으로 작업물 인덱스 번호는 진입한 순서에 따라 증가하여 매칭됩니다.
-
-    ### 문법
-
-    ```python
-    result=cv.position(<작업물 인덱스>)
+    result = cv.position(<workpiece_index>)
     ```
-    
-    ### 파라미터
+
+    ### Parameters
     <table>
     <thead>
         <tr>
-        <th style="text-align:left">항목</th>
-        <th style="text-align:left">의미</th>
-        <th style="text-align:left">기타</th>
+        <th style="text-align:left">Item</th>
+        <th style="text-align:left">Description</th>
+        <th style="text-align:left">Remarks</th>
         </tr>
     </thead>
     <tbody>
         <tr>
-        <td style="text-align:left">작업물 인덱스</td>
+        <td style="text-align:left">Workpiece Index</td>
         <td style="text-align:left">
-            진입한 작업물 순서에 따라 0 부터 순차적으로 증가하여 매칭
+            Matched sequentially starting from 0 according to the order in which workpieces enter
         </td>
-        <td style="text-align:left">변수</td>
+        <td style="text-align:left">Variable</td>
         </tr>
     </tbody>
     </table>
 
 
-    ### 사용 예
-
+    ### Example
     ```python
-    if cv.position(0)>1000 then
-        print "작업물이 허용 작업 영역을 벗어났습니다."
+    if cv.position(0) > 1000 then
+        print "Workpiece has left the allowable work area."
     endif
-    ```# 3.8 변수
+    ```# 3.8 Variables
 
-*   <mark style="color:green;">**cv.speed (컨베이어 속도)**</mark>
+- **cv.speed (conveyor speed)**
 
-    ### 설명
-    컨베이어나 프레스의 이동 속도를 읽을 때 사용되며 모니터링 상의 이동속도에 해당하는 값입니다.
+    ### Description
+    Use to read the movement speed of a conveyor or press; corresponds to the monitoring velocity.
 
-    ### 사용 예
+    ### Example
     ```python
-    if cv.speed>300 then
-        print "컨베이어 속도가 너무 큽니다."
-    endif
-    ```
-
-*   <mark style="color:green;">**cv.pulse (작업물 펄스)**</mark>
-    ### 설명
-    동기 작업을 위해 작업물이 리밋스위치로부터 이동한 펄스(pulse)를 인식하고자 할 때 사용되며 모니터링 상의 펄스 데이터에 해당하는 값입니다.
-    ### 사용 예
-    ```python
-    if cv,pulse>10000 then
-        print "작업물이 허용 작업 영역을 벗어났습니다."
+    if cv.speed > 300 then
+        print "Conveyor speed is too high."
     endif
     ```
 
-* <mark style="color:green;">**cv.position (작업물 위치)**</mark>
+- **cv.pulse (workpiece pulses)**
+
+    ### Description
+    Use to read the pulses (distance) the workpiece has moved from the limit switch; corresponds to monitoring pulse data.
+
+    ### Example
     ```python
-    if cv.position>1000 then
-        print "작업물이 허용 작업 영역을 벗어났습니다."
+    if cv.pulse > 10000 then
+        print "Workpiece has left the allowable work area."
     endif
     ```
 
-*   <mark style="color:green;">**cv.work\_no (진입한 작업물 개수)**</mark>
-    ### 설명
-    리밋스위치를 통과하여 컨베이어상에 진입한 작업물의 개수를 읽을 때 사용되며 모니터링 상의 진입 작업물 개수에 해당하는 값입니다.
-    ### 사용 예
+- **cv.position (workpiece position)**
+    ### Example
     ```python
-    if cv.work_no>30 then
-        print "진입 작업물 개수를 초과하습니다."
+    if cv.position > 1000 then
+        print "Workpiece has left the allowable work area."
     endif
     ```
 
-*   <mark style="color:green;">**cv.raw\_pulse (엔코더 raw pulse)**</mark>
-    ### 설명
-    엔코더로부터 입력된 현재의 pulse 카운터를 읽을 때 사용되며 모니터링 상의 raw pulse 에 해당하는 값입니다.
-    ### 사용 예
+- **cv.work_no (number of entered workpieces)**
+
+    ### Description
+    Use to read the number of workpieces that have entered the conveyor after passing the limit switch; corresponds to the monitoring entered workpiece count.
+
+    ### Example
     ```python
-    var raw_pulse=cv.raw_pulse
+    if cv.work_no > 30 then
+        print "Exceeded allowed number of entered workpieces."
+    endif
     ```
 
-*   <mark style="color:green;">**cv.resolution (엔코더 분해능)**</mark>
-    ### 설명
-    사용자가 설정한 엔코더 분해능을 읽을 때 사용합니다.
-    ### 사용 예
+- **cv.raw_pulse (encoder raw pulse)**
+
+    ### Description
+    Use to read the current pulse counter input from the encoder; corresponds to monitoring raw pulse.
+
+    ### Example
     ```python
-    var resolution=cv.resolution
+    var raw_pulse = cv.raw_pulse
     ```
-# 4. 티칭
 
-센서 동기용 프로그램을 작성하는 것 또한 일반적인 티칭과 동일합니다. 그러나 센서 동기 재생을 실행하기 위해서는 “[**cv.sync (센서 동기재생)**](../3-user-interface/3-6-command.md)”과 “[**cv.wait (센서 인터록 대기)**](../3-user-interface/3-6-command.md)” 명령어를 사용해야 하는데, 이 명령어들은 티칭이 완료된 프로그램에 대한 재생을 수행하기 전에 기록되어야 합니다.
-# 4.1 동기작업 프로그램 구성
+- **cv.resolution (encoder resolution)**
 
-*   <mark style="color:green;">**원위치 대기**</mark>
+    ### Description
+    Use to read the encoder resolution set by the user.
 
-    로봇은 기동명령이 입력되기전까지 원위치에서 대기합니다.
+    ### Example
+    ```python
+    var resolution = cv.resolution
+    ```# 4. Teaching
 
+Writing programs for sensor synchronization follows the same general teaching workflow. However, to execute sensor sync playback you must use the commands **cv.sync (sync playback)** and **cv.wait (sensor interlock wait)**; these commands must be recorded in the taught program before playback.
+# 4.1 Sync Operation Program Structure
 
-*   <mark style="color:green;">**인터록 대기**</mark>
+- **Home position wait**
 
-    로봇은 동기 작업 구간 근처까지 미리 이동한 후, cv.wait 명령어에 기록된 거리에 작업물이 도달하기까지 대기합니다.
+    The robot waits at its home position until a start command is input.
 
+- **Interlock wait**
 
+    The robot moves near the synchronization section and waits until the workpiece reaches the distance recorded by `cv.wait`.
 
-    다음 그림은 컨베이어 상에 흘러오는 작업물에 대한 도장작업 프로그램입니다. 로봇은 스텝 4 로 진행할 때 컨베이어 동기를 시작하고 스텝 5 로 이동할 때부터 동기 상태에서 작업물에 도료를 분사합니다. 여기서 인터록 대기 스텝(스텝 3)은 동기작업 구간 진입 스텝(스텝 4) 근처에 기록합니다.
+The following figure shows a painting program for workpieces flowing on a conveyor. The robot starts conveyor sync when advancing to step S4 and begins spraying paint in sync from step S5. The interlock wait step (S3) is recorded near the sync section entry step (S4).
 
-       ![](<../_assets/image_1.png>)
+![](../_assets/image_1.png)
 
-       위 작업을 프로그램으로 작성하면 다음과 같습니다.
+Example program:
 
 ```python
-        global cv
-        cv=sync.Sensor(1)
-        cv.sync reset               # 컨베이어 동기 리셋
-    S1                              # 로봇 원위치
-    S2
-    S3                             # 인터록 대기 스텝
-        cv.sync on                 # 컨베이어 동기 시작
-        cv.wait posi=500,sync=0    # 컨베이어 인터록 대기
-    S4                             # 동기구간 투입 스텝
-        do1=1                      # 도료 분사 ON 신호
-    S5                             # 동기 작업 첫 번째 스텝
-     : 
-    S9                             # 동기 작업 마지막 스텝
-        do1=0                      # 도료 분사 OFF 신호
-        cv.sync off                # 컨베이어 동기 종료
-                                   # 현재 작업에 대한 작업 완료
-   S10
-     : 
-   S13                             # 로봇 원위치
-        end
+    global cv
+    cv = sync.Sensor(1)
+    cv.sync reset               # Conveyor sync reset
+S1                              # Robot home
+S2
+S3                             # Interlock wait step
+    cv.sync on                 # Start conveyor sync
+    cv.wait posi=500,sync=0    # Conveyor interlock wait
+S4                             # Sync section entry step
+    do1 = 1                    # Paint spray ON signal
+S5                             # First sync operation step
+ :
+S9                             # Last sync operation step
+    do1 = 0                    # Paint spray OFF signal
+    cv.sync off                # End conveyor sync
+                                # Complete current work
+S10
+ :
+S13                            # Robot home
+    end
 ```
 
+- **Sync playback**
 
-*   <mark style="color:green;">**동기 재생**</mark>
+    In the figure, the conveyor sync playback section refers to steps S4 through S9; all commands in this section are executed synchronized to the moving conveyor.
 
-    그림에서 컨베이어 동기재생 구간은 스텝 4 번부터 스텝 9 번까지를 의미하는데, 이 구간내의 모든 명령은 진행하는 컨베이어에 동기하며 실행합니다.
+- **Return to home position**
 
+    After finishing the operation, the robot returns to its home position for the next start command.
+# 4.2 Press Sync Teaching
 
-*   <mark style="color:green;">**원위치 복귀**</mark>
+Press synchronization makes the robot follow the press speed. The press speed is assumed to be constant; if the press speed varies, synchronization performance degrades. Set the current press allowable speed in the sensor sync parameter settings under **"Allowed Speed"**.
 
-    작업을 끝낸 로봇은 다음 기동명령을 위해 다시 원위치로 복귀합니다.
-# 4.2 프레스 동기의 티칭
-
-프레스 동기는 프레스의 속도에 로봇이 동기를 수행합니다. 프레스의 속도는 항상 일정하다고 가정하며 프레스의 속도가 가변될 경우 동기의 성능이 저하됩니다. 현재 운전하고 있는 프레스의 속도는 센서 동기 파라미터 설정에서 “**허용 속도**” 항목에 설정합니다.
-
-다음은 프레스 동기를 사용하는 프로그램의 예입니다.
+Example program using press sync:
 
 ```python
-        global press
-        press=sync.Sensor(1)
-        press.sync reset              # 프레스 동기 리셋
-    S1
-        press.sync on                 # 프레스 동기 시작
-        press.wait posi=500,sync=0    # 프레스 인터록 대기
-    S2  move P,spd=60%                # 센서 1의 위치 등록
-    S3  move P,spd=60%                # 센서 1의 위치 등록
-    S4  move P,spd=60%                # 센서 1의 위치 등록
-        press.sync off                # 프레스 동기 종료
-    S5
-        end
+    global press
+    press = sync.Sensor(1)
+    press.sync reset              # Press sync reset
+S1
+    press.sync on                 # Start press sync
+    press.wait posi=500,sync=0    # Press interlock wait
+S2  move P,spd=60%                # Record position for sensor 1
+S3  move P,spd=60%                # Record position for sensor 1
+S4  move P,spd=60%                # Record position for sensor 1
+    press.sync off                # End press sync
+S5
+    end
 ```
 
-상기 프로그램에서 스텝 2, 3, 4 에서 센서의 위치 반드시 증가하도록 교시되어야 하며 그렇지 못할 경우에는 다음과 같은 에러가 발생합니다.
+In the above program, the sensor-recorded positions at steps 2, 3, and 4 must strictly increase; otherwise the following error occurs:
 
-| **에러 코드** | **에러 메시지** |
-| :------: | ------------------------ |
-| E0239    | 스텝의 센서 위치가 순차적으로 증가하지 않습니다. |
-<br>
+| **Error Code** | **Error Message** |
+| :------------: | ----------------- |
+| E0239          | Step sensor positions are not strictly increasing. |
 
-또한 스텝 2, 3, 4 에 기록된 속도는 무시되며 기본적으로 사용자가 지정한 프레스의 허용속도를 기반으로 속도를 계획합니다. 만일 최고속으로 계획하여도 로봇의 성능을 초과하도록 센서와 로봇의 위치를 기록하면 동작중에 다음과 같은 에러가 발생합니다.
+Additionally, the speeds recorded at steps 2, 3, and 4 are ignored; the motion is planned based on the user's configured allowable press speed. If the recorded sensor and robot positions require motion exceeding robot capability even when planned at maximum speed, the following error occurs during operation:
 
-| **에러 코드** | **에러 메시지** |
-| :------: | ------------------------ |
-| E0238    | 센서 속도를 추종할 수 없습니다. |# 5. 자주하는 질문
+| **Error Code** | **Error Message** |
+| :------------: | ----------------- |
+| E0238          | Cannot follow the sensor speed. |
+# 5. Frequently Asked Questions
 
-*   <mark style="color:green;">**부가 축의 축 사양이 베이스이고 축 구성이 직동인 경우 컨베이어 동기 동작은 어떻게 이루어지나요?**</mark>
+- **If an additional axis has base specifications and the axis configuration is linear, how does conveyor sync operate?**
 
-    컨베이어 동기 시 부가 축이 존재하면 먼저 부가 축에 대해 작업물을 추종합니다. 만일 로봇이 소프트리밋, 암 간섭등의 이유로 부가 축으로 추종할 수 없다면 로봇 6 축을 사용하여 작업물을 추종합니다.
+    When an auxiliary axis exists during conveyor sync, the robot first follows the workpiece using the additional axis. If the robot cannot follow with the auxiliary axis due to soft limits or arm interference, it uses the robot's 6 axes to follow the workpiece.
 
+- **What happens if the B-axis angle passes near 0 degrees during conveyor sync?**
 
-*   <mark style="color:green;">**B 축의 각도가 0 도 부근에서 컨베이어 동기 동작은 어떤가요?**</mark>
+    If the B-axis passes near 0 degrees during conveyor sync, the robot cannot keep the tool orientation stable. When mounting the tool, choose a tool orientation that avoids B-axis angles near 0 degrees.
 
-    컨베이어 동기 중에 B 축의 각도가 0 도 부근을 지나는 경우에 로봇은 툴의 자세를 일정하게 유지할 수 없습니다. 따라서 툴을 취부할 단계에서 미리 B 축 각도 0도 부근을 사용하지 않는 툴의 방향을 선택하도록 합니다.
+- **How can I manually input the limit switch?**
 
+    Use the **[Limit Switch Operation]** button in Sensor Sync Monitoring.
 
-*   <mark style="color:green;">**리밋스위치를 수동으로 입력하고 싶은데 어떻게 하나요?**</mark>
+- **How can I manually clear current conveyor (press) data?**
 
-    센서 동기 모니터링에서 **\[리밋스위치 동작]** 버튼을 사용하십시오.
-
-
-*   <mark style="color:green;">**현재 컨베이어(프레스) 데이터를 수동으로 초기화하고 싶은데 어떻게 하나요?**</mark>
-
-    센서 동기 모니터링에서 **\[수동 리셋]** 버튼을 사용하십시오.
+    Use the [Manual Reset] button in Sensor Sync Monitoring.

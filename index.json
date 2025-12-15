@@ -6,122 +6,122 @@
 	},
 	{
 		"link": "1-intro/README.md",
-		"char_ofs": 272,
-		"byte_ofs": 530
+		"char_ofs": 490,
+		"byte_ofs": 495
 	},
 	{
 		"link": "1-intro/1-1-system-config.md",
-		"char_ofs": 485,
-		"byte_ofs": 1025
+		"char_ofs": 931,
+		"byte_ofs": 954
 	},
 	{
 		"link": "1-intro/1-2-conveyor-sync-principle.md",
-		"char_ofs": 876,
-		"byte_ofs": 1811
+		"char_ofs": 1574,
+		"byte_ofs": 1613
 	},
 	{
 		"link": "1-intro/1-3-press-sync-principle.md",
-		"char_ofs": 1304,
-		"byte_ofs": 2613
+		"char_ofs": 2220,
+		"byte_ofs": 2276
 	},
 	{
 		"link": "1-intro/1-4-major-spec.md",
-		"char_ofs": 1582,
-		"byte_ofs": 3261
+		"char_ofs": 2758,
+		"byte_ofs": 2822
 	},
 	{
 		"link": "1-intro/1-5-operation-sequence.md",
-		"char_ofs": 2195,
-		"byte_ofs": 4209
+		"char_ofs": 3438,
+		"byte_ofs": 3519
 	},
 	{
 		"link": "2-system-config-access/README.md",
-		"char_ofs": 2236,
-		"byte_ofs": 4264
+		"char_ofs": 3492,
+		"byte_ofs": 3579
 	},
 	{
 		"link": "2-system-config-access/2-1-conveyor-if-board.md",
-		"char_ofs": 2318,
-		"byte_ofs": 4422
+		"char_ofs": 3645,
+		"byte_ofs": 3740
 	},
 	{
 		"link": "2-system-config-access/2-2-hardware-inspection.md",
-		"char_ofs": 2608,
-		"byte_ofs": 4870
+		"char_ofs": 3973,
+		"byte_ofs": 4081
 	},
 	{
 		"link": "3-user-interface/README.md",
-		"char_ofs": 3009,
-		"byte_ofs": 5636
+		"char_ofs": 4489,
+		"byte_ofs": 4613
 	},
 	{
 		"link": "3-user-interface/3-1-conveyor-angle-auto-set/README.md",
-		"char_ofs": 3025,
-		"byte_ofs": 5673
+		"char_ofs": 4509,
+		"byte_ofs": 4637
 	},
 	{
 		"link": "3-user-interface/3-1-conveyor-angle-auto-set/1-program-teaching.md",
-		"char_ofs": 3251,
-		"byte_ofs": 6226
+		"char_ofs": 4888,
+		"byte_ofs": 5023
 	},
 	{
 		"link": "3-user-interface/3-1-conveyor-angle-auto-set/2-auto-calculation.md",
-		"char_ofs": 3799,
-		"byte_ofs": 7272
+		"char_ofs": 5734,
+		"byte_ofs": 5897
 	},
 	{
 		"link": "3-user-interface/3-2-encoder-resolution-auto-set.md",
-		"char_ofs": 4218,
-		"byte_ofs": 8089
+		"char_ofs": 6351,
+		"byte_ofs": 6533
 	},
 	{
 		"link": "3-user-interface/3-3-sensor-sync-parameter.md",
-		"char_ofs": 5057,
-		"byte_ofs": 9806
+		"char_ofs": 7605,
+		"byte_ofs": 7818
 	},
 	{
 		"link": "3-user-interface/3-4-monitoring.md",
-		"char_ofs": 8154,
-		"byte_ofs": 15886
+		"char_ofs": 11823,
+		"byte_ofs": 12116
 	},
 	{
 		"link": "3-user-interface/3-5-step-data.md",
-		"char_ofs": 9292,
-		"byte_ofs": 17826
+		"char_ofs": 13044,
+		"byte_ofs": 13381
 	},
 	{
 		"link": "3-user-interface/3-6-command.md",
-		"char_ofs": 9560,
-		"byte_ofs": 18378
+		"char_ofs": 13471,
+		"byte_ofs": 13822
 	},
 	{
 		"link": "3-user-interface/3-7-function.md",
-		"char_ofs": 11952,
-		"byte_ofs": 21403
+		"char_ofs": 15535,
+		"byte_ofs": 15975
 	},
 	{
 		"link": "3-user-interface/3-8-variable.md",
-		"char_ofs": 12961,
-		"byte_ofs": 22901
+		"char_ofs": 16699,
+		"byte_ofs": 17182
 	},
 	{
 		"link": "4-teaching/README.md",
-		"char_ofs": 14297,
-		"byte_ofs": 24958
+		"char_ofs": 18281,
+		"byte_ofs": 18831
 	},
 	{
 		"link": "4-teaching/4-1-sync-oper-program-config.md",
-		"char_ofs": 14559,
-		"byte_ofs": 25454
+		"char_ofs": 18591,
+		"byte_ofs": 19147
 	},
 	{
 		"link": "4-teaching/4-2-press-sync-teaching.md",
-		"char_ofs": 15996,
-		"byte_ofs": 27781
+		"char_ofs": 20289,
+		"byte_ofs": 20894
 	},
 	{
 		"link": "5-faq.md",
-		"char_ofs": 17076,
-		"byte_ofs": 29682
+		"char_ofs": 21836,
+		"byte_ofs": 22476
 	}
 ]
