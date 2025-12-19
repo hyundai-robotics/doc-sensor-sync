@@ -1,6 +1,6 @@
 ﻿# Table of contents
 
-* [Hi6 Robot Controller Function Manual - Sensor Synchronization (Conveyor, Press)](README.md)
+* [${cont_model} Robot Controller Function Manual - Sensor Synchronization (Conveyor, Press)](README.md)
 * [1. Overview](1-intro/README.md)
   * [1.1 System Configuration](1-intro/1-1-system-config.md)
   * [1.2 Conveyor Synchronization Principle](1-intro/1-2-conveyor-sync-principle.md)

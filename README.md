@@ -1,4 +1,4 @@
-﻿# Hi6 Robot Controller Function Manual - Sensor Synchronization (Conveyor, Press)
+﻿# ${cont_model} Robot Controller Function Manual - Sensor Synchronization (Conveyor, Press)
 
 {% hint style="warning" %}
 
@@ -7,5 +7,5 @@ All or part of this manual may not be reproduced, redistributed, or provided to 
 
 This manual is subject to change without prior notice.
 
-**Copyright ⓒ 2020 by Hyundai Robotics**
+**Copyright ⓒ 2020 by HD Hyundai Robotics**
 {% endhint %}
