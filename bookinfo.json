@@ -1,11 +1,12 @@
 {
     "langCode": "en",
-    "series": "Hyundai Robot Hi6 Controller",
+    "series": "${cont_model} Controller",
     "title": "Function Manual - Sensor Synchronization (Conveyor, Press)",
     "publisher": "HD Hyundai Robotics",
     "tocTitle": "Table of Contents",
     "tocTitleElements": "[ \"h1\", \"h2\" ]",
-    "variables": {
-        "cont_model": "Hi6"
-    }
+    "docId": "${cont_model:upper}SENSORSYNC_EN_001",
+    "references": [
+        { "rpath" : "doc-hi6-operation/en-tp630" }
+    ]
 }
