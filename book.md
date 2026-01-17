@@ -1,14 +1,8 @@
-﻿# ${cont_model} Robot Controller Function Manual - Sensor Synchronization (Conveyor, Press)
+﻿
+[__SOURCE](README.md)
+# ${cont_model} Controller Function Manual - Sensor Synchronization (Conveyor, Press)
 
-{% hint style="warning" %}
-
-The information provided in this product manual is the property of HD Hyundai Robotics.
-All or part of this manual may not be reproduced, redistributed, or provided to any third party or used for other purposes without prior written consent from HD Hyundai Robotics.
-
-This manual is subject to change without prior notice.
-
-**Copyright ⓒ 2020 by HD Hyundai Robotics**
-{% endhint %}
+[__SOURCE](1-intro/README.md)
 # 1. Overview
 
 Sensor synchronization is a function that performs synchronization based on external sensor signals. External sensors support encoders and are categorized for conveyor and press operations.
@@ -19,7 +13,9 @@ Sensor synchronization is a function that performs synchronization based on exte
 
 - Press synchronization
 
-    The operation is performed by synchronizing the press’s travel distance with the robot’s position.
+    The operation is performed by synchronizing the press's travel distance with the robot's position.
+
+[__SOURCE](1-intro/1-1-system-config.md)
 # 1.1 System Configuration
 
 A typical configuration of the conveyor synchronization system is shown below.
@@ -33,6 +29,8 @@ A typical configuration of the conveyor synchronization system is shown below.
 - **Encoder**
 
     An encoder that generates pulses corresponding to motor rotation is attached to the motor drive. The encoder connects to the robot controller, and the pulses output from the encoder are input to the robot controller.
+
+[__SOURCE](1-intro/1-2-conveyor-sync-principle.md)
 # 1.2 Conveyor Synchronization Principle
 
 - **Teaching**
@@ -47,11 +45,15 @@ A typical configuration of the conveyor synchronization system is shown below.
     Within the sync section, the workpiece shifts from the taught reference position by the distance the workpiece moved after passing the limit switch, as shown below.
 
 ![](../_assets/image10-2.png)
+
+[__SOURCE](1-intro/1-3-press-sync-principle.md)
 # 1.3 Press Synchronization Principle
 
 The press moves from the top dead center down to the bottom dead center to perform the press operation, then rises back to the top, forming one cycle. Press synchronization records the press position and robot positions in step data to synchronize the robot position according to the press movement speed. Synchronization performance is limited by the robot's acceleration/deceleration and maximum speed; large variations from the expected press speed may cause errors.
 
 ![](../_assets/image11.png)
+
+[__SOURCE](1-intro/1-4-major-spec.md)
 # 1.4 Major Specifications
 
 | **Item** | **Specification** |
@@ -66,14 +68,20 @@ The press moves from the top dead center down to the bottom dead center to perfo
 | Synchronizable sensor travel distance | 21 m |
 | Interpolation method in conveyor sync section | Linear (L), Circular (C) |
 | Interpolation method in press sync section | Axis interpolation (P), Linear (L), Circular (C) |
+
+[__SOURCE](1-intro/1-5-operation-sequence.md)
 # 1.5 Operation Sequence
 
 ![](../_assets/image12.png)
+
+[__SOURCE](2-system-config-access/README.md)
 # 2. System Configuration and Connections
 
 The system configuration required to use conveyor synchronization is as follows.
 
 ![](../_assets/image15.png)
+
+[__SOURCE](2-system-config-access/2-1-conveyor-if-board.md)
 # 2.1 Conveyor I/F Board
 
 The conveyor I/F boards supported by our company are as follows. Please refer to separate documentation for details.
@@ -84,6 +92,8 @@ The conveyor I/F boards supported by our company are as follows. Please refer to
 
     * Manual:
       https://www.crevis.ru/files/spec/g/[Spec]%20M5112%20(Rev%201.03).pdf
+
+[__SOURCE](2-system-config-access/2-2-hardware-inspection.md)
 # 2.2 Hardware Inspection
 
 Select **[Monitoring > Sensor Sync]** to check sensor sync related data.
@@ -97,11 +107,17 @@ Select **[Monitoring > Sensor Sync]** to check sensor sync related data.
 - **Encoder**
 
     The "raw pulse" field shows encoder pulses; during conveyor movement the value should continuously increase or decrease within the range 0~ffff. If not operating normally, inspect the hardware.
+
+[__SOURCE](3-user-interface/README.md)
 # 3. User Interface
+
+[__SOURCE](3-user-interface/3-1-conveyor-angle-auto-set/README.md)
 # 3.1 Conveyor Angle Auto-Set
 
 If the conveyor direction is placed arbitrarily, measuring the conveyor movement accurately in 3D space can take considerable time. Therefore, the robot controller must know in advance the direction of conveyor motion in the robot coordinate frame for robot synchronization.  
 Use the controller's built-in auto-angle calculation feature for this.
+
+[__SOURCE](3-user-interface/3-1-conveyor-angle-auto-set/1-program-teaching.md)
 # 3.1.1 Program Teaching
 
 To perform conveyor angle auto-calculation, first write a program as follows.
@@ -127,7 +143,9 @@ To set the angle accurately, make each recorded position as far apart as possibl
 
 {% hint style="info" %}    
 For circular conveyors, three positions are required to calculate the angle. Repeat step 3 once more.  
-{% endhint %}# 3.1.2 Run Auto-Calculation
+{% endhint %}
+[__SOURCE](3-user-interface/3-1-conveyor-angle-auto-set/2-auto-calculation.md)
+# 3.1.2 Run Auto-Calculation
 
 In the [Settings > Application Parameters > Sensor Sync] screen, press [Angle Setting] to display the angle screen.
 
@@ -143,6 +161,8 @@ If the conveyor type is set to circular, the settings below are modified to defi
 ![](../../_assets/image26.png)
 
 3. Press [OK] to save the configured values.
+
+[__SOURCE](3-user-interface/3-2-encoder-resolution-auto-set.md)
 # 3.2 Encoder Resolution Auto-Set
 
 Encoder resolution means the number of pulses generated when a linear conveyor (or press) moves 1 m, or when a circular conveyor (or press) rotates 1 degree.
@@ -171,6 +191,8 @@ Repeat steps 1~9 to calculate up to four encoder resolutions.
 
 10. Press [Calculate Average] to compute the average of the recorded encoder resolutions.
 11. Press [OK] to set the average as the encoder resolution.
+
+[__SOURCE](3-user-interface/3-3-sensor-sync-parameter.md)
 # 3.3 Sensor Sync Parameters
 
 To apply conveyor (press) synchronization and execute robot motion, the robot controller must know various information about the conveyor (press) it must synchronize with. These parameters must be set before writing the operation program.
@@ -248,6 +270,8 @@ For example, if the allowable number of pulse anomaly detections is set to 3, th
 - **Pulse communication type**
 
     Typical pulse communication uses open collector and line drive. Refer to separate learning materials for details. On our board, "line drive" is off and "open collector" is on.
+
+[__SOURCE](3-user-interface/3-4-monitoring.md)
 # 3.4 Monitoring
 
 Select **[Monitoring > Sensor Sync]** to view sensor sync related data. Use **[sensor sync. operate]** buttons to perform various actions.
@@ -289,6 +313,8 @@ Select **[Monitoring > Sensor Sync]** to view sensor sync related data. Use **[s
 - **Limit switch operation**
 
     Use when you need to manually toggle the limit switch.
+
+[__SOURCE](3-user-interface/3-5-step-data.md)
 # 3.5 Step Data
 
 When sensor sync is set to <enabled> and you press [Record], the current robot axis positions along with the current workpiece position are recorded as shown below.
@@ -300,6 +326,8 @@ The robot uses the recorded position data during conveyor sync playback.
 You can view and edit the recorded workpiece position in the ss# field of the current step position properties.
 
 ![](../_assets/image35.png)
+
+[__SOURCE](3-user-interface/3-6-command.md)
 # 3.6 Commands
 
 - **cv.sync (sync playback)**
@@ -386,7 +414,9 @@ S6  move L,spd=30%,accu=1,tool=1
     cv.sync off
 S7  move P,spd=100%,accu=1,tool=1  
     end
-    ```# 3.7 Functions
+    ```
+[__SOURCE](3-user-interface/3-7-function.md)
+# 3.7 Functions
 
 - **cv.position(<workpiece_index>)**
 
@@ -426,7 +456,9 @@ S7  move P,spd=100%,accu=1,tool=1
     if cv.position(0) > 1000 then
         print "Workpiece has left the allowable work area."
     endif
-    ```# 3.8 Variables
+    ```
+[__SOURCE](3-user-interface/3-8-variable.md)
+# 3.8 Variables
 
 - **cv.speed (conveyor speed)**
 
@@ -490,9 +522,13 @@ S7  move P,spd=100%,accu=1,tool=1
     ### Example
     ```python
     var resolution = cv.resolution
-    ```# 4. Teaching
+    ```
+[__SOURCE](4-teaching/README.md)
+# 4. Teaching
 
 Writing programs for sensor synchronization follows the same general teaching workflow. However, to execute sensor sync playback you must use the commands **cv.sync (sync playback)** and **cv.wait (sensor interlock wait)**; these commands must be recorded in the taught program before playback.
+
+[__SOURCE](4-teaching/4-1-sync-oper-program-config.md)
 # 4.1 Sync Operation Program Structure
 
 - **Home position wait**
@@ -539,6 +575,8 @@ S13                            # Robot home
 - **Return to home position**
 
     After finishing the operation, the robot returns to its home position for the next start command.
+
+[__SOURCE](4-teaching/4-2-press-sync-teaching.md)
 # 4.2 Press Sync Teaching
 
 Press synchronization makes the robot follow the press speed. The press speed is assumed to be constant; if the press speed varies, synchronization performance degrades. Set the current press allowable speed in the sensor sync parameter settings under **"Allowed Speed"**.
@@ -571,6 +609,8 @@ Additionally, the speeds recorded at steps 2, 3, and 4 are ignored; the motion i
 | **Error Code** | **Error Message** |
 | :------------: | ----------------- |
 | E0238          | Cannot follow the sensor speed. |
+
+[__SOURCE](5-faq.md)
 # 5. Frequently Asked Questions
 
 - **If an additional axis has base specifications and the axis configuration is linear, how does conveyor sync operate?**

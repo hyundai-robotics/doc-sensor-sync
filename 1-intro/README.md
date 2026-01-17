@@ -8,4 +8,4 @@ Sensor synchronization is a function that performs synchronization based on exte
 
 - Press synchronization
 
-    The operation is performed by synchronizing the press’s travel distance with the robot’s position.
+    The operation is performed by synchronizing the press's travel distance with the robot's position.
