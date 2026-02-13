@@ -1,6 +1,7 @@
 ﻿# Table of contents
 
 * [${cont_model} Controller Function Manual - Sensor Synchronization (Conveyor, Press)](README.md)
+* [Precautions](0-about-this-manual/precautions.md)
 * [1. Overview](1-intro/README.md)
   * [1.1 System Configuration](1-intro/1-1-system-config.md)
   * [1.2 Conveyor Synchronization Principle](1-intro/1-2-conveyor-sync-principle.md)
