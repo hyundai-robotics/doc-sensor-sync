@@ -1,13 +1,13 @@
-﻿# 2.2 Hardware Inspection
+﻿# 2.2 硬件检查
 
-Select **[Monitoring > Sensor Sync]** to check sensor sync related data.
+选择 **[监控 > 传感器同步]** 以检查与传感器同步相关的数据。
 
 ![](../_assets/image21.png)
 
-- **Limit switch**
+- **限位开关**
 
-    The "Limit switch input" field shows 1 when the limit switch is active and 0 when it is not. If it does not operate normally, inspect the hardware.
+    “限位开关输入”字段在限位开关处于活动状态时显示 1，处于非活动状态时显示 0。如果未正常工作，请检查硬件。
 
-- **Encoder**
+- **编码器**
 
-    The "raw pulse" field shows encoder pulses; during conveyor movement the value should continuously increase or decrease within the range 0~ffff. If not operating normally, inspect the hardware.
+    “原始脉冲”字段显示编码器脉冲；在输送机移动期间，值应在 0~ffff 范围内持续增加或减少。如果未正常工作，请检查硬件。

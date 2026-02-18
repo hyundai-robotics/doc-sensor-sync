@@ -1,14 +1,14 @@
-﻿# 1.4 Major Specifications
+﻿# 1.4 主要规格
 
-| **Item** | **Specification** |
+| **项目** | **规格** |
 | :------: | :---------------: |
-| Number of synchronizable sensors (conveyor, press) | 2 |
-| Conveyor (press) form | Linear, circular |
-| Conveyor angle setting | Supports automatic setting |
-| Pulse input type | Open collector, line drive |
-| Pulse counting method | Up/Down |
-| Encoder resolution setting | Supports automatic setting |
-| Max number of workpieces allowed per conveyor | 100 |
-| Synchronizable sensor travel distance | 21 m |
-| Interpolation method in conveyor sync section | Linear (L), Circular (C) |
-| Interpolation method in press sync section | Axis interpolation (P), Linear (L), Circular (C) |
+| 可同步传感器数量（输送带，压力机） | 2 |
+| 输送带（压力机）形式 | 线性，圆形 |
+| 输送带角度设置 | 支持自动设置 |
+| 脉冲输入类型 | 开漏，线路驱动 |
+| 脉冲计数方法 | 上/下 |
+| 编码器分辨率设置 | 支持自动设置 |
+| 每个输送带允许的最大工件数量 | 100 |
+| 可同步传感器行程 | 21 m |
+| 输送带同步部分的插值方法 | 线性 (L)，圆形 (C) |
+| 压力机同步部分的插值方法 | 轴插值 (P)，线性 (L)，圆形 (C) |

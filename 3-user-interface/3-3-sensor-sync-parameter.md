@@ -1,77 +1,76 @@
-﻿# 3.3 Sensor Sync Parameters
+﻿# 3.3 传感器同步参数
 
-To apply conveyor (press) synchronization and execute robot motion, the robot controller must know various information about the conveyor (press) it must synchronize with. These parameters must be set before writing the operation program.
+为了应用输送带（压机）同步并执行机器人运动，机器人控制器必须了解与之同步的输送带（压机）的各种信息。这些参数必须在编写操作程序之前设置。
 
 ![](../_assets/image30.png)
 
-- **Conveyor form**
+- **输送带形式**
 
-    Select the form according to the figure below.
+    根据下图选择形式。
 
 ![](../_assets/image31.png)
 
-- **Encoder resolution**
+- **编码器分辨率**
 
-    Encoder resolution is defined as the number of pulses generated when a linear conveyor moves 1 m or when a circular conveyor rotates 1 degree.
+    编码器分辨率定义为线性输送带移动1米或圆形输送带旋转1度时生成的脉冲数量。
 
 {% hint style="info" %}
-See section [3.2 Encoder Resolution Auto-Set](3-2-encoder-resolution-auto-set.md) for automatic encoder resolution calculation.
+有关自动编码器分辨率计算，请参见[3.2 编码器分辨率自动设置](3-2-encoder-resolution-auto-set.md)部分。
 {% endhint %}
 
-- **Conveyor allowable speed**
+- **输送带允许速度**
 
-    This parameter is used to treat abnormally high speeds as errors. Configure it considering the expected operating speed; the controller internally calculates conveyor speed and reports an error if the speed exceeds the configured allowable speed.
+    此参数用于将异常高的速度视为错误。根据预期的操作速度进行配置；控制器内部计算输送带速度，并在速度超过配置的允许速度时报告错误。
 
 {% hint style="info" %}  
-Encoder pulses typically have ripple around their average, so speed also shows slight ripple. Set the allowable speed slightly higher to accommodate this.
+编码器脉冲通常在其平均值周围有波动，因此速度也会显示轻微的波动。将允许速度设置得稍高一些以适应这种情况。
 {% endhint %}
 
-- **Allowed count for pulse anomaly detection**
+- **脉冲异常检测的允许计数**
 
-    If pulses are abnormally input, the robot controller outputs the error "E0019 Conveyor pulse allowed frequency exceeded". Configure this to allow the robot to continue working (protecting the workpiece) by tolerating a certain number of pulse anomalies during sync operation.
+    如果脉冲输入异常，机器人控制器会输出错误“E0019 输送带脉冲允许频率超出”。配置此项以允许机器人通过容忍在同步操作期间的某些脉冲异常而继续工作（保护工件）。
 
 {% hint style="info" %}  
-For example, if the allowable number of pulse anomaly detections is set to 3, the robot controller does not generate an error even if pulse anomalies are detected up to three times for a single workpiece during synchronized operation, and instead internally generates appropriate pulse values. When a fourth pulse anomaly is detected, an error is generated. Information on the number of detected pulse anomalies is reset when playback for the corresponding workpiece is completed.
+例如，如果允许的脉冲异常检测个数设置为3，则即使在同步操作期间对单个工件检测到三次脉冲异常，机器人控制器也不会生成错误，而是在内部生成适当的脉冲值。当检测到第四个脉冲异常时，会生成错误。针对该工件的播放完成后，检测到的脉冲异常数量信息将被重置。
 {% endhint %}  
 
-- **Maximum allowed number of workpieces**
+- **允许的最大工件数量**
 
-    Configure whether the robot should continue working when another workpiece triggers the limit switch and enters the workspace while the robot is synchronizing a workpiece. The maximum allowed is 100.
+    配置当另一个工件触发极限开关并在机器人同步一个工件时进入工作空间时，机器人是否应继续工作。最大允许100个。
 
-- **Detect sync-related system errors**
+- **检测同步相关系统错误**
 
-    If system installation is incomplete or a board is damaged causing sync-related system errors that prevent switching to RUN READY, configure to ignore sync-related system errors so unrelated operations can continue.
+    如果系统安装不完整或电路板损坏导致无法切换到运行准备状态的同步相关系统错误，请配置以忽略同步相关系统错误，以便继续进行无关操作。
 
-| **Error No.** | **Sync system error type** |
+| **错误编号** | **同步系统错误类型** |
 | :-----------: | ------------------------- |
-| E0021 | Conveyor allowable speed exceeded |
+| E0021 | 超过输送带允许速度 |
 
-- **Sync reset input**
+- **同步复位输入**
+外部输入可以清除输送机（按下）数据。当机器人停止时输入此信号时，传感器相关数据（脉冲数据、工件位置、速度、工件数量、同步播放状态等）将被清除，相当于手动重置。
 
-    External input can clear conveyor (press) data. When this signal is input while the robot is stopped, sensor-related data (pulse data, workpiece positions, speed, number of workpieces, sync playback state, etc.) are cleared, equivalent to a manual reset.
+- **限位开关输入**
 
-- **Limit switch input**
+    通过外部输入接受限位开关状态。
 
-    Accept limit switch state via external input.
+- **脉冲计数器输入**
 
-- **Pulse counter input**
-
-    Accept encoder pulse counter via external input. The controller manages the pulse counter internally as 16-bit data, so a 1-word (2-byte) input signal is used. Specifying the lowest bit signal number automatically assigns 16 consecutive signals.
+    通过外部输入接受编码器脉冲计数器。控制器内部将脉冲计数器管理为16位数据，因此使用1字（2字节）输入信号。指定最低位信号编号会自动分配16个连续信号。
 
 ![](../_assets/image32.png)
 
-- **Pulse line error**
+- **脉冲线错误**
 
-    When using line drive pulse communication, you can detect open circuits on the pulse line. Use this to report pulse line errors to the robot controller.
+    使用线路驱动脉冲通信时，可以检测脉冲线路上的开路。使用此功能向机器人控制器报告脉冲线路错误。
 
-- **Conveyor sync ON**
+- **输送机同步开启**
 
-    Conveyor sync state can be output externally. When the command **"cv.sync start"** runs and sync is ON, it outputs **"1"**.
+    输送机同步状态可以外部输出。当命令**"cv.sync start"**运行并且同步开启时，输出**"1"**。
 
-- **Pulse counter type**
+- **脉冲计数器类型**
 
-    When the conveyor moves forward, pulse values increase. If pulses increase when moving backward, that is the "Up" type; if they decrease, use the "Up/Down" type. Typically use "Up/Down". On our board, "Up" is output as off, and "Up/Down" as on.
+    当输送机向前移动时，脉冲值增加。如果在向后移动时脉冲增加，则为“上”类型；如果减少，则使用“上/下”类型。通常使用“上/下”。在我们的板上，“上”输出为关闭，而“上/下”则为开启。
 
-- **Pulse communication type**
+- **脉冲通信类型**
 
-    Typical pulse communication uses open collector and line drive. Refer to separate learning materials for details. On our board, "line drive" is off and "open collector" is on.
+    典型的脉冲通信使用开集电极和线路驱动。有关详细信息，请参考单独的学习材料。在我们的板上，“线路驱动”关闭，而“开集电极”开启。

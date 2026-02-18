@@ -1,17 +1,17 @@
-﻿# 5. Frequently Asked Questions
+﻿# 5. 常见问题解答
 
-- **If an additional axis has base specifications and the axis configuration is linear, how does conveyor sync operate?**
+- **如果附加轴具有基本规格且轴配置为线性，输送带同步是如何工作的？**
 
-    When an auxiliary axis exists during conveyor sync, the robot first follows the workpiece using the additional axis. If the robot cannot follow with the auxiliary axis due to soft limits or arm interference, it uses the robot's 6 axes to follow the workpiece.
+    当在输送带同步期间存在辅助轴时，机器人首先通过附加轴跟随工件。如果由于软限制或手臂干涉导致机器人无法用辅助轴跟随，则使用机器人的6个轴跟随工件。
 
-- **What happens if the B-axis angle passes near 0 degrees during conveyor sync?**
+- **如果B轴角度在输送带同步期间接近0度，会发生什么？**
 
-    If the B-axis passes near 0 degrees during conveyor sync, the robot cannot keep the tool orientation stable. When mounting the tool, choose a tool orientation that avoids B-axis angles near 0 degrees.
+    如果B轴在输送带同步期间接近0度，机器人无法保持工具方向稳定。在安装工具时，选择避免B轴角度接近0度的工具方向。
 
-- **How can I manually input the limit switch?**
+- **如何手动输入限位开关？**
 
-    Use the **[Limit Switch Operation]** button in Sensor Sync Monitoring.
+    在传感器同步监控中使用**[限位开关操作]**按钮。
 
-- **How can I manually clear current conveyor (press) data?**
+- **如何手动清除当前输送带（按下）数据？**
 
-    Use the [Manual Reset] button in Sensor Sync Monitoring.
+    在传感器同步监控中使用[手动重置]按钮。

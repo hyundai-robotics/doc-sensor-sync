@@ -1,13 +1,13 @@
-﻿# 1.1 System Configuration
+﻿# 1.1 系统配置
 
-A typical configuration of the conveyor synchronization system is shown below.
+典型的传送带同步系统配置如下所示。
 
 ![](../_assets/image9.png)
 
-- **Limit switch**
+- **限位开关**
 
-    A device that notifies the controller whether a workpiece has entered a specific position on the conveyor and whether the press has passed a specific position. The position of the limit switch serves as the reference point for position judgment.
+    一种设备，用于通知控制器工件是否已进入传送带上的特定位置，以及压力机是否已通过特定位置。限位开关的位置作为位置判断的参考点。
 
-- **Encoder**
+- **编码器**
 
-    An encoder that generates pulses corresponding to motor rotation is attached to the motor drive. The encoder connects to the robot controller, and the pulses output from the encoder are input to the robot controller.
+    附加在电动机驱动上的编码器生成与电动机旋转相对应的脉冲。编码器连接到机器人控制器，编码器输出的脉冲输入到机器人控制器。

@@ -1,41 +1,41 @@
-﻿# 3.7 Functions
+﻿# 3.7 功能
 
 - **cv.position(<workpiece_index>)**
 
-    Use `cv.position` to obtain the current position of a workpiece.
+    使用 `cv.position` 获取工件的当前位置。
 
-    ### Description
-    When multiple workpieces sequentially pass the limit switch, use this to get the distance moved (mm) from the limit switch for each workpiece. Index 0 corresponds to the first-entered workpiece. Index numbers increase in order of entry.
+    ### 描述
+    当多个工件依次通过限位开关时，使用此方法获取每个工件从限位开关移动的距离（毫米）。索引 0 对应于第一个进入的工件。索引号按照进入顺序递增。
 
-    ### Syntax
+    ### 语法
     ```python
     result = cv.position(<workpiece_index>)
     ```
 
-    ### Parameters
+    ### 参数
     <table>
     <thead>
         <tr>
-        <th style="text-align:left">Item</th>
-        <th style="text-align:left">Description</th>
-        <th style="text-align:left">Remarks</th>
+        <th style="text-align:left">项目</th>
+        <th style="text-align:left">描述</th>
+        <th style="text-align:left">备注</th>
         </tr>
     </thead>
     <tbody>
         <tr>
-        <td style="text-align:left">Workpiece Index</td>
+        <td style="text-align:left">工件索引</td>
         <td style="text-align:left">
-            Matched sequentially starting from 0 according to the order in which workpieces enter
+            从 0 开始按工件进入的顺序依次匹配
         </td>
-        <td style="text-align:left">Variable</td>
+        <td style="text-align:left">变量</td>
         </tr>
     </tbody>
     </table>
 
 
-    ### Example
+    ### 示例
     ```python
     if cv.position(0) > 1000 then
-        print "Workpiece has left the allowable work area."
+        print "工件已离开可允许的工作区域。"
     endif
     ```

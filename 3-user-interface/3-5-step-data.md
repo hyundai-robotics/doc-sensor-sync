@@ -1,11 +1,11 @@
-﻿# 3.5 Step Data
+﻿# 3.5 步骤数据
 
-When sensor sync is set to <enabled> and you press [Record], the current robot axis positions along with the current workpiece position are recorded as shown below.
+当传感器同步设置为 <enabled> 且您按下 [Record] 时，当前机器人的轴位置以及当前工件位置将被记录，如下所示。
 
-The robot uses the recorded position data during conveyor sync playback.
+机器人在输送带同步播放期间使用记录的位置数据。
 
 ![](../_assets/image34.png)
 
-You can view and edit the recorded workpiece position in the ss# field of the current step position properties.
+您可以在当前步骤位置属性的 ss# 字段中查看和编辑录制的工件位置。
 
 ![](../_assets/image35.png)

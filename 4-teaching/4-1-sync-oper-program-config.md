@@ -1,46 +1,46 @@
-﻿# 4.1 Sync Operation Program Structure
+﻿# 4.1 同步操作程序结构
 
-- **Home position wait**
+- **回原点等待**
 
-    The robot waits at its home position until a start command is input.
+    机器人在其原点位置等待，直到输入启动命令。
 
-- **Interlock wait**
+- **联锁等待**
 
-    The robot moves near the synchronization section and waits until the workpiece reaches the distance recorded by `cv.wait`.
+    机器人移动到接近同步区，并等待工件到达 `cv.wait` 记录的距离。
 
-The following figure shows a painting program for workpieces flowing on a conveyor. The robot starts conveyor sync when advancing to step S4 and begins spraying paint in sync from step S5. The interlock wait step (S3) is recorded near the sync section entry step (S4).
+下图显示了在输送机上流动的工件的喷涂程序。机器人在向步骤 S4 前进时开始输送机同步，并从步骤 S5 开始同步喷涂。联锁等待步骤 (S3) 记录在同步区入口步骤 (S4) 附近。
 
 ![](../_assets/image_1.png)
 
-Example program:
+示例程序：
 
 ```python
     global cv
     cv = sync.Sensor(1)
-    cv.sync reset               # Conveyor sync reset
-S1                              # Robot home
+    cv.sync reset               # 输送机同步重置
+S1                              # 机器人回原点
 S2
-S3                             # Interlock wait step
-    cv.sync on                 # Start conveyor sync
-    cv.wait posi=500,sync=0    # Conveyor interlock wait
-S4                             # Sync section entry step
-    do1 = 1                    # Paint spray ON signal
-S5                             # First sync operation step
+S3                             # 联锁等待步骤
+    cv.sync on                 # 启动输送机同步
+    cv.wait posi=500,sync=0    # 输送机联锁等待
+S4                             # 同步区入口步骤
+    do1 = 1                    # 喷涂信号开启
+S5                             # 第一步同步操作步骤
  :
-S9                             # Last sync operation step
-    do1 = 0                    # Paint spray OFF signal
-    cv.sync off                # End conveyor sync
-                                # Complete current work
+S9                             # 最后一步同步操作步骤
+    do1 = 0                    # 喷涂信号关闭
+    cv.sync off                # 结束输送机同步
+                                # 完成当前工作
 S10
  :
-S13                            # Robot home
+S13                            # 机器人回原点
     end
 ```
 
-- **Sync playback**
+- **同步播放**
 
-    In the figure, the conveyor sync playback section refers to steps S4 through S9; all commands in this section are executed synchronized to the moving conveyor.
+    在图中，输送机同步播放部分指的是步骤 S4 到 S9；这一部分的所有命令都与移动的输送机同步执行。
 
-- **Return to home position**
+- **返回原点**
 
-    After finishing the operation, the robot returns to its home position for the next start command.
+    完成操作后，机器人返回到原点位置，以等待下一个启动命令。
