@@ -1,7 +1,7 @@
 ﻿# Table of contents
 
-          * [${cont_model} 控制器功能手册 - 传感器同步（输送机，压力机）](README.md)
-          * [注意事项](0-about-this-manual/precautions.md)
+* [${cont_model} 控制器功能手册 - 传感器同步（输送机，压力机）](README.md)
+* [注意事项](0-about-this-manual/precautions.md)
 * [1. 概述](1-intro/README.md)
   * [1.1 系统配置](1-intro/1-1-system-config.md)
   * [1.2 输送带同步原理](1-intro/1-2-conveyor-sync-principle.md)
