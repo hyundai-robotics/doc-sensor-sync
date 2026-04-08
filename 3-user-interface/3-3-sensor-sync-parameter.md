@@ -15,7 +15,7 @@
     엔코더 분해능이란 컨베이어 형태가 직선인 경우는 컨베이어가 1 m 이동한 경우, 원형인 경우는 컨베이어가 1 deg 회전한 경우 발생하는 펄스 수 로 정의됩니다.
 
 {% hint style="info" %}
-엔코더 분해능을 자동으로 계산하기 위해서는 "`3.2 엔코더 분해능 자동설정`(3-2-encoder-resolution-auto-set.md)" 부분을 참고하십시오.
+엔코더 분해능을 자동으로 계산하기 위해서는 [3.2 엔코더 분해능 자동설정](3-2-encoder-resolution-auto-set.md) 부분을 참고하십시오.
 {% endhint %}
 
 *   <mark style="color:green;">**컨베이어 허용 속도**</mark>
