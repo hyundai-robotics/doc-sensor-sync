@@ -2,10 +2,18 @@
 [__SOURCE](README.md)
 # ${cont_model} Controller Function Manual - Sensor Synchronization (Conveyor, Press)
 
+[__SOURCE](0-about-this-manual/README.md)
+# About the Manual
+
 [__SOURCE](0-about-this-manual/precautions.md)
 # Precautions
 
-{% include url="https://hrcontentsrelay-bmgae5hdbzapc4bc.koreacentral-01.azurewebsites.net/api/proxy?path=doc-common-pages/en/precautions.md" %}
+{% include file="en/precautions.md" %}
+
+[__SOURCE](0-about-this-manual/safety-notice.md)
+# Safety Cautions
+
+{% include file="en/safety-notice.md" %}
 
 [__SOURCE](1-intro/README.md)
 # 1. Overview
@@ -531,7 +539,7 @@ S7  move P,spd=100%,accu=1,tool=1
 [__SOURCE](4-teaching/README.md)
 # 4. Teaching
 
-Writing programs for sensor synchronization follows the same general teaching workflow. However, to execute sensor sync playback you must use the commands **cv.sync (sync playback)** and **cv.wait (sensor interlock wait)**; these commands must be recorded in the taught program before playback.
+Writing programs for sensor synchronization follows the same general teaching workflow. However, to execute sensor sync playback you must use the commands [cv.sync](../3-user-interface/3-6-command.md) (sync playback) and [cv.wait](../3-user-interface/3-6-command.md) (sensor interlock wait); these commands must be recorded in the taught program before playback.
 
 [__SOURCE](4-teaching/4-1-sync-oper-program-config.md)
 # 4.1 Sync Operation Program Structure
