@@ -1,7 +1,9 @@
 ﻿# Table of contents
 
 * [${cont_model} 제어기 기능설명서 - 센서 동기(컨베이어, 프레스)](README.md)
-* [사전 주의사항](0-about-this-manual/precautions.md)
+* [이 설명서에 대하여](0-about-this-manual/README.md)
+  * [사전 주의사항](0-about-this-manual/precautions.md)
+  * [안전 주의 사항](0-about-this-manual/safety-notice.md)
 * [1. 개요](1-intro/README.md)
   * [1.1 시스템 구성](1-intro/1-1-system-config.md)
   * [1.2 컨베이어 동기 원리](1-intro/1-2-conveyor-sync-principle.md)

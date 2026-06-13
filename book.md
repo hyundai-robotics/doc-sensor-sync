@@ -3,10 +3,19 @@
 # ${cont_model} 제어기 기능설명서 - 센서 동기(컨베이어, 프레스)
 
 
+[__SOURCE](0-about-this-manual/README.md)
+# 이 설명서에 대하여
+
+
 [__SOURCE](0-about-this-manual/precautions.md)
 # 사전 주의사항
 
-{% include url="https://hrcontentsrelay-bmgae5hdbzapc4bc.koreacentral-01.azurewebsites.net/api/proxy?path=doc-common-pages/ko/precautions.md" %}
+{% include file="ko/precautions.md" %}
+
+[__SOURCE](0-about-this-manual/safety-notice.md)
+# 안전 주의 사항
+
+{% include file="ko/safety-notice.md" %}
 
 [__SOURCE](1-intro/README.md)
 # 1. 개요
@@ -231,7 +240,7 @@
     엔코더 분해능이란 컨베이어 형태가 직선인 경우는 컨베이어가 1 m 이동한 경우, 원형인 경우는 컨베이어가 1 deg 회전한 경우 발생하는 펄스 수 로 정의됩니다.
 
 {% hint style="info" %}
-엔코더 분해능을 자동으로 계산하기 위해서는 "`3.2 엔코더 분해능 자동설정`(3-2-encoder-resolution-auto-set.md)" 부분을 참고하십시오.
+엔코더 분해능을 자동으로 계산하기 위해서는 [3.2 엔코더 분해능 자동설정](3-2-encoder-resolution-auto-set.md) 부분을 참고하십시오.
 {% endhint %}
 
 *   <mark style="color:green;">**컨베이어 허용 속도**</mark>
@@ -582,7 +591,7 @@
 [__SOURCE](4-teaching/README.md)
 # 4. 티칭
 
-센서 동기용 프로그램을 작성하는 것 또한 일반적인 티칭과 동일합니다. 그러나 센서 동기 재생을 실행하기 위해서는 "`cv.sync (센서 동기재생)`(../3-user-interface/3-6-command.md)"과 "`cv.wait (센서 인터록 대기)`(../3-user-interface/3-6-command.md)" 명령어를 사용해야 하는데, 이 명령어들은 티칭이 완료된 프로그램에 대한 재생을 수행하기 전에 기록되어야 합니다.
+센서 동기용 프로그램을 작성하는 것 또한 일반적인 티칭과 동일합니다. 그러나 센서 동기 재생을 실행하기 위해서는 [cv.sync](../3-user-interface/3-6-command.md) (센서 동기재생)과 [cv.wait](../3-user-interface/3-6-command.md)(센서 인터록 대기) 명령어를 사용해야 하는데, 이 명령어들은 티칭이 완료된 프로그램에 대한 재생을 수행하기 전에 기록되어야 합니다.
 
 [__SOURCE](4-teaching/4-1-sync-oper-program-config.md)
 # 4.1 동기작업 프로그램 구성
@@ -664,7 +673,6 @@
 | **에러 코드** | **에러 메시지** |
 | :------: | ------------------------ |
 | E0239    | 스텝의 센서 위치가 순차적으로 증가하지 않습니다. |
-<br>
 
 또한 스텝 2, 3, 4 에 기록된 속도는 무시되며 기본적으로 사용자가 지정한 프레스의 허용속도를 기반으로 속도를 계획합니다. 만일 최고속으로 계획하여도 로봇의 성능을 초과하도록 센서와 로봇의 위치를 기록하면 동작중에 다음과 같은 에러가 발생합니다.
 
