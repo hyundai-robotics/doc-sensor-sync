@@ -1,1 +1,1 @@
-﻿# ${cont_model} Controller Function Manual - Sensor Synchronization (Conveyor, Press)
+﻿# ${cont_model} 控制器功能手册 - 传感器同步（输送机，压力机）

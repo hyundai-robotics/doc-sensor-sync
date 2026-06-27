@@ -1,11 +1,11 @@
-﻿# 1. Overview
+﻿# 1. 概述
 
-Sensor synchronization is a function that performs synchronization based on external sensor signals. External sensors support encoders and are categorized for conveyor and press operations.
+传感器同步是一种基于外部传感器信号执行同步的功能。外部传感器支持编码器，并根据传送带和压机操作进行分类。
 
-- Conveyor synchronization
+- 传送带同步
 
-    The robot tracks the conveyor and operates on workpieces moving along it.
+    机器人追踪传送带，并在沿其移动的工件上操作。
 
-- Press synchronization
+- 压机同步
 
-    The operation is performed by synchronizing the press's travel distance with the robot's position.
+    操作通过将压机的行程与机器人的位置同步来执行。

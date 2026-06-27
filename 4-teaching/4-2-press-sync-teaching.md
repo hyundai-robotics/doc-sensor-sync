@@ -1,32 +1,32 @@
-﻿# 4.2 Press Sync Teaching
+﻿# 4.2 按压同步教学
 
-Press synchronization makes the robot follow the press speed. The press speed is assumed to be constant; if the press speed varies, synchronization performance degrades. Set the current press allowable speed in the sensor sync parameter settings under **"Allowed Speed"**.
+按压同步使机器人跟随按压速度。假设按压速度是恒定的；如果按压速度变化，同步性能会下降。在**"允许速度"**下的传感器同步参数设置中设置当前允许的按压速度。
 
-Example program using press sync:
+使用按压同步的示例程序：
 
 ```python
     global press
     press = sync.Sensor(1)
-    press.sync reset              # Press sync reset
+    press.sync reset              # 按压同步重置
 S1
-    press.sync on                 # Start press sync
-    press.wait posi=500,sync=0    # Press interlock wait
-S2  move P,spd=60%                # Record position for sensor 1
-S3  move P,spd=60%                # Record position for sensor 1
-S4  move P,spd=60%                # Record position for sensor 1
-    press.sync off                # End press sync
+    press.sync on                 # 开始按压同步
+    press.wait posi=500,sync=0    # 按压互锁等待
+S2  move P,spd=60%                # 记录传感器 1 的位置
+S3  move P,spd=60%                # 记录传感器 1 的位置
+S4  move P,spd=60%                # 记录传感器 1 的位置
+    press.sync off                # 结束按压同步
 S5
     end
 ```
 
-In the above program, the sensor-recorded positions at steps 2, 3, and 4 must strictly increase; otherwise the following error occurs:
+在上述程序中，步骤 2、3 和 4 中传感器记录的位置必须严格递增；否则会出现以下错误：
 
-| **Error Code** | **Error Message** |
+| **错误代码** | **错误信息** |
 | :------------: | ----------------- |
-| E0239          | Step sensor positions are not strictly increasing. |
+| E0239          | 步骤传感器位置未严格递增。 |
 
-Additionally, the speeds recorded at steps 2, 3, and 4 are ignored; the motion is planned based on the user's configured allowable press speed. If the recorded sensor and robot positions require motion exceeding robot capability even when planned at maximum speed, the following error occurs during operation:
+此外，步骤 2、3 和 4 中记录的速度将被忽略；运动是基于用户配置的允许按压速度进行规划的。如果记录的传感器和机器人位置要求的运动超过机器人能力，即使在最大速度下规划，运行期间也会出现以下错误：
 
-| **Error Code** | **Error Message** |
+| **错误代码** | **错误信息** |
 | :------------: | ----------------- |
-| E0238          | Cannot follow the sensor speed. |
+| E0238          | 无法跟随传感器速度。 |

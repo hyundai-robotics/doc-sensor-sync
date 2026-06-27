@@ -1,5 +1,5 @@
-﻿# 1.3 Press Synchronization Principle
+﻿# 1.3 压力同步原理
 
-The press moves from the top dead center down to the bottom dead center to perform the press operation, then rises back to the top, forming one cycle. Press synchronization records the press position and robot positions in step data to synchronize the robot position according to the press movement speed. Synchronization performance is limited by the robot's acceleration/deceleration and maximum speed; large variations from the expected press speed may cause errors.
+压力从上止点移动到下止点以执行压力操作，然后再次上升到顶部，形成一个周期。压力同步记录压力位置和机器人位置的步进数据，以根据压力运动速度同步机器人位置。同步性能受到机器人的加速/减速和最大速度的限制；与预期压力速度的较大偏差可能会导致错误。
 
 ![](../_assets/image11.png)

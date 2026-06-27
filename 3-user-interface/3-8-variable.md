@@ -1,65 +1,67 @@
-﻿# 3.8 Variables
+```markdown
+# 3.8 变量
 
-- **cv.speed (conveyor speed)**
+- **cv.speed (输送机速度)**
 
-    ### Description
-    Use to read the movement speed of a conveyor or press; corresponds to the monitoring velocity.
+    ### 描述
+    用于读取输送机或压力机的运动速度；对应于监控速度。
 
-    ### Example
+    ### 示例
     ```python
     if cv.speed > 300 then
-        print "Conveyor speed is too high."
+        print "输送机速度过高。"
     endif
     ```
 
-- **cv.pulse (workpiece pulses)**
+- **cv.pulse (工件脉冲)**
 
-    ### Description
-    Use to read the pulses (distance) the workpiece has moved from the limit switch; corresponds to monitoring pulse data.
+    ### 描述
+    用于读取工件从限位开关移动的脉冲（距离）；对应于监控脉冲数据。
 
-    ### Example
+    ### 示例
     ```python
     if cv.pulse > 10000 then
-        print "Workpiece has left the allowable work area."
+        print "工件已离开允许的工作区域。"
     endif
     ```
 
-- **cv.position (workpiece position)**
-    ### Example
+- **cv.position (工件位置)**
+    ### 示例
     ```python
     if cv.position > 1000 then
-        print "Workpiece has left the allowable work area."
+        print "工件已离开允许的工作区域。"
     endif
     ```
 
-- **cv.work_no (number of entered workpieces)**
+- **cv.work_no (已输入工件数量)**
 
-    ### Description
-    Use to read the number of workpieces that have entered the conveyor after passing the limit switch; corresponds to the monitoring entered workpiece count.
+    ### 描述
+    用于读取经过限位开关后进入输送机的工件数量；对应于监控已输入工件计数。
 
-    ### Example
+    ### 示例
     ```python
     if cv.work_no > 30 then
-        print "Exceeded allowed number of entered workpieces."
+        print "超过允许输入工件的数量。"
     endif
     ```
 
-- **cv.raw_pulse (encoder raw pulse)**
+- **cv.raw_pulse (编码器原始脉冲)**
 
-    ### Description
-    Use to read the current pulse counter input from the encoder; corresponds to monitoring raw pulse.
+    ### 描述
+    用于读取来自编码器的当前脉冲计数输入；对应于监控原始脉冲。
 
-    ### Example
+    ### 示例
     ```python
     var raw_pulse = cv.raw_pulse
     ```
 
-- **cv.resolution (encoder resolution)**
+- **cv.resolution (编码器分辨率)**
 
-    ### Description
-    Use to read the encoder resolution set by the user.
+    ### 描述
+    用于读取用户设置的编码器分辨率。
 
-    ### Example
+    ### 示例
     ```python
     var resolution = cv.resolution
     ```
+```

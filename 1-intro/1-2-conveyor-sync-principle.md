@@ -1,14 +1,14 @@
-﻿# 1.2 Conveyor Synchronization Principle
+# 1.2 输送带同步原理
 
-- **Teaching**
+- **教学**
 
-    For example, consider teaching points P1~P7 while the conveyor is stopped as shown below.
+    例如，在输送带停止时考虑教导点 P1~P7，如下所示。
 
 ![](../_assets/image10-1.png)
 
-- **Playback**
+- **回放**
 
-    If P2~P6 are set as the conveyor synchronization section and the taught trajectory is replayed, the robot must synchronize with the varying conveyor speed and maintain the relative position and orientation between the workpiece and the tool.
-    Within the sync section, the workpiece shifts from the taught reference position by the distance the workpiece moved after passing the limit switch, as shown below.
+    如果将 P2~P6 设置为输送带同步段，并回放所教的轨迹，机器人必须与变化的输送带速度同步，并保持工件与工具之间的相对位置和方向。
+    在同步段内，工件从教导的参考位置移位，移位距离为工件经过限位开关后移动的距离，如下所示。
 
 ![](../_assets/image10-2.png)

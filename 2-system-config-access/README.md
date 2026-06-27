@@ -1,5 +1,5 @@
-﻿# 2. System Configuration and Connections
+﻿# 2. 系统配置和连接
 
-The system configuration required to use conveyor synchronization is as follows.
+使用输送机同步所需的系统配置如下。
 
 ![](../_assets/image15.png)

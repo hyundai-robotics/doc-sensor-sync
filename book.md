@@ -1,411 +1,391 @@
 ﻿
 [__SOURCE](README.md)
-# ${cont_model} Controller Function Manual - Sensor Synchronization (Conveyor, Press)
-
+# ${cont_model} 控制器功能手册 - 传感器同步（输送机，压力机）
 [__SOURCE](0-about-this-manual/README.md)
-# About the Manual
-
+# 关于手册
 [__SOURCE](0-about-this-manual/precautions.md)
-# Precautions
+# 注意事项
 
-{% include file="en/precautions.md" %}
-
+{% include file="zh/precautions.md" %}
 [__SOURCE](0-about-this-manual/safety-notice.md)
-# Safety Cautions
+# 安全注意事项
 
-{% include file="en/safety-notice.md" %}
-
+{% include file="zh/safety-notice.md" %}
 [__SOURCE](1-intro/README.md)
-# 1. Overview
+# 1. 概述
 
-Sensor synchronization is a function that performs synchronization based on external sensor signals. External sensors support encoders and are categorized for conveyor and press operations.
+传感器同步是一种基于外部传感器信号执行同步的功能。外部传感器支持编码器，并根据传送带和压机操作进行分类。
 
-- Conveyor synchronization
+- 传送带同步
 
-    The robot tracks the conveyor and operates on workpieces moving along it.
+    机器人追踪传送带，并在沿其移动的工件上操作。
 
-- Press synchronization
+- 压机同步
 
-    The operation is performed by synchronizing the press's travel distance with the robot's position.
-
+    操作通过将压机的行程与机器人的位置同步来执行。
 [__SOURCE](1-intro/1-1-system-config.md)
-# 1.1 System Configuration
+# 1.1 系统配置
 
-A typical configuration of the conveyor synchronization system is shown below.
+传送带同步系统的典型配置如下所示。
 
 ![](../_assets/image9.png)
 
-- **Limit switch**
+- **限位开关**
 
-    A device that notifies the controller whether a workpiece has entered a specific position on the conveyor and whether the press has passed a specific position. The position of the limit switch serves as the reference point for position judgment.
+    一种设备，用于通知控制器工件是否已进入传送带上的特定位置，以及压力机是否已通过特定位置。限位开关的位置作为位置判断的参考点。
 
-- **Encoder**
+- **编码器**
 
-    An encoder that generates pulses corresponding to motor rotation is attached to the motor drive. The encoder connects to the robot controller, and the pulses output from the encoder are input to the robot controller.
-
+    附加在电机驱动上的编码器产生与电机旋转相对应的脉冲。编码器连接到机器人控制器，来自编码器的脉冲输出输入到机器人控制器。
 [__SOURCE](1-intro/1-2-conveyor-sync-principle.md)
-# 1.2 Conveyor Synchronization Principle
+# 1.2 输送带同步原理
 
-- **Teaching**
+- **教学**
 
-    For example, consider teaching points P1~P7 while the conveyor is stopped as shown below.
+    例如，在输送带停止时考虑教导点 P1~P7，如下所示。
 
 ![](../_assets/image10-1.png)
 
-- **Playback**
+- **回放**
 
-    If P2~P6 are set as the conveyor synchronization section and the taught trajectory is replayed, the robot must synchronize with the varying conveyor speed and maintain the relative position and orientation between the workpiece and the tool.
-    Within the sync section, the workpiece shifts from the taught reference position by the distance the workpiece moved after passing the limit switch, as shown below.
+    如果将 P2~P6 设置为输送带同步段，并回放所教的轨迹，机器人必须与变化的输送带速度同步，并保持工件与工具之间的相对位置和方向。
+    在同步段内，工件从教导的参考位置移位，移位距离为工件经过限位开关后移动的距离，如下所示。
 
 ![](../_assets/image10-2.png)
-
 [__SOURCE](1-intro/1-3-press-sync-principle.md)
-# 1.3 Press Synchronization Principle
+# 1.3 压力同步原理
 
-The press moves from the top dead center down to the bottom dead center to perform the press operation, then rises back to the top, forming one cycle. Press synchronization records the press position and robot positions in step data to synchronize the robot position according to the press movement speed. Synchronization performance is limited by the robot's acceleration/deceleration and maximum speed; large variations from the expected press speed may cause errors.
+压力从上止点移动到下止点以执行压力操作，然后再次上升到顶部，形成一个周期。压力同步记录压力位置和机器人位置的步进数据，以根据压力运动速度同步机器人位置。同步性能受到机器人的加速/减速和最大速度的限制；与预期压力速度的较大偏差可能会导致错误。
 
 ![](../_assets/image11.png)
-
 [__SOURCE](1-intro/1-4-major-spec.md)
-# 1.4 Major Specifications
+# 1.4 主要规格
 
-| **Item** | **Specification** |
+| **项目** | **规格** |
 | :------: | :---------------: |
-| Number of synchronizable sensors (conveyor, press) | 2 |
-| Conveyor (press) form | Linear, circular |
-| Conveyor angle setting | Supports automatic setting |
-| Pulse input type | Open collector, line drive |
-| Pulse counting method | Up/Down |
-| Encoder resolution setting | Supports automatic setting |
-| Max number of workpieces allowed per conveyor | 100 |
-| Synchronizable sensor travel distance | 21 m |
-| Interpolation method in conveyor sync section | Linear (L), Circular (C) |
-| Interpolation method in press sync section | Axis interpolation (P), Linear (L), Circular (C) |
-
+| 可同步传感器数量（输送机，压力机） | 2 |
+| 输送机（压力机）形式 | 线性，圆形 |
+| 输送机角度设置 | 支持自动设置 |
+| 脉冲输入类型 | 开放集电极，线路驱动 |
+| 脉冲计数方法 | 上/下 |
+| 编码器分辨率设置 | 支持自动设置 |
+| 每个输送机允许的最大工件数量 | 100 |
+| 可同步传感器行程距离 | 21 m |
+| 输送机同步部分的插值方法 | 线性（L），圆形（C） |
+| 压力机同步部分的插值方法 | 轴插值（P），线性（L），圆形（C） |
 [__SOURCE](1-intro/1-5-operation-sequence.md)
-# 1.5 Operation Sequence
+# 1.5 操作顺序
 
 ![](../_assets/image12.png)
-
 [__SOURCE](2-system-config-access/README.md)
-# 2. System Configuration and Connections
+# 2. 系统配置和连接
 
-The system configuration required to use conveyor synchronization is as follows.
+使用输送机同步所需的系统配置如下。
 
 ![](../_assets/image15.png)
-
 [__SOURCE](2-system-config-access/2-1-conveyor-if-board.md)
-# 2.1 Conveyor I/F Board
+# 2.1 输送机 I/F 板
 
-The conveyor I/F boards supported by our company are as follows. Please refer to separate documentation for details.
+我们公司支持的输送机 I/F 板如下。详情请参考单独的文档。
 
 - **M5112**
 
-    Use the Crevis FnIO module combined with a Network Adapter and Power Module.
+    使用与网络适配器和电源模块结合的 Crevis FnIO 模块。
 
-    * Manual:
+    * 手册：
       https://www.crevis.ru/files/spec/g/[Spec]%20M5112%20(Rev%201.03).pdf
-
 [__SOURCE](2-system-config-access/2-2-hardware-inspection.md)
-# 2.2 Hardware Inspection
+# 2.2 硬件检查
 
-Select **[Monitoring > Sensor Sync]** to check sensor sync related data.
+选择 **[Monitoring > Sensor Sync]** 检查与传感器同步相关的数据。
 
 ![](../_assets/image21.png)
 
-- **Limit switch**
+- **限位开关**
 
-    The "Limit switch input" field shows 1 when the limit switch is active and 0 when it is not. If it does not operate normally, inspect the hardware.
+    "限位开关输入"字段在限位开关活动时显示1，不活动时显示0。如果没有正常操作，请检查硬件。
 
-- **Encoder**
+- **编码器**
 
-    The "raw pulse" field shows encoder pulses; during conveyor movement the value should continuously increase or decrease within the range 0~ffff. If not operating normally, inspect the hardware.
-
+    "原始脉冲"字段显示编码器脉冲；在输送机移动期间，该值应在范围0~ffff内持续增加或减少。如果没有正常操作，请检查硬件。
 [__SOURCE](3-user-interface/README.md)
-# 3. User Interface
-
+# 3. 用户界面
 [__SOURCE](3-user-interface/3-1-conveyor-angle-auto-set/README.md)
-# 3.1 Conveyor Angle Auto-Set
+# 3.1 输送带角度自动设置
 
-If the conveyor direction is placed arbitrarily, measuring the conveyor movement accurately in 3D space can take considerable time. Therefore, the robot controller must know in advance the direction of conveyor motion in the robot coordinate frame for robot synchronization.  
-Use the controller's built-in auto-angle calculation feature for this.
-
+如果输送带方向任意放置，准确测量输送带在三维空间中的移动可能需要相当长的时间。因此，机器人控制器必须事先知道输送带在机器人坐标系中的运动方向，以便进行机器人同步。  
+为此，请使用控制器内置的自动角度计算功能。
 [__SOURCE](3-user-interface/3-1-conveyor-angle-auto-set/1-program-teaching.md)
-# 3.1.1 Program Teaching
+# 3.1.1 程序教学
 
-To perform conveyor angle auto-calculation, first write a program as follows.
+要执行输送机角度自动计算，首先编写如下程序。
 
 {% hint style="info" %}  
-To set the angle accurately, make each recorded position as far apart as possible (recommended at least 1 m for straight conveyors).
+为了准确设置角度，请尽可能使每个记录的位置相距较远（建议直线输送机至少为 1 米）。
 {% endhint %}
 
 
-1. Select a new program for conveyor angle auto-calculation.
-2. Move the robot tool tip to a specific position on the conveyor workpiece and record S1.
+1. 选择一个新的程序用于输送机角度自动计算。
+2. 将机器人工具尖端移动到输送机工件的特定位置并记录 S1。
 
 ![](../../_assets/image22.png)
 
-3. Move the conveyor to shift the workpiece, move the robot tool tip to the same specific position and record S2.
+3. 移动输送机以移动工件，将机器人工具尖端移动到同一特定位置并记录 S2。
 
 ![](../../_assets/image23.png)
 
-4. A program similar to the following will be created.
+4. 将创建一个类似于以下内容的程序。
 
 ![](../../_assets/image24.png)
 
 
 {% hint style="info" %}    
-For circular conveyors, three positions are required to calculate the angle. Repeat step 3 once more.  
+对于圆形输送机，计算角度需要三个位置。再重复一次步骤 3。  
 {% endhint %}
 [__SOURCE](3-user-interface/3-1-conveyor-angle-auto-set/2-auto-calculation.md)
-# 3.1.2 Run Auto-Calculation
+# 3.1.2 自动计算运行
 
-In the [Settings > Application Parameters > Sensor Sync] screen, press [Angle Setting] to display the angle screen.
+在[设置 > 应用程序参数 > 传感器同步]屏幕中，按[角度设置]以显示角度屏幕。
 
 {% hint style="info" %}  
-If the conveyor type is set to circular, the settings below are modified to define the angle and center of the circular conveyor.
+如果输送机类型设置为圆形，则下面的设置将被修改，以定义圆形输送机的角度和中心。
 {% endhint %}
 
 ![](../../_assets/image25.png)
 
-1. Check or manually set the currently configured conveyor angle.
-2. For auto-calculation, press [Auto Calculate], enter the taught program number and the calculation result will be shown.
+1. 检查或手动设置当前配置的输送机角度。
+2. 要进行自动计算，请按[自动计算]，输入教学程序编号，计算结果将显示出来。
 
 ![](../../_assets/image26.png)
 
-3. Press [OK] to save the configured values.
-
+3. 按[确定]以保存配置的值。
 [__SOURCE](3-user-interface/3-2-encoder-resolution-auto-set.md)
-# 3.2 Encoder Resolution Auto-Set
+# 3.2 编码器分辨率自动设置
 
-Encoder resolution means the number of pulses generated when a linear conveyor (or press) moves 1 m, or when a circular conveyor (or press) rotates 1 degree.
+编码器分辨率是指当线性输送带（或压机）移动 1 m 时，或当圆形输送带（或压机）旋转 1 度时生成的脉冲数。
 
-To automatically calculate encoder resolution, go to [Settings > Application Parameters > Sensor Sync] and press [Resolution Calculation].
+要自动计算编码器分辨率，请转到 [Settings > Application Parameters > Sensor Sync] 并按 [Resolution Calculation]。
 
 ![](../_assets/image27.png)
 
-1. After the workpiece triggers the limit switch, designate the sensor as shown below.
+1. 在工件触发限位开关后，如下所示指定传感器。
 
 ![](../_assets/image28.png)
 
-2. Select position <1>.
-3. Move the robot tool tip to a specific position on the workpiece.
-4. Press [Record Pose] to record the current robot pose and the encoder pulse value.
-5. Move the workpiece (at least 1 m) by operating the sensor as shown.
+2. 选择位置 <1>。
+3. 将机器人工具尖端移动到工件上的特定位置。
+4. 按 [Record Pose] 记录当前机器人姿态和编码器脉冲值。
+5. 按照所示操作传感器移动工件（至少 1 m）。
 
 ![](../_assets/image29.png)
 
-6. Select position <2>.
-7. Move the robot tool tip back to the specific position recorded in step 3.
-8. Press [Record Pose] to record the pose and encoder pulse value.
-9. Press [Calculate Resolution] to compute the encoder resolution and record it in the encoder resolution field.
+6. 选择位置 <2>。
+7. 将机器人工具尖端移回步骤 3 中记录的特定位置。
+8. 按 [Record Pose] 记录姿态和编码器脉冲值。
+9. 按 [Calculate Resolution] 计算编码器分辨率并将其记录在编码器分辨率字段中。
 
-Repeat steps 1~9 to calculate up to four encoder resolutions.
+重复步骤 1~9 以计算最多四个编码器分辨率。
 
-10. Press [Calculate Average] to compute the average of the recorded encoder resolutions.
-11. Press [OK] to set the average as the encoder resolution.
-
+10. 按 [Calculate Average] 计算记录的编码器分辨率的平均值。
+11. 按 [OK] 将平均值设为编码器分辨率。
 [__SOURCE](3-user-interface/3-3-sensor-sync-parameter.md)
-# 3.3 Sensor Sync Parameters
+# 3.3 传感器同步参数
 
-To apply conveyor (press) synchronization and execute robot motion, the robot controller must know various information about the conveyor (press) it must synchronize with. These parameters must be set before writing the operation program.
+为了应用输送机（压力机）同步和执行机器人动作，机器人控制器必须了解与之同步的输送机（压力机）的各种信息。这些参数必须在编写操作程序之前设置。
 
 ![](../_assets/image30.png)
 
-- **Conveyor form**
+- **输送机形式**
 
-    Select the form according to the figure below.
+    根据下图选择形式。
 
 ![](../_assets/image31.png)
 
-- **Encoder resolution**
+- **编码器分辨率**
 
-    Encoder resolution is defined as the number of pulses generated when a linear conveyor moves 1 m or when a circular conveyor rotates 1 degree.
+    编码器分辨率定义为线性输送机移动 1 米或圆形输送机旋转 1 度时产生的脉冲数量。
 
 {% hint style="info" %}
-See section [3.2 Encoder Resolution Auto-Set](3-2-encoder-resolution-auto-set.md) for automatic encoder resolution calculation.
+有关自动编码器分辨率计算，请参阅[3.2 编码器分辨率自动设置](3-2-encoder-resolution-auto-set.md)部分。
 {% endhint %}
 
-- **Conveyor allowable speed**
+- **输送机允许速度**
 
-    This parameter is used to treat abnormally high speeds as errors. Configure it considering the expected operating speed; the controller internally calculates conveyor speed and reports an error if the speed exceeds the configured allowable speed.
+    此参数用于将异常高的速度视为错误。根据预期操作速度进行配置；控制器会内部计算输送机速度，并在速度超过配置的允许速度时报告错误。
 
 {% hint style="info" %}  
-Encoder pulses typically have ripple around their average, so speed also shows slight ripple. Set the allowable speed slightly higher to accommodate this.
+编码器脉冲通常围绕其平均值有波动，因此速度也会显现出轻微的波动。将允许速度设定得稍高一些以适应这一点。
 {% endhint %}
 
-- **Allowed count for pulse anomaly detection**
+- **脉冲异常检测的允许计数**
 
-    If pulses are abnormally input, the robot controller outputs the error "E0019 Conveyor pulse allowed frequency exceeded". Configure this to allow the robot to continue working (protecting the workpiece) by tolerating a certain number of pulse anomalies during sync operation.
+    如果脉冲输入异常，机器人控制器会输出错误“E0019 输送机脉冲允许频率超出”。配置此项以允许机器人在同步操作期间容忍一定数量的脉冲异常，从而继续工作（保护工件）。
 
 {% hint style="info" %}  
-For example, if the allowable number of pulse anomaly detections is set to 3, the robot controller does not generate an error even if pulse anomalies are detected up to three times for a single workpiece during synchronized operation, and instead internally generates appropriate pulse values. When a fourth pulse anomaly is detected, an error is generated. Information on the number of detected pulse anomalies is reset when playback for the corresponding workpiece is completed.
+例如，如果允许的脉冲异常检测次数设置为 3，机器人控制器即使在同步操作期间对单个工件检测到多达三次脉冲异常，也不会产生错误，而是内部生成适当的脉冲值。当检测到第四个脉冲异常时，将生成错误。检测到的脉冲异常次数信息在对应工件的回放完成时重置。
 {% endhint %}  
 
-- **Maximum allowed number of workpieces**
+- **允许的最大工件数量**
 
-    Configure whether the robot should continue working when another workpiece triggers the limit switch and enters the workspace while the robot is synchronizing a workpiece. The maximum allowed is 100.
+    配置当另一个工件触发限制开关并在机器人同步一个工件时进入工作空间时，机器人是否应继续工作。允许的最大值为 100。
 
-- **Detect sync-related system errors**
+- **检测与同步相关的系统错误**
 
-    If system installation is incomplete or a board is damaged causing sync-related system errors that prevent switching to RUN READY, configure to ignore sync-related system errors so unrelated operations can continue.
+    如果系统安装不完整或板损坏，导致阻止切换到 RUN READY 的与同步相关的系统错误，请配置以忽略与同步相关的系统错误，以便可以继续不相关的操作。
 
-| **Error No.** | **Sync system error type** |
+| **错误编号** | **同步系统错误类型** |
 | :-----------: | ------------------------- |
-| E0021 | Conveyor allowable speed exceeded |
+| E0021 | 输送机允许速度超出 |
 
-- **Sync reset input**
+- **同步复位输入**
 
-    External input can clear conveyor (press) data. When this signal is input while the robot is stopped, sensor-related data (pulse data, workpiece positions, speed, number of workpieces, sync playback state, etc.) are cleared, equivalent to a manual reset.
+    外部输入可以清除输送机（压力机）数据。当此信号在机器人停止时输入时，传感器相关数据（脉冲数据、工件位置、速度、工件数量、同步回放状态等）被清除，相当于手动复位。
 
-- **Limit switch input**
+- **限位开关输入**
 
-    Accept limit switch state via external input.
+    通过外部输入接受限位开关状态。
 
-- **Pulse counter input**
+- **脉冲计数器输入**
 
-    Accept encoder pulse counter via external input. The controller manages the pulse counter internally as 16-bit data, so a 1-word (2-byte) input signal is used. Specifying the lowest bit signal number automatically assigns 16 consecutive signals.
+    通过外部输入接受编码器脉冲计数器。控制器将脉冲计数器内部管理为 16 位数据，因此使用 1 字（2 字节）输入信号。指定最低位信号编号会自动分配 16 个连续信号。
 
 ![](../_assets/image32.png)
 
-- **Pulse line error**
+- **脉冲线错误**
 
-    When using line drive pulse communication, you can detect open circuits on the pulse line. Use this to report pulse line errors to the robot controller.
+    使用线驱动脉冲通信时，可以检测脉冲线上的开路。使用此功能将脉冲线错误报告给机器人控制器。
 
-- **Conveyor sync ON**
+- **输送机同步 ON**
 
-    Conveyor sync state can be output externally. When the command **"cv.sync start"** runs and sync is ON, it outputs **"1"**.
+    输送机同步状态可以外部输出。当命令 **"cv.sync start"** 运行并且同步处于 ON 时，输出 **"1"**。
 
-- **Pulse counter type**
+- **脉冲计数器类型**
 
-    When the conveyor moves forward, pulse values increase. If pulses increase when moving backward, that is the "Up" type; if they decrease, use the "Up/Down" type. Typically use "Up/Down". On our board, "Up" is output as off, and "Up/Down" as on.
+    当输送机向前移动时，脉冲值增加。如果在后退时脉冲增加，则为“上”类型；如果减少，则使用“上下”类型。通常使用“上下”。在我们的板上，“上”被输出为关闭，而“上下”被输出为打开。
 
-- **Pulse communication type**
+- **脉冲通信类型**
 
-    Typical pulse communication uses open collector and line drive. Refer to separate learning materials for details. On our board, "line drive" is off and "open collector" is on.
-
+    典型的脉冲通信使用开集电极和线驱动。有关详细信息，请参阅单独的学习材料。在我们的板上，“线驱动”被输出为关闭，而“开集电极”被输出为打开。
 [__SOURCE](3-user-interface/3-4-monitoring.md)
-# 3.4 Monitoring
+# 3.4 监控
 
-Select **[Monitoring > Sensor Sync]** to view sensor sync related data. Use **[sensor sync. operate]** buttons to perform various actions.
+选择 **[监控 > 传感器同步]** 以查看与传感器同步相关的数据。使用 **[传感器同步. 操作]** 按钮执行各种操作。
 
 ![](../_assets/image33.png)
 
-- **Pulse data**
+- **脉冲数据**
 
-    The number of pulses counted for the workpiece since the limit switch.
+    自限位开关以来，工件计数的脉冲数量。
 
-- **Workpiece position**
+- **工件位置**
 
-    The distance the workpiece has moved from the limit switch. For <linear> form it is in mm; for <circular> form it is in degrees.
+    工件自限位开关移动的距离。对于 <linear> 形式为 mm；对于 <circular> 形式为度。
 
-- **Velocity**
+- **速度**
 
-    The movement speed of the conveyor (or press). For <linear> form it is mm/s; for <circular> form it is deg/s.
+    输送机（或压机）的运动速度。对于 <linear> 形式为 mm/s；对于 <circular> 形式为 deg/s。
 
-- **Number of entered workpieces**
+- **进入的工件数量**
 
-    The number of workpieces that have triggered the limit switch and entered.
+    已触发限位开关并进入的工件数量。
 
-- **Limit switch input**
+- **限位开关输入**
 
-    Shows whether the limit switch is active.
+    显示限位开关是否处于活动状态。
 
-- **raw pulse**
+- **原始脉冲**
 
-    Displays the encoder pulse counter value as hex data (0~ffff) during normal operation.
+    在正常操作期间以十六进制数据（0~ffff）显示编码器脉冲计数器值。
 
-- **Manual reset**
+- **手动复位**
 
-    Manually clears sensor-related data (pulse data, workpiece positions, speed, number of workpieces, sync playback state, etc.).
+    手动清除与传感器相关的数据（脉冲数据、工件位置、速度、工件数量、同步播放状态等）。
 
-- **Enter workpiece position**
+- **输入工件位置**
 
-    Manually input sensor position values (mm for linear, deg for circular).
+    手动输入传感器位置值（线性为 mm，圆形为度）。
 
-- **Limit switch operation**
+- **限位开关操作**
 
-    Use when you need to manually toggle the limit switch.
-
+    在需要手动切换限位开关时使用。
 [__SOURCE](3-user-interface/3-5-step-data.md)
-# 3.5 Step Data
+# 3.5 步骤数据
 
-When sensor sync is set to <enabled> and you press [Record], the current robot axis positions along with the current workpiece position are recorded as shown below.
+当传感器同步设置为 <enabled> 并且您按下 [Record] 时，当前机器人轴位置和当前工件位置会被记录，如下所示。
 
-The robot uses the recorded position data during conveyor sync playback.
+机器人在传送带同步播放期间使用记录的位置信息。
 
 ![](../_assets/image34.png)
 
-You can view and edit the recorded workpiece position in the ss# field of the current step position properties.
+您可以在当前步骤位置属性的 ss# 字段中查看和编辑记录的工件位置。
 
 ![](../_assets/image35.png)
-
 [__SOURCE](3-user-interface/3-6-command.md)
-# 3.6 Commands
+# 3.6 命令
 
-- **cv.sync (sync playback)**
+- **cv.sync (同步播放)**
 
-    ### Description:
+    ### 描述：
 
-    Specifies the section to execute sensor sync during program playback.
+    在程序播放期间指定执行传感器同步的部分。
 
-    ### Syntax:
+    ### 语法：
 
     ```python
     cv.sync <sync_action>
     ```
 
-    ### Parameters
+    ### 参数
     <table>
     <thead>
         <tr>
-            <th style="text-align:left">Item</th>
-            <th style="text-align:left">Description</th>
-            <th style="text-align:left">Remarks</th>
+            <th style="text-align:left">项目</th>
+            <th style="text-align:left">描述</th>
+            <th style="text-align:left">备注</th>
         </tr>
     </thead>
     <tbody>
         <tr>
-            <td style="text-align:left">Synchronization Operation</td>
+            <td style="text-align:left">同步操作</td>
             <td style="text-align:left">
-                - reset: Reset sync. (Sync OFF + clear conveyor data)<br>
-                - on: Start sync. (Sync ON)<br>
-                - off: Pause sync. (Sync OFF)<br>
-                - next: Start sync. for the next workpiece (Sync OFF + load next workpiece data)<br>
+                - reset: 重置同步。 (同步关闭 + 清除输送带数据)<br>
+                - on: 启动同步。 (同步开启)<br>
+                - off: 暂停同步。 (同步关闭)<br>
+                - next: 为下一个工件启动同步。 (同步关闭 + 加载下一个工件数据)<br>
             </td>
-            <td style="text-align:left">String</td>
+            <td style="text-align:left">字符串</td>
         </tr>
     </tbody>
     </table>
 
 
-- **cv.wait (interlock wait)**
+- **cv.wait (互锁等待)**
 
-    ### Description:
+    ### 描述：
 
-    Use to pause the robot until the workpiece reaches a specified position from the limit switch.
+    用于暂停机器人，直到工件到达限位开关的指定位置。
 
-    ### Syntax:
+    ### 语法：
     ```python
     cv.wait posi=<wait_distance>,sync=<sync_flag>
     ```
 
-    ### Parameters:
-    - wait_distance: Distance from the limit switch to wait for the workpiece (variable)
-    - sync_flag: 0 = asynchronous, 1 = synchronous (not supported for press)
+    ### 参数：
+    - wait_distance: 等待工件的限位开关距离（变量）
+    - sync_flag: 0 = 异步, 1 = 同步（不支持压机）
 
-- **cv.input (workpiece entry)**
+- **cv.input (工件进入)**
 
-    ### Description:
+    ### 描述：
 
-    Use when the limit switch triggers to register that one workpiece has entered.
+    当限位开关触发时，用于注册一个工件已进入。
 
-    ### Syntax:
+    ### 语法：
     ```
     cv.input
     ```
 
-### Example
+### 示例
 ```python
     global cv
     cv=sync.Sensor(1)
@@ -429,215 +409,214 @@ S7  move P,spd=100%,accu=1,tool=1
     end
     ```
 [__SOURCE](3-user-interface/3-7-function.md)
-# 3.7 Functions
+# 3.7 功能
 
 - **cv.position(<workpiece_index>)**
 
-    Use `cv.position` to obtain the current position of a workpiece.
+    使用 `cv.position` 获取工件的当前位置信息。
 
-    ### Description
-    When multiple workpieces sequentially pass the limit switch, use this to get the distance moved (mm) from the limit switch for each workpiece. Index 0 corresponds to the first-entered workpiece. Index numbers increase in order of entry.
+    ### 描述
+    当多个工件顺序通过限位开关时，使用此方法获取每个工件从限位开关移动的距离（毫米）。索引 0 对应第一个进入的工件。索引号按进入顺序递增。
 
-    ### Syntax
+    ### 语法
     ```python
     result = cv.position(<workpiece_index>)
     ```
 
-    ### Parameters
+    ### 参数
     <table>
     <thead>
         <tr>
-        <th style="text-align:left">Item</th>
-        <th style="text-align:left">Description</th>
-        <th style="text-align:left">Remarks</th>
+        <th style="text-align:left">项目</th>
+        <th style="text-align:left">描述</th>
+        <th style="text-align:left">备注</th>
         </tr>
     </thead>
     <tbody>
         <tr>
-        <td style="text-align:left">Workpiece Index</td>
+        <td style="text-align:left">工件索引</td>
         <td style="text-align:left">
-            Matched sequentially starting from 0 according to the order in which workpieces enter
+            根据工件进入的顺序从0开始按顺序匹配
         </td>
-        <td style="text-align:left">Variable</td>
+        <td style="text-align:left">变量</td>
         </tr>
     </tbody>
     </table>
 
 
-    ### Example
+    ### 示例
     ```python
     if cv.position(0) > 1000 then
-        print "Workpiece has left the allowable work area."
+        print "工件已离开允许的工作区域。"
     endif
     ```
 [__SOURCE](3-user-interface/3-8-variable.md)
-# 3.8 Variables
+```markdown
+# 3.8 变量
 
-- **cv.speed (conveyor speed)**
+- **cv.speed (输送机速度)**
 
-    ### Description
-    Use to read the movement speed of a conveyor or press; corresponds to the monitoring velocity.
+    ### 描述
+    用于读取输送机或压力机的运动速度；对应于监控速度。
 
-    ### Example
+    ### 示例
     ```python
     if cv.speed > 300 then
-        print "Conveyor speed is too high."
+        print "输送机速度过高。"
     endif
     ```
 
-- **cv.pulse (workpiece pulses)**
+- **cv.pulse (工件脉冲)**
 
-    ### Description
-    Use to read the pulses (distance) the workpiece has moved from the limit switch; corresponds to monitoring pulse data.
+    ### 描述
+    用于读取工件从限位开关移动的脉冲（距离）；对应于监控脉冲数据。
 
-    ### Example
+    ### 示例
     ```python
     if cv.pulse > 10000 then
-        print "Workpiece has left the allowable work area."
+        print "工件已离开允许的工作区域。"
     endif
     ```
 
-- **cv.position (workpiece position)**
-    ### Example
+- **cv.position (工件位置)**
+    ### 示例
     ```python
     if cv.position > 1000 then
-        print "Workpiece has left the allowable work area."
+        print "工件已离开允许的工作区域。"
     endif
     ```
 
-- **cv.work_no (number of entered workpieces)**
+- **cv.work_no (已输入工件数量)**
 
-    ### Description
-    Use to read the number of workpieces that have entered the conveyor after passing the limit switch; corresponds to the monitoring entered workpiece count.
+    ### 描述
+    用于读取经过限位开关后进入输送机的工件数量；对应于监控已输入工件计数。
 
-    ### Example
+    ### 示例
     ```python
     if cv.work_no > 30 then
-        print "Exceeded allowed number of entered workpieces."
+        print "超过允许输入工件的数量。"
     endif
     ```
 
-- **cv.raw_pulse (encoder raw pulse)**
+- **cv.raw_pulse (编码器原始脉冲)**
 
-    ### Description
-    Use to read the current pulse counter input from the encoder; corresponds to monitoring raw pulse.
+    ### 描述
+    用于读取来自编码器的当前脉冲计数输入；对应于监控原始脉冲。
 
-    ### Example
+    ### 示例
     ```python
     var raw_pulse = cv.raw_pulse
     ```
 
-- **cv.resolution (encoder resolution)**
+- **cv.resolution (编码器分辨率)**
 
-    ### Description
-    Use to read the encoder resolution set by the user.
+    ### 描述
+    用于读取用户设置的编码器分辨率。
 
-    ### Example
+    ### 示例
     ```python
     var resolution = cv.resolution
     ```
+```
 [__SOURCE](4-teaching/README.md)
-# 4. Teaching
+# 4. 教学
 
-Writing programs for sensor synchronization follows the same general teaching workflow. However, to execute sensor sync playback you must use the commands [cv.sync](../3-user-interface/3-6-command.md) (sync playback) and [cv.wait](../3-user-interface/3-6-command.md) (sensor interlock wait); these commands must be recorded in the taught program before playback.
-
+编写传感器同步的程序遵循相同的一般教学工作流程。然而，要执行传感器同步播放，您必须使用命令 [cv.sync](../3-user-interface/3-6-command.md)（同步播放）和 [cv.wait](../3-user-interface/3-6-command.md)（传感器互锁等待）；这些命令必须在播放之前录入到教学程序中。
 [__SOURCE](4-teaching/4-1-sync-oper-program-config.md)
-# 4.1 Sync Operation Program Structure
+# 4.1 同步操作程序结构
 
-- **Home position wait**
+- **回家位置等待**
 
-    The robot waits at its home position until a start command is input.
+    机器人在其回家位置等待，直到输入启动命令。
 
-- **Interlock wait**
+- **互锁等待**
 
-    The robot moves near the synchronization section and waits until the workpiece reaches the distance recorded by `cv.wait`.
+    机器人移动到同步区域附近并等待工件达到由 `cv.wait` 记录的距离。
 
-The following figure shows a painting program for workpieces flowing on a conveyor. The robot starts conveyor sync when advancing to step S4 and begins spraying paint in sync from step S5. The interlock wait step (S3) is recorded near the sync section entry step (S4).
+下图显示了在传送带上流动的工件的喷涂程序。机器人在前进到步骤 S4 时开始传送带同步，并从步骤 S5 开始同步喷涂油漆。互锁等待步骤（S3）记录在同步区域入口步骤（S4）附近。
 
 ![](../_assets/image_1.png)
 
-Example program:
+示例程序：
 
 ```python
     global cv
     cv = sync.Sensor(1)
-    cv.sync reset               # Conveyor sync reset
-S1                              # Robot home
+    cv.sync reset               # 传送带同步重置
+S1                              # 机器人回家
 S2
-S3                             # Interlock wait step
-    cv.sync on                 # Start conveyor sync
-    cv.wait posi=500,sync=0    # Conveyor interlock wait
-S4                             # Sync section entry step
-    do1 = 1                    # Paint spray ON signal
-S5                             # First sync operation step
+S3                             # 互锁等待步骤
+    cv.sync on                 # 启动传送带同步
+    cv.wait posi=500,sync=0    # 传送带互锁等待
+S4                             # 同步区域入口步骤
+    do1 = 1                    # 喷漆开启信号
+S5                             # 第一步同步操作步骤
  :
-S9                             # Last sync operation step
-    do1 = 0                    # Paint spray OFF signal
-    cv.sync off                # End conveyor sync
-                                # Complete current work
+S9                             # 最后一步同步操作步骤
+    do1 = 0                    # 喷漆关闭信号
+    cv.sync off                # 结束传送带同步
+                                # 完成当前工作
 S10
  :
-S13                            # Robot home
+S13                            # 机器人回家
     end
 ```
 
-- **Sync playback**
+- **同步播放**
 
-    In the figure, the conveyor sync playback section refers to steps S4 through S9; all commands in this section are executed synchronized to the moving conveyor.
+    在图中，传送带同步播放区域指步骤 S4 到 S9；这一部分的所有命令都与移动的传送带同步执行。
 
-- **Return to home position**
+- **返回回家位置**
 
-    After finishing the operation, the robot returns to its home position for the next start command.
-
+    完成操作后，机器人返回其回家位置以等待下一个启动命令。
 [__SOURCE](4-teaching/4-2-press-sync-teaching.md)
-# 4.2 Press Sync Teaching
+# 4.2 按压同步教学
 
-Press synchronization makes the robot follow the press speed. The press speed is assumed to be constant; if the press speed varies, synchronization performance degrades. Set the current press allowable speed in the sensor sync parameter settings under **"Allowed Speed"**.
+按压同步使机器人跟随按压速度。假设按压速度是恒定的；如果按压速度变化，同步性能会下降。在**"允许速度"**下的传感器同步参数设置中设置当前允许的按压速度。
 
-Example program using press sync:
+使用按压同步的示例程序：
 
 ```python
     global press
     press = sync.Sensor(1)
-    press.sync reset              # Press sync reset
+    press.sync reset              # 按压同步重置
 S1
-    press.sync on                 # Start press sync
-    press.wait posi=500,sync=0    # Press interlock wait
-S2  move P,spd=60%                # Record position for sensor 1
-S3  move P,spd=60%                # Record position for sensor 1
-S4  move P,spd=60%                # Record position for sensor 1
-    press.sync off                # End press sync
+    press.sync on                 # 开始按压同步
+    press.wait posi=500,sync=0    # 按压互锁等待
+S2  move P,spd=60%                # 记录传感器 1 的位置
+S3  move P,spd=60%                # 记录传感器 1 的位置
+S4  move P,spd=60%                # 记录传感器 1 的位置
+    press.sync off                # 结束按压同步
 S5
     end
 ```
 
-In the above program, the sensor-recorded positions at steps 2, 3, and 4 must strictly increase; otherwise the following error occurs:
+在上述程序中，步骤 2、3 和 4 中传感器记录的位置必须严格递增；否则会出现以下错误：
 
-| **Error Code** | **Error Message** |
+| **错误代码** | **错误信息** |
 | :------------: | ----------------- |
-| E0239          | Step sensor positions are not strictly increasing. |
+| E0239          | 步骤传感器位置未严格递增。 |
 
-Additionally, the speeds recorded at steps 2, 3, and 4 are ignored; the motion is planned based on the user's configured allowable press speed. If the recorded sensor and robot positions require motion exceeding robot capability even when planned at maximum speed, the following error occurs during operation:
+此外，步骤 2、3 和 4 中记录的速度将被忽略；运动是基于用户配置的允许按压速度进行规划的。如果记录的传感器和机器人位置要求的运动超过机器人能力，即使在最大速度下规划，运行期间也会出现以下错误：
 
-| **Error Code** | **Error Message** |
+| **错误代码** | **错误信息** |
 | :------------: | ----------------- |
-| E0238          | Cannot follow the sensor speed. |
-
+| E0238          | 无法跟随传感器速度。 |
 [__SOURCE](5-faq.md)
-# 5. Frequently Asked Questions
+# 5. 常见问题解答
 
-- **If an additional axis has base specifications and the axis configuration is linear, how does conveyor sync operate?**
+- **如果附加轴具有基本规格并且轴配置为线性，传送带同步是如何工作的?**
 
-    When an auxiliary axis exists during conveyor sync, the robot first follows the workpiece using the additional axis. If the robot cannot follow with the auxiliary axis due to soft limits or arm interference, it uses the robot's 6 axes to follow the workpiece.
+    在传送带同步期间，如果存在辅助轴，机器人首先使用附加轴跟随工件。如果由于软限制或手臂干涉，机器人无法使用辅助轴跟随，则使用机器人的 6 个轴跟随工件。
 
-- **What happens if the B-axis angle passes near 0 degrees during conveyor sync?**
+- **如果 B 轴角度在传送带同步期间接近 0 度会发生什么?**
 
-    If the B-axis passes near 0 degrees during conveyor sync, the robot cannot keep the tool orientation stable. When mounting the tool, choose a tool orientation that avoids B-axis angles near 0 degrees.
+    如果 B 轴在传送带同步期间接近 0 度，机器人无法保持工具方向稳定。安装工具时，请选择避免 B 轴角度接近 0 度的工具方向。
 
-- **How can I manually input the limit switch?**
+- **我如何手动输入限位开关?**
 
-    Use the **[Limit Switch Operation]** button in Sensor Sync Monitoring.
+    在传感器同步监控中使用 **[限位开关操作]** 按钮。
 
-- **How can I manually clear current conveyor (press) data?**
+- **我如何手动清除当前传送带（按）数据?**
 
-    Use the [Manual Reset] button in Sensor Sync Monitoring.
+    在传感器同步监控中使用 [手动重置] 按钮。

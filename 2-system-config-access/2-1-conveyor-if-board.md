@@ -1,10 +1,10 @@
-﻿# 2.1 Conveyor I/F Board
+﻿# 2.1 输送机 I/F 板
 
-The conveyor I/F boards supported by our company are as follows. Please refer to separate documentation for details.
+我们公司支持的输送机 I/F 板如下。详情请参考单独的文档。
 
 - **M5112**
 
-    Use the Crevis FnIO module combined with a Network Adapter and Power Module.
+    使用与网络适配器和电源模块结合的 Crevis FnIO 模块。
 
-    * Manual:
+    * 手册：
       https://www.crevis.ru/files/spec/g/[Spec]%20M5112%20(Rev%201.03).pdf

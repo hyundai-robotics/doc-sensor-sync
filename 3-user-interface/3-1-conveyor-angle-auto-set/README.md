@@ -1,4 +1,4 @@
-﻿# 3.1 Conveyor Angle Auto-Set
+# 3.1 输送带角度自动设置
 
-If the conveyor direction is placed arbitrarily, measuring the conveyor movement accurately in 3D space can take considerable time. Therefore, the robot controller must know in advance the direction of conveyor motion in the robot coordinate frame for robot synchronization.  
-Use the controller's built-in auto-angle calculation feature for this.
+如果输送带方向任意放置，准确测量输送带在三维空间中的移动可能需要相当长的时间。因此，机器人控制器必须事先知道输送带在机器人坐标系中的运动方向，以便进行机器人同步。  
+为此，请使用控制器内置的自动角度计算功能。

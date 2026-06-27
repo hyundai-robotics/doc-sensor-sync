@@ -1,26 +1,26 @@
-﻿# 3.1.1 Program Teaching
+# 3.1.1 程序教学
 
-To perform conveyor angle auto-calculation, first write a program as follows.
+要执行输送机角度自动计算，首先编写如下程序。
 
 {% hint style="info" %}  
-To set the angle accurately, make each recorded position as far apart as possible (recommended at least 1 m for straight conveyors).
+为了准确设置角度，请尽可能使每个记录的位置相距较远（建议直线输送机至少为 1 米）。
 {% endhint %}
 
 
-1. Select a new program for conveyor angle auto-calculation.
-2. Move the robot tool tip to a specific position on the conveyor workpiece and record S1.
+1. 选择一个新的程序用于输送机角度自动计算。
+2. 将机器人工具尖端移动到输送机工件的特定位置并记录 S1。
 
 ![](../../_assets/image22.png)
 
-3. Move the conveyor to shift the workpiece, move the robot tool tip to the same specific position and record S2.
+3. 移动输送机以移动工件，将机器人工具尖端移动到同一特定位置并记录 S2。
 
 ![](../../_assets/image23.png)
 
-4. A program similar to the following will be created.
+4. 将创建一个类似于以下内容的程序。
 
 ![](../../_assets/image24.png)
 
 
 {% hint style="info" %}    
-For circular conveyors, three positions are required to calculate the angle. Repeat step 3 once more.  
+对于圆形输送机，计算角度需要三个位置。再重复一次步骤 3。  
 {% endhint %}

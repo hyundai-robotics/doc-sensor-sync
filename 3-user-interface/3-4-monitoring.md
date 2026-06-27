@@ -1,41 +1,41 @@
-﻿# 3.4 Monitoring
+﻿# 3.4 监控
 
-Select **[Monitoring > Sensor Sync]** to view sensor sync related data. Use **[sensor sync. operate]** buttons to perform various actions.
+选择 **[监控 > 传感器同步]** 以查看与传感器同步相关的数据。使用 **[传感器同步. 操作]** 按钮执行各种操作。
 
 ![](../_assets/image33.png)
 
-- **Pulse data**
+- **脉冲数据**
 
-    The number of pulses counted for the workpiece since the limit switch.
+    自限位开关以来，工件计数的脉冲数量。
 
-- **Workpiece position**
+- **工件位置**
 
-    The distance the workpiece has moved from the limit switch. For <linear> form it is in mm; for <circular> form it is in degrees.
+    工件自限位开关移动的距离。对于 <linear> 形式为 mm；对于 <circular> 形式为度。
 
-- **Velocity**
+- **速度**
 
-    The movement speed of the conveyor (or press). For <linear> form it is mm/s; for <circular> form it is deg/s.
+    输送机（或压机）的运动速度。对于 <linear> 形式为 mm/s；对于 <circular> 形式为 deg/s。
 
-- **Number of entered workpieces**
+- **进入的工件数量**
 
-    The number of workpieces that have triggered the limit switch and entered.
+    已触发限位开关并进入的工件数量。
 
-- **Limit switch input**
+- **限位开关输入**
 
-    Shows whether the limit switch is active.
+    显示限位开关是否处于活动状态。
 
-- **raw pulse**
+- **原始脉冲**
 
-    Displays the encoder pulse counter value as hex data (0~ffff) during normal operation.
+    在正常操作期间以十六进制数据（0~ffff）显示编码器脉冲计数器值。
 
-- **Manual reset**
+- **手动复位**
 
-    Manually clears sensor-related data (pulse data, workpiece positions, speed, number of workpieces, sync playback state, etc.).
+    手动清除与传感器相关的数据（脉冲数据、工件位置、速度、工件数量、同步播放状态等）。
 
-- **Enter workpiece position**
+- **输入工件位置**
 
-    Manually input sensor position values (mm for linear, deg for circular).
+    手动输入传感器位置值（线性为 mm，圆形为度）。
 
-- **Limit switch operation**
+- **限位开关操作**
 
-    Use when you need to manually toggle the limit switch.
+    在需要手动切换限位开关时使用。

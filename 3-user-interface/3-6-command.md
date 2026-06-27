@@ -1,68 +1,68 @@
-﻿# 3.6 Commands
+﻿# 3.6 命令
 
-- **cv.sync (sync playback)**
+- **cv.sync (同步播放)**
 
-    ### Description:
+    ### 描述：
 
-    Specifies the section to execute sensor sync during program playback.
+    在程序播放期间指定执行传感器同步的部分。
 
-    ### Syntax:
+    ### 语法：
 
     ```python
     cv.sync <sync_action>
     ```
 
-    ### Parameters
+    ### 参数
     <table>
     <thead>
         <tr>
-            <th style="text-align:left">Item</th>
-            <th style="text-align:left">Description</th>
-            <th style="text-align:left">Remarks</th>
+            <th style="text-align:left">项目</th>
+            <th style="text-align:left">描述</th>
+            <th style="text-align:left">备注</th>
         </tr>
     </thead>
     <tbody>
         <tr>
-            <td style="text-align:left">Synchronization Operation</td>
+            <td style="text-align:left">同步操作</td>
             <td style="text-align:left">
-                - reset: Reset sync. (Sync OFF + clear conveyor data)<br>
-                - on: Start sync. (Sync ON)<br>
-                - off: Pause sync. (Sync OFF)<br>
-                - next: Start sync. for the next workpiece (Sync OFF + load next workpiece data)<br>
+                - reset: 重置同步。 (同步关闭 + 清除输送带数据)<br>
+                - on: 启动同步。 (同步开启)<br>
+                - off: 暂停同步。 (同步关闭)<br>
+                - next: 为下一个工件启动同步。 (同步关闭 + 加载下一个工件数据)<br>
             </td>
-            <td style="text-align:left">String</td>
+            <td style="text-align:left">字符串</td>
         </tr>
     </tbody>
     </table>
 
 
-- **cv.wait (interlock wait)**
+- **cv.wait (互锁等待)**
 
-    ### Description:
+    ### 描述：
 
-    Use to pause the robot until the workpiece reaches a specified position from the limit switch.
+    用于暂停机器人，直到工件到达限位开关的指定位置。
 
-    ### Syntax:
+    ### 语法：
     ```python
     cv.wait posi=<wait_distance>,sync=<sync_flag>
     ```
 
-    ### Parameters:
-    - wait_distance: Distance from the limit switch to wait for the workpiece (variable)
-    - sync_flag: 0 = asynchronous, 1 = synchronous (not supported for press)
+    ### 参数：
+    - wait_distance: 等待工件的限位开关距离（变量）
+    - sync_flag: 0 = 异步, 1 = 同步（不支持压机）
 
-- **cv.input (workpiece entry)**
+- **cv.input (工件进入)**
 
-    ### Description:
+    ### 描述：
 
-    Use when the limit switch triggers to register that one workpiece has entered.
+    当限位开关触发时，用于注册一个工件已进入。
 
-    ### Syntax:
+    ### 语法：
     ```
     cv.input
     ```
 
-### Example
+### 示例
 ```python
     global cv
     cv=sync.Sensor(1)
