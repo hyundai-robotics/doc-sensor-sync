@@ -17,7 +17,7 @@
     동기 작업을 위해 작업물이 리밋스위치로부터 이동한 펄스(pulse)를 인식하고자 할 때 사용되며 모니터링 상의 펄스 데이터에 해당하는 값입니다.
     ### 사용 예
     ```python
-    if cv,pulse>10000 then
+    if cv.pulse>10000 then
         print "작업물이 허용 작업 영역을 벗어났습니다."
     endif
     ```
@@ -35,7 +35,7 @@
     ### 사용 예
     ```python
     if cv.work_no>30 then
-        print "진입 작업물 개수를 초과하습니다."
+        print "진입 작업물 개수를 초과하였습니다."
     endif
     ```
 
