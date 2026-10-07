@@ -2,7 +2,7 @@
 
 This tutorial guides users who are setting up sensor synchronization for the first time through **checking input signals → setting the travel direction and resolution → teaching → performing the first test run**.
 
-## Objective
+### Objective
 
 Using one linear conveyor and one workpiece, verify that the robot tracks the workpiece over a short section and then moves away safely.
 This tutorial is intended for **users who have completed basic robot operation and safety training**. If you are new to robot operation, first review the controller operation manual and complete the required safety training.
@@ -11,7 +11,7 @@ This tutorial is intended for **users who have completed basic robot operation a
 This tutorial does not replace the equipment's safety procedures. Read the [Safety Precautions](../../0-about-this-manual/safety-notice.md) first, and comply with the site's risk assessment, interlocks, and stopping procedures. Wiring work must be performed by authorized personnel with the power disconnected. Do not touch moving workpieces or operate the robot and conveyor simultaneously from inside the workspace.
 {% endhint %}
 
-## Before You Start
+### Before You Start
 
 - Back up any existing sensor synchronization settings and job programs. Prepare a test program without overwriting an existing production program.
 - Have the personnel responsible verify the installation and connections of the supported I/F board, encoder, and limit switch. Refer to [2. System Configuration and Connections](../../2-system-config-access/README.md).
@@ -19,7 +19,7 @@ This tutorial does not replace the equipment's safety procedures. Read the [Safe
 - Verify the tool/TCP and robot coordinate system to be used. Use the same reference in the angle calculation program and the test program.
 - Agree with the personnel responsible for the equipment on the initial test speed, acceptance criteria for tracking error, and a safe test area. (The speeds shown in this manual's screens and examples are not recommended values.)
 
-## Procedure Overview
+### Procedure Overview
 
 | Step | Task | Requirements for Proceeding |
 | --- | --- | --- |
@@ -30,7 +30,7 @@ This tutorial does not replace the equipment's safety procedures. Read the [Safe
 | [1.6.5 First Test Run and Restart](5-first-run.md) | Test with a single workpiece, and check completion and restart | Tracking and a safe exit have been verified |
 | [1.6.6 Troubleshooting](6-troubleshooting.md) | Check according to the symptoms | The cause has been resolved and checks have been repeated from the relevant step |
 
-## Key Terms
+### Key Terms
 
 - **Limit switch:** A sensor that detects workpiece entry. It serves as the reference point for determining the workpiece position.
 - **Raw pulses:** The raw pulse count received from the encoder. The monitor displays it in hexadecimal, cycling through the range `0～ffff`.

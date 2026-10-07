@@ -2,7 +2,7 @@
 
 If motion differs from what is expected, first stop the equipment safely according to site procedures. The table below lists **checks to perform after stopping**. It does not instruct you to change wiring, signal numbers, or resolution during operation, or to bypass safety interlocks.
 
-## Checks by Symptom
+### Checks by Symptom
 
 | Symptom | Items to Check | Relevant Step |
 | --- | --- | --- |
@@ -17,7 +17,7 @@ If motion differs from what is expected, first stop the equipment safely accordi
 | Tracking error is large or interference is expected during exit | Conveyor speed and robot tracking capability, travel direction and resolution, teaching reference, step data, and exit path | [3. Settings Verification](3-calibration.md), [4. Teaching](4-teach-and-program.md) |
 | Playback after an interruption differs from the first test | Remaining workpieces, data cleared by reset, playback start step, robot's current position | [5. Restart](5-first-run.md) |
 
-## When an Error Is Displayed
+### When an Error Is Displayed
 
 | Error | Checks and Guidance |
 | --- | --- |

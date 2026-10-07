@@ -1,6 +1,6 @@
 # 1.6.5 Tutorial - First Test Run and Restart
 
-## Objective and Prerequisites
+### Objective and Prerequisites
 
 Use one workpiece to verify waiting, synchronized tracking, the end of synchronization, and a safe exit. Proceed only after meeting all completion criteria in [Teaching and Program Structure](4-teach-and-program.md).
 
@@ -8,7 +8,7 @@ Use one workpiece to verify waiting, synchronized tracking, the end of synchroni
 Perform the test in the presence of the personnel responsible and in accordance with the site's safe operating procedures. Do not assume that simply reducing the robot speed will allow it to track the conveyor. Consider both the conveyor speed and the robot's tracking capability. Do not bypass guards or interlocks, or enter the workspace during operation to check positions. If motion is hazardous or unexpected, use the site's stopping procedure. `cv.sync off` and a manual reset are not substitutes for a safe stop.
 {% endhint %}
 
-## 1. Pre-Start Checks
+### 1. Pre-Start Checks
 
 - The path from the robot's current position to the start step and the exit path are safe.
 - There is one test workpiece, and it has not yet passed the limit switch.
@@ -16,7 +16,7 @@ Perform the test in the presence of the personnel responsible and in accordance 
 - The conveyor and robot test speeds, test area, and tracking error acceptance criteria have been confirmed with the personnel responsible.
 - Process outputs will not activate, and the monitoring screen can be viewed from outside the workspace.
 
-## 2. Test Procedure
+### 2. Test Procedure
 
 1. Open `[Monitoring] > [Sensor Synchronization]` and check the sensor to be used.
 2. Start the program under approved test conditions. Arrange the equipment sequence so that the workpiece enters after initialization. If the order of initialization and actual entry cannot be guaranteed, do not start; have the personnel responsible improve the interlocks.
@@ -26,7 +26,7 @@ Perform the test in the presence of the personnel responsible and in accordance 
 6. From a safe position, observe whether the relative position and orientation between the tool and workpiece are maintained in the synchronized section, or verify this using an approved measurement method.
 7. Verify that, after synchronization ends, the robot moves safely to the end position and the program terminates.
 
-## 3. Expected Results at Each Stage
+### 3. Expected Results at Each Stage
 
 | Stage | Expected Behavior | Checks if Abnormal |
 | --- | --- | --- |
@@ -39,7 +39,7 @@ Perform the test in the presence of the personnel responsible and in accordance 
 
 If checking the configured synchronization ON output through external I/O, also verify the output assignment.
 
-## 4. Restart Procedure After an Interruption
+### 4. Restart Procedure After an Interruption
 
 Resuming directly from an intermediate step may change the relationship between the workpiece data and the robot position. For this initial exercise, repeat the test **from the beginning** using the following procedure.
 
@@ -50,7 +50,7 @@ Resuming directly from an intermediate step may change the relationship between 
 5. Place the robot at a safe start position using approved manual operation procedures, and recheck the travel path.
 6. Prepare a new test workpiece at a position before it passes the limit switch, and run the program from the beginning. The actual workpiece must enter after initialization within the program.
 
-## Final Completion Checklist
+### Final Completion Checklist
 
 - Only one workpiece is detected through the actual input.
 - The robot waits for the specified distance and performs synchronization in the intended section.

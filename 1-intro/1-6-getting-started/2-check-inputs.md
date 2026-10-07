@@ -1,10 +1,10 @@
 # 1.6.2 Tutorial - Checking Limit Switch and Encoder Inputs
 
-## Objective and Prerequisites
+### Objective and Prerequisites
 
 Verify that the controller receives the workpiece detection signal and encoder pulses. Complete [Basic Settings](1-basic-settings.md), and perform these checks under safe inspection conditions approved by the personnel responsible for the equipment. Do not run the robot program.
 
-## 1. Open the Inspection Screen
+### 1. Open the Inspection Screen
 
 1. Open `[Monitoring] > [Sensor Synchronization]`.
 2. Select the sensor used in the basic settings.
@@ -12,7 +12,7 @@ Verify that the controller receives the workpiece detection signal and encoder p
 
 ![Sensor synchronization monitoring screen](../../_assets/image21.png)
 
-## 2. Check the Limit Switch
+### 2. Check the Limit Switch
 
 1. Verify that **Limit Switch Input** is `0` when the limit switch is not actuated.
 2. Actuate the actual limit switch using a safe method approved by the personnel responsible.
@@ -24,7 +24,7 @@ Verify that the controller receives the workpiece detection signal and encoder p
 The `[Actuate Limit Switch]` button on the monitoring screen and the `cv.input` command in a program manually register workpiece entry. Do not use them in this step, which checks the actual wiring. Using actual and manual inputs together may cause duplicate workpiece entries to be registered.
 {% endhint %}
 
-## 3. Check the Encoder Input
+### 3. Check the Encoder Input
 
 1. Verify that the equipment is in a safe state with no interference between the robot and workpiece.
 2. Move the conveyor a short distance at the approved inspection speed. Do not press or hold the workpiece with your hand or a tool.
@@ -35,13 +35,13 @@ The `[Actuate Limit Switch]` button on the monitoring screen and the `cv.input` 
 
 This step only checks whether the inputs are functioning correctly. Their correspondence to the actual travel direction and distance will be checked after setting the resolution and angle.
 
-## Completion Criteria
+### Completion Criteria
 
 - The limit switch input on the screen matches the operation of the actual limit switch.
 - Raw pulses change consistently as the conveyor moves.
 - Raw pulses are stable when stopped, and the relationship between the travel direction and the direction of counter change has been checked.
 
-## Symptoms and Checks
+### Symptoms and Checks
 
 | Symptom | Check Sequence |
 | --- | --- |

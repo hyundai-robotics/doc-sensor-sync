@@ -1,6 +1,6 @@
 # 1.6.3 Tutorial - Setting the Angle and Encoder Resolution
 
-## Objective and Prerequisites
+### Objective and Prerequisites
 
 Configure the controller with the conveyor's travel direction and the pulse count corresponding to its actual travel distance. Complete [1.6.2 Checking Limit Switch and Encoder Inputs](2-check-inputs.md) before proceeding.
 
@@ -10,7 +10,7 @@ Choose **the same repeatably identifiable reference point** on the workpiece for
 Move the tool safely clear before moving the conveyor, and stop the conveyor before moving the robot to the reference point. Do not move the conveyor while the tool is in contact with the workpiece reference point. First ensure sufficient safe space and robot reach. If this cannot be ensured, do not arbitrarily use a short measurement distance and treat the result as acceptable; consult the personnel responsible about an alternative measurement method.
 {% endhint %}
 
-## 1. Calculate the Conveyor Travel Direction (Angle)
+### 1. Calculate the Conveyor Travel Direction (Angle)
 
 1. Select a new test program for angle calculation and record its number. Keep it separate from existing job programs.
 2. With the conveyor stopped, move the tool tip to the workpiece reference point and record `S1`.
@@ -29,7 +29,7 @@ Move the tool safely clear before moving the conveyor, and stop the conveyor bef
 
 For detailed procedures, see [3.1.1 Program Teaching](../../3-user-interface/3-1-conveyor-angle-auto-set/1-program-teaching.md) and [3.1.2 Performing Automatic Calculation](../../3-user-interface/3-1-conveyor-angle-auto-set/2-auto-calculation.md).
 
-## 2. Calculate the Encoder Resolution
+### 2. Calculate the Encoder Resolution
 
 For a linear conveyor, the resolution unit is **pulse/m**. For example, if 10000 pulses are generated over 1 m of travel, the resolution is 10000 pulse/m.
 
@@ -46,7 +46,7 @@ For a linear conveyor, the resolution unit is **pulse/m**. For example, if 10000
 
 For the detailed procedure, see [3.2 Automatic Encoder Resolution Setting](../../3-user-interface/3-2-encoder-resolution-auto-set.md).
 
-## 3. Compare Against Actual Travel
+### 3. Compare Against Actual Travel
 
 1. Place the tool in a safe position and, with the robot program stopped, open `[Monitoring] > [Sensor Synchronization]`.
 2. Use a workpiece detected by the actual limit switch. With the conveyor stopped, record the **Workpiece Position** and the actual location of the reference point.
@@ -54,13 +54,13 @@ For the detailed procedure, see [3.2 Automatic Encoder Resolution Setting](../..
 4. Verify that the change in position corresponds correctly to the travel direction and distance. Compare the converted **Workpiece Position (mm)**, not the raw pulses.
 5. Record whether the result meets the predefined distance error criteria. Before and after verifying the resolution, also check that the **Travel Speed (mm/s)** matches the actual test conditions.
 
-## Completion Criteria
+### Completion Criteria
 
 - The calculated angle and resolution have been saved for the sensor to be used.
 - The actual travel direction corresponds to the position change on the monitor.
 - The actual travel distance and the change in workpiece position agree within the predefined tolerance.
 
-## Symptoms and Checks
+### Symptoms and Checks
 
 {% hint style="warning" %}
 Do not arbitrarily change the sign or magnitude of a value before identifying the cause.

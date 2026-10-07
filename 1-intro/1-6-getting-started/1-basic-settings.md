@@ -1,10 +1,10 @@
-# 1.6.1. Tutorial - Sensor Selection and Basic Settings
+# 1.6.1 Tutorial - Sensor Selection and Basic Settings
 
-## Objective and Prerequisites
+### Objective and Prerequisites
 
 Select the sensor and linear conveyor to use in this tutorial, and configure the I/O assignments for the actual equipment. Complete [Tutorial - Before You Start](README.md) first.
 
-## Procedure
+### Procedure
 
 1. Open `[Settings] > [Application Parameters] > [Sensor Synchronization]`.
 2. Press the `[+]` button at the top right of the screen to add a sensor.
@@ -21,10 +21,10 @@ Select the sensor and linear conveyor to use in this tutorial, and configure the
 The resolution, speed, and signal numbers shown on the screen are examples for explanation, not recommended values for your equipment. Do not disable system error detection or arbitrarily increase the allowed pulse anomaly detection count or allowable speed to avoid input abnormalities or speed errors. Investigate the cause first.
 {% endhint %}
 
-## Completion Criteria
+### Completion Criteria
 
 - The limit switch and pulse counter signal numbers match the actual I/O assignments.
 - The communication method and counter type have been checked against the actual board and encoder specifications.
 - The saved values are retained when the settings are reopened.
 
-For details, see [3.3 Sensor Synchronization Parameters](../3-user-interface/3-3-sensor-sync-parameter.md).
+For details, see [3.3 Sensor Synchronization Parameters](../../3-user-interface/3-3-sensor-sync-parameter.md).

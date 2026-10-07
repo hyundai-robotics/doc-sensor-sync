@@ -1,6 +1,6 @@
 # 1.6.4 Tutorial - Teaching and Creating a Single-Workpiece Program
 
-## Objective and Prerequisites
+### Objective and Prerequisites
 
 Teach distinct waiting positions, a synchronized section, and an exit position, and create a program for one workpiece. Complete [Setting the Angle and Encoder Resolution](3-calibration.md), and check the tool/TCP and test area to be used.
 
@@ -8,7 +8,7 @@ Teach distinct waiting positions, a synchronized section, and an exit position, 
 This tutorial only checks tracking and exit motion, without activating process outputs. Do not use a production program containing painting, welding, or gripper outputs as-is.
 {% endhint %}
 
-## 1. Define the Positions to Teach
+### 1. Define the Positions to Teach
 
 First, agree on the following positions with the personnel responsible and record them in the test program.
 
@@ -28,12 +28,12 @@ First, agree on the following positions with the personnel responsible and recor
 4. In the position properties of each synchronized step, verify that the workpiece position for the sensor being used is recorded in the `ss#` field.
 5. Check for interference and reachability along the entire path, including the start, approach, and exit sections. Shifts caused by conveyor movement may make the actual playback positions differ from the taught positions.
 
-## 2. Specify the Waiting Distance
+### 2. Specify the Waiting Distance
 
 The waiting distance in `cv.wait posi=...` is **the distance the workpiece has traveled from the limit switch**. For a linear conveyor, the unit is mm.
 Confirm the actual limit switch location, teaching reference position, and safe entry area with the personnel responsible before setting the value. The workpiece continues to move while the robot enters after the waiting distance is reached, so check both the entry path and the available tracking margin.
 
-## 3. Write the Program
+### 3. Write the Program
 
 ```hrscript
     global cv
@@ -57,7 +57,7 @@ S7  move P,spd=100%,accu=1,tool=1  # Move to the end position
     end
 ```
 
-## Completion Criteria
+### Completion Criteria
 
 - The roles of S1 ~ S7, the synchronized section S4 ~ S6, and the exit path are clearly identified.
 - The sensor position data, interpolation method, and tool data of the synchronized steps have been checked.

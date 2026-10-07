@@ -122,7 +122,7 @@ For press synchronization, please refer separately to [4.2 Teaching Press Synchr
 
 This tutorial guides users who are setting up sensor synchronization for the first time through **checking input signals → setting the travel direction and resolution → teaching → performing the first test run**.
 
-## Objective
+### Objective
 
 Using one linear conveyor and one workpiece, verify that the robot tracks the workpiece over a short section and then moves away safely.
 This tutorial is intended for **users who have completed basic robot operation and safety training**. If you are new to robot operation, first review the controller operation manual and complete the required safety training.
@@ -131,7 +131,7 @@ This tutorial is intended for **users who have completed basic robot operation a
 This tutorial does not replace the equipment's safety procedures. Read the [Safety Precautions](../../0-about-this-manual/safety-notice.md) first, and comply with the site's risk assessment, interlocks, and stopping procedures. Wiring work must be performed by authorized personnel with the power disconnected. Do not touch moving workpieces or operate the robot and conveyor simultaneously from inside the workspace.
 {% endhint %}
 
-## Before You Start
+### Before You Start
 
 - Back up any existing sensor synchronization settings and job programs. Prepare a test program without overwriting an existing production program.
 - Have the personnel responsible verify the installation and connections of the supported I/F board, encoder, and limit switch. Refer to [2. System Configuration and Connections](../../2-system-config-access/README.md).
@@ -139,7 +139,7 @@ This tutorial does not replace the equipment's safety procedures. Read the [Safe
 - Verify the tool/TCP and robot coordinate system to be used. Use the same reference in the angle calculation program and the test program.
 - Agree with the personnel responsible for the equipment on the initial test speed, acceptance criteria for tracking error, and a safe test area. (The speeds shown in this manual's screens and examples are not recommended values.)
 
-## Procedure Overview
+### Procedure Overview
 
 | Step | Task | Requirements for Proceeding |
 | --- | --- | --- |
@@ -150,7 +150,7 @@ This tutorial does not replace the equipment's safety procedures. Read the [Safe
 | [1.6.5 First Test Run and Restart](5-first-run.md) | Test with a single workpiece, and check completion and restart | Tracking and a safe exit have been verified |
 | [1.6.6 Troubleshooting](6-troubleshooting.md) | Check according to the symptoms | The cause has been resolved and checks have been repeated from the relevant step |
 
-## Key Terms
+### Key Terms
 
 - **Limit switch:** A sensor that detects workpiece entry. It serves as the reference point for determining the workpiece position.
 - **Raw pulses:** The raw pulse count received from the encoder. The monitor displays it in hexadecimal, cycling through the range `0～ffff`.
@@ -159,13 +159,13 @@ This tutorial does not replace the equipment's safety procedures. Read the [Safe
 - **Synchronized section:** A section executed with the robot position adjusted to follow a moving workpiece.
 
 [__SOURCE](1-intro/1-6-getting-started/1-basic-settings.md)
-# 1.6.1. Tutorial - Sensor Selection and Basic Settings
+# 1.6.1 Tutorial - Sensor Selection and Basic Settings
 
-## Objective and Prerequisites
+### Objective and Prerequisites
 
 Select the sensor and linear conveyor to use in this tutorial, and configure the I/O assignments for the actual equipment. Complete [Tutorial - Before You Start](README.md) first.
 
-## Procedure
+### Procedure
 
 1. Open `[Settings] > [Application Parameters] > [Sensor Synchronization]`.
 2. Press the `[+]` button at the top right of the screen to add a sensor.
@@ -182,22 +182,22 @@ Select the sensor and linear conveyor to use in this tutorial, and configure the
 The resolution, speed, and signal numbers shown on the screen are examples for explanation, not recommended values for your equipment. Do not disable system error detection or arbitrarily increase the allowed pulse anomaly detection count or allowable speed to avoid input abnormalities or speed errors. Investigate the cause first.
 {% endhint %}
 
-## Completion Criteria
+### Completion Criteria
 
 - The limit switch and pulse counter signal numbers match the actual I/O assignments.
 - The communication method and counter type have been checked against the actual board and encoder specifications.
 - The saved values are retained when the settings are reopened.
 
-For details, see [3.3 Sensor Synchronization Parameters](../3-user-interface/3-3-sensor-sync-parameter.md).
+For details, see [3.3 Sensor Synchronization Parameters](../../3-user-interface/3-3-sensor-sync-parameter.md).
 
 [__SOURCE](1-intro/1-6-getting-started/2-check-inputs.md)
 # 1.6.2 Tutorial - Checking Limit Switch and Encoder Inputs
 
-## Objective and Prerequisites
+### Objective and Prerequisites
 
 Verify that the controller receives the workpiece detection signal and encoder pulses. Complete [Basic Settings](1-basic-settings.md), and perform these checks under safe inspection conditions approved by the personnel responsible for the equipment. Do not run the robot program.
 
-## 1. Open the Inspection Screen
+### 1. Open the Inspection Screen
 
 1. Open `[Monitoring] > [Sensor Synchronization]`.
 2. Select the sensor used in the basic settings.
@@ -205,7 +205,7 @@ Verify that the controller receives the workpiece detection signal and encoder p
 
 ![Sensor synchronization monitoring screen](../../_assets/image21.png)
 
-## 2. Check the Limit Switch
+### 2. Check the Limit Switch
 
 1. Verify that **Limit Switch Input** is `0` when the limit switch is not actuated.
 2. Actuate the actual limit switch using a safe method approved by the personnel responsible.
@@ -217,7 +217,7 @@ Verify that the controller receives the workpiece detection signal and encoder p
 The `[Actuate Limit Switch]` button on the monitoring screen and the `cv.input` command in a program manually register workpiece entry. Do not use them in this step, which checks the actual wiring. Using actual and manual inputs together may cause duplicate workpiece entries to be registered.
 {% endhint %}
 
-## 3. Check the Encoder Input
+### 3. Check the Encoder Input
 
 1. Verify that the equipment is in a safe state with no interference between the robot and workpiece.
 2. Move the conveyor a short distance at the approved inspection speed. Do not press or hold the workpiece with your hand or a tool.
@@ -228,13 +228,13 @@ The `[Actuate Limit Switch]` button on the monitoring screen and the `cv.input` 
 
 This step only checks whether the inputs are functioning correctly. Their correspondence to the actual travel direction and distance will be checked after setting the resolution and angle.
 
-## Completion Criteria
+### Completion Criteria
 
 - The limit switch input on the screen matches the operation of the actual limit switch.
 - Raw pulses change consistently as the conveyor moves.
 - Raw pulses are stable when stopped, and the relationship between the travel direction and the direction of counter change has been checked.
 
-## Symptoms and Checks
+### Symptoms and Checks
 
 | Symptom | Check Sequence |
 | --- | --- |
@@ -251,7 +251,7 @@ For details, see [2.2 Hardware Inspection](../2-system-config-access/2-2-hardwar
 [__SOURCE](1-intro/1-6-getting-started/3-calibration.md)
 # 1.6.3 Tutorial - Setting the Angle and Encoder Resolution
 
-## Objective and Prerequisites
+### Objective and Prerequisites
 
 Configure the controller with the conveyor's travel direction and the pulse count corresponding to its actual travel distance. Complete [1.6.2 Checking Limit Switch and Encoder Inputs](2-check-inputs.md) before proceeding.
 
@@ -261,7 +261,7 @@ Choose **the same repeatably identifiable reference point** on the workpiece for
 Move the tool safely clear before moving the conveyor, and stop the conveyor before moving the robot to the reference point. Do not move the conveyor while the tool is in contact with the workpiece reference point. First ensure sufficient safe space and robot reach. If this cannot be ensured, do not arbitrarily use a short measurement distance and treat the result as acceptable; consult the personnel responsible about an alternative measurement method.
 {% endhint %}
 
-## 1. Calculate the Conveyor Travel Direction (Angle)
+### 1. Calculate the Conveyor Travel Direction (Angle)
 
 1. Select a new test program for angle calculation and record its number. Keep it separate from existing job programs.
 2. With the conveyor stopped, move the tool tip to the workpiece reference point and record `S1`.
@@ -280,7 +280,7 @@ Move the tool safely clear before moving the conveyor, and stop the conveyor bef
 
 For detailed procedures, see [3.1.1 Program Teaching](../../3-user-interface/3-1-conveyor-angle-auto-set/1-program-teaching.md) and [3.1.2 Performing Automatic Calculation](../../3-user-interface/3-1-conveyor-angle-auto-set/2-auto-calculation.md).
 
-## 2. Calculate the Encoder Resolution
+### 2. Calculate the Encoder Resolution
 
 For a linear conveyor, the resolution unit is **pulse/m**. For example, if 10000 pulses are generated over 1 m of travel, the resolution is 10000 pulse/m.
 
@@ -297,7 +297,7 @@ For a linear conveyor, the resolution unit is **pulse/m**. For example, if 10000
 
 For the detailed procedure, see [3.2 Automatic Encoder Resolution Setting](../../3-user-interface/3-2-encoder-resolution-auto-set.md).
 
-## 3. Compare Against Actual Travel
+### 3. Compare Against Actual Travel
 
 1. Place the tool in a safe position and, with the robot program stopped, open `[Monitoring] > [Sensor Synchronization]`.
 2. Use a workpiece detected by the actual limit switch. With the conveyor stopped, record the **Workpiece Position** and the actual location of the reference point.
@@ -305,13 +305,13 @@ For the detailed procedure, see [3.2 Automatic Encoder Resolution Setting](../..
 4. Verify that the change in position corresponds correctly to the travel direction and distance. Compare the converted **Workpiece Position (mm)**, not the raw pulses.
 5. Record whether the result meets the predefined distance error criteria. Before and after verifying the resolution, also check that the **Travel Speed (mm/s)** matches the actual test conditions.
 
-## Completion Criteria
+### Completion Criteria
 
 - The calculated angle and resolution have been saved for the sensor to be used.
 - The actual travel direction corresponds to the position change on the monitor.
 - The actual travel distance and the change in workpiece position agree within the predefined tolerance.
 
-## Symptoms and Checks
+### Symptoms and Checks
 
 {% hint style="warning" %}
 Do not arbitrarily change the sign or magnitude of a value before identifying the cause.
@@ -326,7 +326,7 @@ Do not arbitrarily change the sign or magnitude of a value before identifying th
 [__SOURCE](1-intro/1-6-getting-started/4-teach-and-program.md)
 # 1.6.4 Tutorial - Teaching and Creating a Single-Workpiece Program
 
-## Objective and Prerequisites
+### Objective and Prerequisites
 
 Teach distinct waiting positions, a synchronized section, and an exit position, and create a program for one workpiece. Complete [Setting the Angle and Encoder Resolution](3-calibration.md), and check the tool/TCP and test area to be used.
 
@@ -334,7 +334,7 @@ Teach distinct waiting positions, a synchronized section, and an exit position, 
 This tutorial only checks tracking and exit motion, without activating process outputs. Do not use a production program containing painting, welding, or gripper outputs as-is.
 {% endhint %}
 
-## 1. Define the Positions to Teach
+### 1. Define the Positions to Teach
 
 First, agree on the following positions with the personnel responsible and record them in the test program.
 
@@ -354,12 +354,12 @@ First, agree on the following positions with the personnel responsible and recor
 4. In the position properties of each synchronized step, verify that the workpiece position for the sensor being used is recorded in the `ss#` field.
 5. Check for interference and reachability along the entire path, including the start, approach, and exit sections. Shifts caused by conveyor movement may make the actual playback positions differ from the taught positions.
 
-## 2. Specify the Waiting Distance
+### 2. Specify the Waiting Distance
 
 The waiting distance in `cv.wait posi=...` is **the distance the workpiece has traveled from the limit switch**. For a linear conveyor, the unit is mm.
 Confirm the actual limit switch location, teaching reference position, and safe entry area with the personnel responsible before setting the value. The workpiece continues to move while the robot enters after the waiting distance is reached, so check both the entry path and the available tracking margin.
 
-## 3. Write the Program
+### 3. Write the Program
 
 ```hrscript
     global cv
@@ -383,7 +383,7 @@ S7  move P,spd=100%,accu=1,tool=1  # Move to the end position
     end
 ```
 
-## Completion Criteria
+### Completion Criteria
 
 - The roles of S1 ~ S7, the synchronized section S4 ~ S6, and the exit path are clearly identified.
 - The sensor position data, interpolation method, and tool data of the synchronized steps have been checked.
@@ -394,7 +394,7 @@ S7  move P,spd=100%,accu=1,tool=1  # Move to the end position
 [__SOURCE](1-intro/1-6-getting-started/5-first-run.md)
 # 1.6.5 Tutorial - First Test Run and Restart
 
-## Objective and Prerequisites
+### Objective and Prerequisites
 
 Use one workpiece to verify waiting, synchronized tracking, the end of synchronization, and a safe exit. Proceed only after meeting all completion criteria in [Teaching and Program Structure](4-teach-and-program.md).
 
@@ -402,7 +402,7 @@ Use one workpiece to verify waiting, synchronized tracking, the end of synchroni
 Perform the test in the presence of the personnel responsible and in accordance with the site's safe operating procedures. Do not assume that simply reducing the robot speed will allow it to track the conveyor. Consider both the conveyor speed and the robot's tracking capability. Do not bypass guards or interlocks, or enter the workspace during operation to check positions. If motion is hazardous or unexpected, use the site's stopping procedure. `cv.sync off` and a manual reset are not substitutes for a safe stop.
 {% endhint %}
 
-## 1. Pre-Start Checks
+### 1. Pre-Start Checks
 
 - The path from the robot's current position to the start step and the exit path are safe.
 - There is one test workpiece, and it has not yet passed the limit switch.
@@ -410,7 +410,7 @@ Perform the test in the presence of the personnel responsible and in accordance 
 - The conveyor and robot test speeds, test area, and tracking error acceptance criteria have been confirmed with the personnel responsible.
 - Process outputs will not activate, and the monitoring screen can be viewed from outside the workspace.
 
-## 2. Test Procedure
+### 2. Test Procedure
 
 1. Open `[Monitoring] > [Sensor Synchronization]` and check the sensor to be used.
 2. Start the program under approved test conditions. Arrange the equipment sequence so that the workpiece enters after initialization. If the order of initialization and actual entry cannot be guaranteed, do not start; have the personnel responsible improve the interlocks.
@@ -420,7 +420,7 @@ Perform the test in the presence of the personnel responsible and in accordance 
 6. From a safe position, observe whether the relative position and orientation between the tool and workpiece are maintained in the synchronized section, or verify this using an approved measurement method.
 7. Verify that, after synchronization ends, the robot moves safely to the end position and the program terminates.
 
-## 3. Expected Results at Each Stage
+### 3. Expected Results at Each Stage
 
 | Stage | Expected Behavior | Checks if Abnormal |
 | --- | --- | --- |
@@ -433,7 +433,7 @@ Perform the test in the presence of the personnel responsible and in accordance 
 
 If checking the configured synchronization ON output through external I/O, also verify the output assignment.
 
-## 4. Restart Procedure After an Interruption
+### 4. Restart Procedure After an Interruption
 
 Resuming directly from an intermediate step may change the relationship between the workpiece data and the robot position. For this initial exercise, repeat the test **from the beginning** using the following procedure.
 
@@ -444,7 +444,7 @@ Resuming directly from an intermediate step may change the relationship between 
 5. Place the robot at a safe start position using approved manual operation procedures, and recheck the travel path.
 6. Prepare a new test workpiece at a position before it passes the limit switch, and run the program from the beginning. The actual workpiece must enter after initialization within the program.
 
-## Final Completion Checklist
+### Final Completion Checklist
 
 - Only one workpiece is detected through the actual input.
 - The robot waits for the specified distance and performs synchronization in the intended section.
@@ -458,7 +458,7 @@ Resuming directly from an intermediate step may change the relationship between 
 
 If motion differs from what is expected, first stop the equipment safely according to site procedures. The table below lists **checks to perform after stopping**. It does not instruct you to change wiring, signal numbers, or resolution during operation, or to bypass safety interlocks.
 
-## Checks by Symptom
+### Checks by Symptom
 
 | Symptom | Items to Check | Relevant Step |
 | --- | --- | --- |
@@ -473,7 +473,7 @@ If motion differs from what is expected, first stop the equipment safely accordi
 | Tracking error is large or interference is expected during exit | Conveyor speed and robot tracking capability, travel direction and resolution, teaching reference, step data, and exit path | [3. Settings Verification](3-calibration.md), [4. Teaching](4-teach-and-program.md) |
 | Playback after an interruption differs from the first test | Remaining workpieces, data cleared by reset, playback start step, robot's current position | [5. Restart](5-first-run.md) |
 
-## When an Error Is Displayed
+### When an Error Is Displayed
 
 | Error | Checks and Guidance |
 | --- | --- |
