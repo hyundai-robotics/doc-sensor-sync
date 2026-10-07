@@ -63,6 +63,9 @@
     ```
 
 ### Example
+
+This example explains a structure that manually recognizes workpiece entry using `cv.input`. If added as-is to a program that uses actual limit switch inputs, it may result in duplicate recognition. Robot coordinates and sensor position data must be taught, and the speed, waiting distance, and tool number in the example are not recommended values.
+
 ```python
     global cv
     cv=sync.Sensor(1)

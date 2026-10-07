@@ -2,6 +2,10 @@
 
 To apply conveyor (press) synchronization and execute robot motion, the robot controller must know various information about the conveyor (press) it must synchronize with. These parameters must be set before writing the operation program.
 
+{% hint style="warning" %}
+The numerical values shown on the screen are examples and are not recommended values for each piece of equipment. To avoid errors, do not arbitrarily increase the allowable speed or the allowed number of pulse anomaly detections, nor disable system error detection related to synchronization. You must first check the actual operating conditions and input signals.
+{% endhint %}
+
 ![](../_assets/image30.png)
 
 - **Conveyor form**
